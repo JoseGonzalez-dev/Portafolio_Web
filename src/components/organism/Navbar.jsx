@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Icon } from '@iconify/react'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const navigate = useNavigate()
 
   // Datos del menú centralizados
   const menuItems = [
@@ -19,34 +21,70 @@ export const Navbar = () => {
   // Estilos reutilizables
   const styles = {
     regularLink: "text-gray-300 hover:text-white transition-colors duration-300 font-medium",
+    activeRegularLink: "text-white font-semibold",
     specialButton: "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-blue-500/30",
     mobileRegularLink: "block text-gray-300 hover:text-white hover:bg-slate-700 px-4 py-3 rounded-lg transition-all duration-200 font-medium",
+    activeMobileRegularLink: "block text-white bg-slate-700 px-4 py-3 rounded-lg font-semibold",
     mobileSpecialButton: "block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-blue-500/30 text-center"
   }
 
   // Componente para enlaces del menú desktop
-  const DesktopMenuItem = ({ item }) => (
-    <a
-      href={item.href}
-      className={item.isSpecial
-        ? `${styles.specialButton} px-6 py-2 rounded-full`
-        : styles.regularLink
-      }
-    >
-      {item.label}
-    </a>
-  )
+  const DesktopMenuItem = ({ item }) => {
+    if (item.isSpecial) {
+      return (
+        <button
+          onClick={() => navigate(item.href)}
+          className={`${styles.specialButton} px-6 py-2 rounded-full`}
+        >
+          {item.label}
+        </button>
+      )
+    }
+
+    return (
+      <NavLink
+        to={item.href}
+        className={({ isActive }) =>
+          isActive
+            ? `${styles.regularLink} ${styles.activeRegularLink}`
+            : styles.regularLink
+        }
+      >
+        {item.label}
+      </NavLink>
+    )
+  }
 
   // Componente para enlaces del menú mobile
-  const MobileMenuItem = ({ item }) => (
-    <a
-      href={item.href}
-      onClick={closeMenu}
-      className={item.isSpecial ? styles.mobileSpecialButton : styles.mobileRegularLink}
-    >
-      {item.label}
-    </a>
-  )
+  const MobileMenuItem = ({ item }) => {
+    if (item.isSpecial) {
+      return (
+        <button
+          onClick={() => {
+            navigate(item.href)
+            closeMenu()
+          }}
+          className={`${styles.mobileSpecialButton} w-full text-left`}
+        >
+          {item.label}
+        </button>
+      )
+    }
+
+    return (
+      <NavLink
+        to={item.href}
+        onClick={closeMenu}
+        className={({ isActive }) =>
+          isActive
+            ? `${styles.mobileRegularLink} ${styles.activeMobileRegularLink}`
+            : styles.mobileRegularLink
+        }
+      >
+        {item.label}
+      </NavLink>
+    )
+  }
 
   return (
     <nav className="bg-transparent backdrop-blur-md  fixed top-0 left-0 right-0 z-50">

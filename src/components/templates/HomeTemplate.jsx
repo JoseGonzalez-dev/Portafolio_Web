@@ -1,4 +1,6 @@
 import React from 'react'
+import { NavLink } from 'react-router'
+import OrbitalSkills from '../molecules/OrbitalSkills'
 
 export const HomeTemplate = () => {
   return (
@@ -10,11 +12,25 @@ export const HomeTemplate = () => {
           {/* Texto */}
           <div className='text-center lg:text-left lg:flex-1'>
             <h1 className='text-4xl lg:text-5xl font-bold text-white mb-4'>
-              Hola 👋 Soy José Francisco González
+              Hola 👋 Soy José Francisco González Ordoñez
             </h1>
             <p className='text-xl lg:text-2xl text-gray-200'>
               Desarrollador Web Full Stack apasionado por la tecnología y el diseño.
             </p>
+
+            <div className='flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start'>
+              <button className='bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-blue-500/30'>
+                Descargar CV
+              </button>
+              <NavLink to={'/about'}>
+                <button className='bg-transparent border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-6 py-3 rounded-full font-semibold transition-all duration-300 backdrop-blur-sm'>
+                  Acerca de mi
+                </button>
+              </NavLink>
+              <button className='bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 px-6 py-3 rounded-full font-semibold transition-all duration-300 backdrop-blur-sm'>
+                Contactame
+              </button>
+            </div>
           </div>
 
           {/* Imagen */}
