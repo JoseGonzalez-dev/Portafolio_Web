@@ -2,16 +2,19 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import ContactModal from '../molecules/ContactModal'
+import ImageModal from '../molecules/ImageModal'
 import { useContactModal } from '../../hooks/useContactModal'
+import { useImageModal } from '../../hooks/useImageModal'
 import { useScrollAnimations } from '../../hooks/useScrollAnimations'
 
 export const ProyectsTemplate = () => {
     const [activeFilter, setActiveFilter] = useState('all')
-    
+
     // Hooks personalizados
     const contactModal = useContactModal()
+    const imageModal = useImageModal()
     const { animationVariants, viewportConfig } = useScrollAnimations()
-    
+
     // Contactos sociales para el modal
     const socialContacts = [
         {
@@ -42,21 +45,21 @@ export const ProyectsTemplate = () => {
             description: "E-commerce completo con carrito de compras, gestión de productos, autenticación de usuarios y panel administrativo. Conectado a base de datos MySQL.",
             image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752988296/Captura_de_pantalla_2025-07-19_230717_ood9cz.png",
             technologies: ["Java", "JavaFX", "MySQL", "CSS"],
-            category: "fullstack",
+            category: "desktop",
             status: "completed",
-            github: "https://github.com/tu-usuario/tienda-online",
+            github: "https://github.com/JoseGonzalez-dev/Kinal_Store.git",
             demo: null,
             featured: true
         },
         {
             id: 2,
-            title: "API REST con Spring Boot",
-            description: "API robusta para gestión de datos empresariales con endpoints seguros, validaciones y documentación completa.",
-            image: "/projects/api-spring-preview.jpg",
-            technologies: ["Java", "Spring Boot", "MySQL", "JPA", "REST API"],
-            category: "backend",
+            title: "Hotel-Havenis-sys",
+            description: "Systema para la gestion de hoteles, eventos y servicios.",
+            image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752990178/Captura_de_pantalla_2025-07-19_234245_y65e2q.png",
+            technologies: ["React", "Node.js", "MongoDB", "Express"],
+            category: "fullstack",
             status: "completed",
-            github: "https://github.com/tu-usuario/api-springboot",
+            github: "https://github.com/ndelacruz-2023048/Sistema-gestion-hotelera.git",
             demo: null,
             featured: true
         },
@@ -64,11 +67,11 @@ export const ProyectsTemplate = () => {
             id: 3,
             title: "Calculadora React Native",
             description: "Aplicación móvil nativa con interfaz intuitiva, operaciones matemáticas avanzadas y diseño responsive para Android e iOS.",
-            image: "/projects/calc-mobile-preview.jpg",
+            image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752989592/Imagen_de_WhatsApp_2025-07-19_a_las_23.32.31_55db8a94_rqphag.jpg",
             technologies: ["React Native", "JavaScript", "Expo", "Mobile Development"],
             category: "mobile",
             status: "completed",
-            github: "https://github.com/tu-usuario/calculadora-react-native",
+            github: "https://github.com/JoseGonzalez-dev/Proyectos.git",
             demo: null,
             featured: true
         }
@@ -79,73 +82,61 @@ export const ProyectsTemplate = () => {
         ...featuredProjects,
         {
             id: 4,
-            title: "Calculadora de Consola Java",
-            description: "Aplicación de consola robusta con operaciones matemáticas básicas y avanzadas, manejo de errores y interfaz de usuario intuitiva.",
-            image: "/projects/calc-console-preview.jpg",
-            technologies: ["Java", "Console Application", "OOP"],
-            category: "desktop",
+            title: "Blog de Aprendizaje",
+            description: "Sistema Blod de aprendizaje con la apariencia de una red social pudiendo interactuar con ella dinamicamente.",
+            image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752990512/Captura_de_pantalla_2025-07-19_234821_voahkp.png",
+            technologies: ["React", "Node.js", "MongoDB", "Express"],
+            category: "fullstack",
             status: "completed",
-            github: "https://github.com/tu-usuario/calculadora-java",
+            github: "https://github.com/JoseGonzalez-dev/Blog_Aprendizaje_FyB.git",
             demo: null,
             featured: false
         },
         {
             id: 5,
-            title: "Calculadora con Vista Java",
-            description: "Aplicación de escritorio con interfaz gráfica usando Swing/JavaFX, operaciones matemáticas completas y diseño user-friendly.",
-            image: "/projects/calc-gui-preview.jpg",
-            technologies: ["Java", "Swing", "JavaFX", "GUI"],
-            category: "desktop",
+            title: "Portafolio Web",
+            description: "Sitio web personal responsive con animaciones fluidas, diseño moderno y optimización para SEO.",
+            image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752990469/fbnlgfe0klobdro85po6.png",
+            technologies: ["React", "Node.js", "MongoDB", "Express", "Socket.io"],
+            category: "web",
             status: "completed",
-            github: "https://github.com/tu-usuario/calculadora-gui-java",
+            github: "https://github.com/JoseGonzalez-dev/Portafolio_Web.gita",
             demo: null,
             featured: false
         },
         {
             id: 6,
-            title: "API REST con Node.js",
-            description: "API RESTful escalable con autenticación JWT, middleware de seguridad y documentación completa con Swagger.",
-            image: "/projects/api-node-preview.jpg",
-            technologies: ["Node.js", "Express", "JWT", "Swagger", "REST API"],
-            category: "backend",
+            title: "AguaComun-sys",
+            description: "Proyecto comunitario para la gestion, optimización y cuidado del agua en las comunidades de Guatemala.",
+            image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752990984/Captura_de_pantalla_2025-07-19_235610_odhgqb.png",
+            technologies: ["React", "Node.js", "MongoDB", "Express", "Socket.io"],
+            category: "web",
             status: "completed",
-            github: "https://github.com/tu-usuario/api-nodejs",
-            demo: null,
+            github: "https://github.com/ndelacruz-2023048/AguaComun_Frontend.git",
+            demo: 'https://aguacomunfrontend-production.up.railway.app/',
             featured: false
         },
         {
             id: 7,
-            title: "Portafolio React",
-            description: "Sitio web personal responsive con animaciones fluidas, diseño moderno y optimización para SEO.",
-            image: "/projects/portfolio-react-preview.jpg",
-            technologies: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
+            title: "Limae-sys",
+            description: "Sitio para la prevencion y trata del bulling, acoso escolar o violencia escolar, con chat integrado las 24 horas.",
+            image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752991625/Captura_de_pantalla_2025-07-20_000648_hoapaa.png",
+            technologies: ["React", "Node.js", "MongoDB", "Express", "Socket.io"],
             category: "web",
             status: "completed",
-            github: "https://github.com/tu-usuario/portfolio-react",
-            demo: "https://tu-portfolio.com",
+            github: "https://github.com/ndelacruz-2023048/Limae_Frontend.git",
+            demo: "https://limae.org",
             featured: false
         },
         {
             id: 8,
-            title: "Dashboard React",
-            description: "Panel administrativo con gráficas interactivas, gestión de datos en tiempo real y diseño responsive.",
-            image: "/projects/dashboard-react-preview.jpg",
-            technologies: ["React", "Chart.js", "Material-UI", "Axios"],
-            category: "web",
+            title: "Tienda Online",
+            description: "API rest full encargada de la gestion de productos asi como la compra de los mismos",
+            image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752991983/Captura_de_pantalla_2025-07-20_001250_cocqkr.png",
+            technologies: ["Node.js", "MongoDB", "Espress"],
+            category: "backend",
             status: "completed",
-            github: "https://github.com/tu-usuario/dashboard-react",
-            demo: null,
-            featured: false
-        },
-        {
-            id: 9,
-            title: "Sistema CRUD React",
-            description: "Aplicación web completa para gestión de datos con operaciones CRUD, validaciones y interfaz intuitiva.",
-            image: "/projects/crud-react-preview.jpg",
-            technologies: ["React", "Axios", "Bootstrap", "JSON Server"],
-            category: "web",
-            status: "completed",
-            github: "https://github.com/tu-usuario/crud-react",
+            github: "https://github.com/jgonzalez-2023195/Online_Store.git",
             demo: null,
             featured: false
         }
@@ -243,12 +234,36 @@ export const ProyectsTemplate = () => {
                                 className='bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 group'
                             >
                                 {/* Imagen del proyecto */}
-                                <div className='relative h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center'>
-                                    <Icon icon="mdi:image" className='text-4xl text-white/50' />
-                                    <div className='absolute top-4 right-4'>
-                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${project.status === 'completed' ? 'bg-green-500/20 text-green-400' :
-                                                project.status === 'in-progress' ? 'bg-yellow-500/20 text-yellow-400' :
-                                                    'bg-blue-500/20 text-blue-400'
+                                <div className='relative h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 overflow-hidden'>
+                                    {project.image && project.image.startsWith('http') ? (
+                                        <div 
+                                            className='relative w-full h-full cursor-pointer group/image'
+                                            onClick={() => imageModal.openModal(project.image, project.title, project.title)}
+                                        >
+                                            <img
+                                                src={project.image}
+                                                alt={project.title}
+                                                className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+                                                onError={(e) => {
+                                                    e.target.style.display = 'none';
+                                                    e.target.parentElement.nextSibling.style.display = 'flex';
+                                                }}
+                                            />
+                                            {/* Overlay de zoom */}
+                                            <div className='absolute inset-0 bg-black/0 group-hover/image:bg-black/20 transition-all duration-300 flex items-center justify-center'>
+                                                <div className='opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm rounded-full p-3'>
+                                                    <Icon icon="mdi:magnify-plus" className='text-white text-2xl' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : null}
+                                    <div className={`absolute inset-0 flex items-center justify-center ${project.image && project.image.startsWith('http') ? 'hidden' : 'flex'}`}>
+                                        <Icon icon="mdi:image" className='text-4xl text-white/50' />
+                                    </div>
+                                    <div className='absolute top-4 right-4 z-10'>
+                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm ${project.status === 'completed' ? 'bg-green-500/20 text-green-400' :
+                                            project.status === 'in-progress' ? 'bg-yellow-500/20 text-yellow-400' :
+                                                'bg-blue-500/20 text-blue-400'
                                             }`}>
                                             {project.status === 'completed' ? 'Completado' :
                                                 project.status === 'in-progress' ? 'En Progreso' : 'Planeado'}
@@ -311,8 +326,8 @@ export const ProyectsTemplate = () => {
                                 key={category.id}
                                 onClick={() => setActiveFilter(category.id)}
                                 className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-200 ${activeFilter === category.id
-                                        ? 'bg-purple-600 text-white shadow-lg'
-                                        : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
+                                    ? 'bg-purple-600 text-white shadow-lg'
+                                    : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
                                     }`}
                             >
                                 <Icon icon={category.icon} />
@@ -344,10 +359,34 @@ export const ProyectsTemplate = () => {
                                 className='bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 group'
                             >
                                 {/* Imagen del proyecto */}
-                                <div className='relative h-32 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center'>
-                                    <Icon icon="mdi:folder-open" className='text-2xl text-white/50' />
+                                <div className='relative h-32 bg-gradient-to-br from-purple-500/20 to-pink-500/20 overflow-hidden'>
+                                    {project.image && project.image.startsWith('http') ? (
+                                        <div 
+                                            className='relative w-full h-full cursor-pointer group/image'
+                                            onClick={() => imageModal.openModal(project.image, project.title, project.title)}
+                                        >
+                                            <img
+                                                src={project.image}
+                                                alt={project.title}
+                                                className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+                                                onError={(e) => {
+                                                    e.target.style.display = 'none';
+                                                    e.target.parentElement.nextSibling.style.display = 'flex';
+                                                }}
+                                            />
+                                            {/* Overlay de zoom compacto */}
+                                            <div className='absolute inset-0 bg-black/0 group-hover/image:bg-black/20 transition-all duration-300 flex items-center justify-center'>
+                                                <div className='opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm rounded-full p-2'>
+                                                    <Icon icon="mdi:magnify-plus" className='text-white text-lg' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : null}
+                                    <div className={`absolute inset-0 flex items-center justify-center ${project.image && project.image.startsWith('http') ? 'hidden' : 'flex'}`}>
+                                        <Icon icon="mdi:folder-open" className='text-2xl text-white/50' />
+                                    </div>
                                     {project.featured && (
-                                        <div className='absolute top-2 left-2'>
+                                        <div className='absolute top-2 left-2 z-10'>
                                             <Icon icon="mdi:star" className='text-yellow-400 text-lg' />
                                         </div>
                                     )}
@@ -453,6 +492,15 @@ export const ProyectsTemplate = () => {
                 onInputChange={contactModal.handleInputChange}
                 onSubmit={contactModal.handleSubmit}
                 socialContacts={socialContacts}
+            />
+
+            {/* Modal de imágenes */}
+            <ImageModal
+                isOpen={imageModal.isOpen}
+                onClose={imageModal.closeModal}
+                imageSrc={imageModal.currentImage.src}
+                imageAlt={imageModal.currentImage.alt}
+                title={imageModal.currentImage.title}
             />
         </div>
     )
