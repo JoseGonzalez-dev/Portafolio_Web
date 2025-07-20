@@ -173,14 +173,14 @@ export const AboutMeTemplate = () => {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        viewport={viewportConfig}
+                        viewport={{ once: true, margin: "-50px", amount: 0.2 }}
                     >
                         <motion.h2 
                             className='text-3xl md:text-4xl font-bold text-white mb-4'
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={viewportConfig}
+                            viewport={{ once: true, margin: "-50px" }}
                         >
                             Mis Habilidades
                         </motion.h2>
@@ -189,30 +189,42 @@ export const AboutMeTemplate = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={viewportConfig}
+                            viewport={{ once: true, margin: "-50px" }}
                         >
                             Tecnologías y herramientas que domino para crear experiencias digitales excepcionales
                         </motion.p>
                     </motion.div>
 
-                    {/* Contenedor de habilidades orbitales */}
-                    <motion.div 
-                        className='grid grid-cols-1 xl:grid-cols-3 gap-8 xl:gap-80'
-                        variants={animationVariants.staggerContainer}
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={viewportConfig}
-                    >
-                        <motion.div variants={animationVariants.scaleIn}>
+                    {/* Contenedor de habilidades orbitales - Optimizado para móviles */}
+                    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 xl:gap-16'>
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            viewport={{ once: true, margin: "-100px", amount: 0.3 }}
+                            className='flex justify-center'
+                        >
                             <SkillsOrbit category="frontend" title="Frontend" />
                         </motion.div>
-                        <motion.div variants={animationVariants.scaleIn}>
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            viewport={{ once: true, margin: "-100px", amount: 0.3 }}
+                            className='flex justify-center'
+                        >
                             <SkillsOrbit category="backend" title="Backend" />
                         </motion.div>
-                        <motion.div variants={animationVariants.scaleIn}>
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            viewport={{ once: true, margin: "-100px", amount: 0.3 }}
+                            className='flex justify-center md:col-span-2 xl:col-span-1'
+                        >
                             <SkillsOrbit category="tools" title="Herramientas" />
                         </motion.div>
-                    </motion.div>
+                    </div>
                 </section>
 
                 {/* Estadísticas y Logros */}
@@ -287,14 +299,14 @@ export const AboutMeTemplate = () => {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        viewport={viewportConfig}
+                        viewport={{ once: true, margin: "-50px", amount: 0.2 }}
                     >
                         <motion.h2 
                             className='text-3xl md:text-4xl font-bold text-white mb-4'
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={viewportConfig}
+                            viewport={{ once: true, margin: "-50px" }}
                         >
                             Mi Filosofía de Trabajo
                         </motion.h2>
@@ -303,22 +315,20 @@ export const AboutMeTemplate = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={viewportConfig}
+                            viewport={{ once: true, margin: "-50px" }}
                         >
                             Los principios que guían mi desarrollo profesional
                         </motion.p>
                     </motion.div>
 
-                    <motion.div 
-                        className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'
-                        variants={animationVariants.staggerContainer}
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={viewportConfig}
-                    >
+                    {/* Grid optimizado para responsive */}
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                         <motion.div
                             className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            variants={animationVariants.scaleIn}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
                             whileHover={{ scale: 1.05, y: -5 }}
                         >
                             <motion.div 
@@ -336,7 +346,10 @@ export const AboutMeTemplate = () => {
 
                         <motion.div
                             className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            variants={animationVariants.scaleIn}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
                             whileHover={{ scale: 1.05, y: -5 }}
                         >
                             <motion.div 
@@ -354,7 +367,10 @@ export const AboutMeTemplate = () => {
 
                         <motion.div
                             className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            variants={animationVariants.scaleIn}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
                             whileHover={{ scale: 1.05, y: -5 }}
                         >
                             <motion.div 
@@ -372,7 +388,10 @@ export const AboutMeTemplate = () => {
 
                         <motion.div
                             className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            variants={animationVariants.scaleIn}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
                             whileHover={{ scale: 1.05, y: -5 }}
                         >
                             <motion.div 
@@ -390,7 +409,10 @@ export const AboutMeTemplate = () => {
 
                         <motion.div
                             className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            variants={animationVariants.scaleIn}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
+                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
                             whileHover={{ scale: 1.05, y: -5 }}
                         >
                             <motion.div 
@@ -408,7 +430,10 @@ export const AboutMeTemplate = () => {
 
                         <motion.div
                             className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            variants={animationVariants.scaleIn}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
+                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
                             whileHover={{ scale: 1.05, y: -5 }}
                         >
                             <motion.div 
@@ -423,7 +448,7 @@ export const AboutMeTemplate = () => {
                                 Optimizo tanto el rendimiento del código como los procesos de desarrollo.
                             </p>
                         </motion.div>
-                    </motion.div>
+                    </div>
                 </section>
 
                 {/* Call to Action - Navegación a otras secciones */}
