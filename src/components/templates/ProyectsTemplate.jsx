@@ -100,7 +100,7 @@ export const ProyectsTemplate = () => {
             technologies: ["React", "Node.js", "MongoDB", "Express", "Socket.io"],
             category: "web",
             status: "completed",
-            github: "https://github.com/JoseGonzalez-dev/Portafolio_Web.gita",
+            github: "https://github.com/JoseGonzalez-dev/Portafolio_Web.git",
             demo: null,
             featured: false
         },
