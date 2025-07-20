@@ -489,13 +489,13 @@ export const AboutMeTemplate = () => {
                                 whileHover={{ scale: 1.05, y: -5 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                <NavLink to={'/education'}>
                                     <Icon icon="mdi:school" className='text-4xl text-blue-400 mb-4 mx-auto group-hover:scale-110 transition-transform' />
                                     <h3 className='text-white font-bold text-lg mb-2 group-hover:text-blue-400 transition-colors'>Educación</h3>
                                     <p className='text-gray-400 text-sm'>
-                                        Formación académica y certificaciones
+                                        <NavLink to={'/education'}>
+                                            Formación académica y certificaciones
+                                        </NavLink>
                                     </p>
-                                </NavLink>
                             </motion.a>
 
                             <motion.a
@@ -505,12 +505,12 @@ export const AboutMeTemplate = () => {
                                 whileTap={{ scale: 0.95 }}
                             >
                                 <Icon icon="mdi:rocket-launch" className='text-4xl text-green-400 mb-4 mx-auto group-hover:scale-110 transition-transform' />
-                                <Navigate to={'/proyects'}>
                                     <h3 className='text-white font-bold text-lg mb-2 group-hover:text-green-400 transition-colors'>Proyectos</h3>
                                     <p className='text-gray-400 text-sm'>
-                                        Mis trabajos y desarrollos
+                                        <Navigate to={'/proyects'}>
+                                            Mis trabajos y desarrollos
+                                    </Navigate>
                                     </p>
-                                </Navigate>
                             </motion.a>
 
                             <motion.button
