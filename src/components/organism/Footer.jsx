@@ -5,11 +5,11 @@ export const Footer = () => {
     const currentYear = new Date().getFullYear()
 
     const socialLinks = [
-        { icon: 'mdi:github', href: '#', label: 'GitHub' },
-        { icon: 'mdi:linkedin', href: '#', label: 'LinkedIn' },
+        { icon: 'mdi:github', href: 'https://github.com/JoseGonzalez-dev', label: 'GitHub' },
+        { icon: 'mdi:linkedin', href: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'LinkedIn' },
         { icon: 'mdi:twitter', href: '#', label: 'Twitter' },
         { icon: 'mdi:instagram', href: '#', label: 'Instagram' },
-        { icon: 'mdi:email', href: 'mailto:contact@example.com', label: 'Email' }
+        { icon: 'mdi:email', href: 'mailto:jgonzalez.242720@gmail.com', label: 'Email' }
     ]
 
     const quickLinks = [
