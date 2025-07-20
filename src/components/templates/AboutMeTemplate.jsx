@@ -5,6 +5,7 @@ import SkillsOrbit from '../molecules/SkillsOrbit'
 import ContactModal from '../molecules/ContactModal'
 import { useContactModal } from '../../hooks/useContactModal'
 import { useScrollAnimations } from '../../hooks/useScrollAnimations'
+import { Navigate, NavLink } from 'react-router'
 
 export const AboutMeTemplate = () => {
     // Hooks personalizados
@@ -483,31 +484,33 @@ export const AboutMeTemplate = () => {
                             viewport={viewportConfig}
                         >
                             <motion.a
-                                href="/education"
                                 className='bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center transition-all duration-300 group'
                                 variants={animationVariants.scaleIn}
                                 whileHover={{ scale: 1.05, y: -5 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                <Icon icon="mdi:school" className='text-4xl text-blue-400 mb-4 mx-auto group-hover:scale-110 transition-transform' />
-                                <h3 className='text-white font-bold text-lg mb-2 group-hover:text-blue-400 transition-colors'>Educación</h3>
-                                <p className='text-gray-400 text-sm'>
-                                    Formación académica y certificaciones
-                                </p>
+                                <NavLink to={'/education'}>
+                                    <Icon icon="mdi:school" className='text-4xl text-blue-400 mb-4 mx-auto group-hover:scale-110 transition-transform' />
+                                    <h3 className='text-white font-bold text-lg mb-2 group-hover:text-blue-400 transition-colors'>Educación</h3>
+                                    <p className='text-gray-400 text-sm'>
+                                        Formación académica y certificaciones
+                                    </p>
+                                </NavLink>
                             </motion.a>
 
                             <motion.a
-                                href="/proyects"
                                 className='bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center transition-all duration-300 group'
                                 variants={animationVariants.scaleIn}
                                 whileHover={{ scale: 1.05, y: -5 }}
                                 whileTap={{ scale: 0.95 }}
                             >
                                 <Icon icon="mdi:rocket-launch" className='text-4xl text-green-400 mb-4 mx-auto group-hover:scale-110 transition-transform' />
-                                <h3 className='text-white font-bold text-lg mb-2 group-hover:text-green-400 transition-colors'>Proyectos</h3>
-                                <p className='text-gray-400 text-sm'>
-                                    Mis trabajos y desarrollos
-                                </p>
+                                <Navigate to={'/proyects'}>
+                                    <h3 className='text-white font-bold text-lg mb-2 group-hover:text-green-400 transition-colors'>Proyectos</h3>
+                                    <p className='text-gray-400 text-sm'>
+                                        Mis trabajos y desarrollos
+                                    </p>
+                                </Navigate>
                             </motion.a>
 
                             <motion.button
