@@ -23,7 +23,7 @@ export const AboutMeTemplate = () => {
         {
             name: 'LinkedIn',
             icon: 'mdi:linkedin',
-            url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+            url: 'https://www.linkedin.com/in/josgonzalezdev',
             color: '#0077b5'
         },
         {

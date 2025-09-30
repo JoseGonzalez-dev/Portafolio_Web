@@ -26,7 +26,7 @@ export const ProyectsTemplate = () => {
         {
             name: 'LinkedIn',
             icon: 'mdi:linkedin',
-            url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+            url: 'https://www.linkedin.com/in/josgonzalezdev',
             color: '#0077b5'
         },
         {
@@ -41,6 +41,18 @@ export const ProyectsTemplate = () => {
     const featuredProjects = [
         {
             id: 1,
+            title: "GeoDash",
+            description: "Juego de trivia en la web para poner a prueba tus conocimientos sobre Geografia.",
+            image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1759196714/Captura_de_pantalla_2025-09-29_194504_dn564s.png",
+            technologies: ["React Native", "JavaScript", "Mongo DB Atlas", "Express", "Vercel", "Render"],
+            category: "web",
+            status: "completed",
+            github: "https://github.com/JoseGonzalez-dev/Geodash_Frontend",
+            demo: "https://geodash-frontend.vercel.app/",
+            featured: true
+        },
+        {
+            id: 2,
             title: "Tienda Online",
             description: "E-commerce completo con carrito de compras, gestión de productos, autenticación de usuarios y panel administrativo. Conectado a base de datos MySQL.",
             image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752988296/Captura_de_pantalla_2025-07-19_230717_ood9cz.png",
@@ -52,7 +64,7 @@ export const ProyectsTemplate = () => {
             featured: true
         },
         {
-            id: 2,
+            id: 3,
             title: "Hotel-Havenis-sys",
             description: "Systema para la gestion de hoteles, eventos y servicios.",
             image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752990178/Captura_de_pantalla_2025-07-19_234245_y65e2q.png",
@@ -64,7 +76,7 @@ export const ProyectsTemplate = () => {
             featured: true
         },
         {
-            id: 3,
+            id: 4,
             title: "Calculadora React Native",
             description: "Aplicación móvil nativa con interfaz intuitiva, operaciones matemáticas avanzadas y diseño responsive para Android e iOS.",
             image: "https://res.cloudinary.com/dzydnoljd/image/upload/v1752989592/Imagen_de_WhatsApp_2025-07-19_a_las_23.32.31_55db8a94_rqphag.jpg",

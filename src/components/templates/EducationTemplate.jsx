@@ -52,23 +52,20 @@ export const EducationTemplate = () => {
             },
             verified: true
         },
-        // {
-        //     title: "AWS Cloud Practitioner",
-        //     provider: "Amazon Web Services",
-        //     status: "En Proceso",
-        //     date: "2025",
-        //     icon: "logos:aws",
-        //     color: "#FF9900",
-        //     description: "Fundamentos de computación en la nube con AWS"
-        // },
         {
-            title: "IT Essentials",
+            title: "Introduccion a la Ciberseguridad",
             provider: "CISCO",
-            status: "Próximamente",
+            status: "Completado",
             date: "2025",
             icon: "cib:cisco",
             color: "#1BA0D7",
-            description: "Fundamentos de hardware y software de computadoras"
+            description: "Fundamentos de hardware y software de computadoras",
+            credlyBadge: {
+                id: "00b66528-8c2c-4ed6-a4cf-8b18e81a233e",
+                width: "150",
+                height: "270"
+            },
+            verified: true
         }
     ]
 
@@ -77,21 +74,21 @@ export const EducationTemplate = () => {
         {
             title: "Microsoft Azure Fundamentals",
             provider: "Microsoft Learn",
-            type: "Curso Gratuito",
+            type: "Completado",
             icon: "logos:microsoft-azure",
             color: "#0078D4"
         },
         {
             title: "Introducción a Ciberseguridad",
             provider: "Autodidacta",
-            type: "En Progreso",
+            type: "Completado",
             icon: "mdi:shield-check",
             color: "#DC2626"
         },
         {
             title: "Fundamentos de Redes",
             provider: "Varios Proveedores",
-            type: "Cursos Básicos",
+            type: "Completados",
             icon: "mdi:network",
             color: "#059669"
         }
@@ -408,7 +405,7 @@ export const EducationTemplate = () => {
                                 <div className='text-4xl mb-4'>🎯</div>
                                 <h3 className='text-white font-bold text-lg mb-2'>2025</h3>
                                 <p className='text-gray-400 text-sm'>
-                                    Completar CISCO IT Essentials, Graduación y más certificados
+                                    Completar CISCO Introduccion a la Ciberseguridad, Graduación y más certificados
                                 </p>
                             </div>
 

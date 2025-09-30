@@ -11,7 +11,7 @@ const SkillsOrbit = ({ category = 'frontend', title = 'Mis Habilidades' }) => {
         frontend: {
             skills: [
                 { icon: 'logos:react', name: 'React', color: '#61DAFB', bg: '#1e3a8a', level: 85, experience: '2 años' },
-                { icon: 'logos:react', name: 'React Native', color: '#20232A', bg: '#374151', level: 30, experience: '1 año' },
+                { icon: 'logos:react', name: 'React Native', color: '#20232A', bg: '#374151', level: 35, experience: '6 meses' },
                 { icon: 'logos:tailwindcss-icon', name: 'Tailwind', color: '#06B6D4', bg: '#0891b2', level: 90, experience: '2 años' },
                 { icon: 'logos:flutter', name: 'Flutter', color: '#02569B', bg: '#1e40af', level: 20, experience: '6 meses' },
                 { icon: 'logos:javascript', name: 'JavaScript', color: '#F7DF1E', bg: '#ca8a04', level: 88, experience: '3 años' },
@@ -26,13 +26,13 @@ const SkillsOrbit = ({ category = 'frontend', title = 'Mis Habilidades' }) => {
         backend: {
             skills: [
                 { icon: 'logos:nodejs-icon', name: 'Node.js', color: '#339933', bg: '#166534', level: 80, experience: '1 año' },
-                { icon: 'logos:python', name: 'Python', color: '#3776AB', bg: '#1e40af', level: 55, experience: '1 año' },
                 { icon: 'logos:java', name: 'Java', color: '#ED8B00', bg: '#ca8a04', level: 80, experience: '2 años' },
-                { icon: 'logos:spring-icon', name: 'Spring Boot', color: '#6DB33F', bg: '#166534', level: 70, experience: '1 año' },
+                { icon: 'logos:python', name: 'Python', color: '#3776AB', bg: '#1e40af', level: 55, experience: '1 año' },
+                { icon: 'logos:c-sharp', name: 'C#', color: '#239120', bg: '#166534', level: 20, experience: '2 meses' },
+                { icon: 'logos:dotnet', name: '.NET', color: '#512BD4', bg: '#7c3aed', level: 20, experience: '2 meses' },
                 { icon: 'logos:postgresql', name: 'PostgreSQL', color: '#336791', bg: '#1e40af', level: 5, experience: '6 meses' },
                 { icon: 'logos:mongodb', name: 'MongoDB', color: '#47A248', bg: '#166534', level: 85, experience: '1 año' },
                 { icon: 'logos:mysql', name: 'MySQL', color: '#4479A1', bg: '#1d4ed8', level: 90, experience: '2 años' },
-                { icon: 'logos:npm-icon', name: 'Redis', color: '#DC382D', bg: '#dc2626', level: 60, experience: '8 meses' }
             ],
             centerIcon: 'mdi:server',
             centerColor: 'from-green-400 via-green-500 to-green-600',
