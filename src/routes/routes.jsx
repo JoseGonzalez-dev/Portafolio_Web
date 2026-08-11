@@ -1,43 +1,10 @@
-import { createBrowserRouter, RouterProvider, Route, Routes } from "react-router"
-import { Layout } from "../components/Layout"
-import { HomePage } from "../pages/HomePage"
-import { AboutPage } from "../pages/AboutPage"
-import { EducationPage } from "../pages/EducationPage"
-import { ProyectsPage } from "../pages/ProyectsPage"
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router"
+import { MaintenancePage } from "../pages/MaintenancePage"
 
 const router = createBrowserRouter([
     {
-        path: '/',
-        element: <Layout />,
-        children: [
-            {
-                index: true,
-                element: <HomePage />
-            },
-            {
-                path: '/about',
-                element: <AboutPage />
-            },
-            {
-                path: '/education' ,
-                element: <EducationPage />
-            },
-            {
-                path: '/proyects',
-                element: <ProyectsPage />
-            
-            },
-            {
-                path: '/contact',
-                element: <div>Contact</div>
-            }
-            
-        ],
-        errorElement: <div>Err</div>
-    },
-    {
         path: '*',
-        element: <div>404</div>
+        element: <MaintenancePage />
     }
 ])
 
