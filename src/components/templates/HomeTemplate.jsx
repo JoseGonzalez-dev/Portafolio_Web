@@ -2,29 +2,98 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import CodeShowcase from '../molecules/CodeShowcase'
 import ContactModal from '../molecules/ContactModal'
 import { useContactModal } from '../../hooks/useContactModal'
-import { useScrollAnimations } from '../../hooks/useScrollAnimations'
 import CV from '../../assets/CV.pdf'
 
-export const HomeTemplate = () => {
-  // Estados para loader
-  const [isLoading, setIsLoading] = useState(true)
+/* ─────────────────────────────────────────
+   Terminal Loader
+───────────────────────────────────────── */
+const LINES = [
+  { text: '> Initializing cyber_portfolio v2.4.1...', color: '#6B6B6B', delay: 0 },
+  { text: '> Establishing secure connection...', color: '#6B6B6B', delay: 320 },
+  { text: '  ✓ TLS_1.3 handshake complete', color: '#4CAF50', delay: 640 },
+  { text: '> Installing dependencies:', color: '#6B6B6B', delay: 960 },
+  { text: '  ✓ zero-trust-auth@3.1.2', color: '#4CAF50', delay: 1180 },
+  { text: '  ✓ cryptoshield@latest', color: '#4CAF50', delay: 1360 },
+  { text: '  ✓ portfolio-core@5.0.0', color: '#4CAF50', delay: 1540 },
+  { text: '  ⟳ loading threat-intel-module...', color: '#FFBD2E', delay: 1720 },
+  { text: '  ✓ threat-intel-module loaded', color: '#4CAF50', delay: 1950 },
+  { text: '> Compiling secure assets...', color: '#6B6B6B', delay: 2150 },
+  { text: '> STATUS: READY — ACCESS GRANTED', color: '#C9A84C', delay: 2450 },
+]
 
-  // Hooks personalizados
-  const contactModal = useContactModal()
-  const { animationVariants, viewportConfig, parallaxY1, parallaxY2 } = useScrollAnimations()
+const TerminalLoader = ({ onDone }) => {
+  const [visible, setVisible] = useState([])
+  const [progress, setProgress] = useState(0)
 
-  // Efecto de carga inicial
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
-    return () => clearTimeout(timer)
+    LINES.forEach((line, i) => {
+      setTimeout(() => {
+        setVisible(p => [...p, line])
+        setProgress(Math.round(((i + 1) / LINES.length) * 100))
+      }, line.delay)
+    })
+    const total = LINES[LINES.length - 1].delay + 700
+    setTimeout(() => setTimeout(onDone, 400), total)
   }, [])
 
-  // Función para descargar CV
+  return (
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      style={{ background: '#0D0D0D' }}
+    >
+      <div style={{ border: '1px solid var(--accent)', background: '#080808', width: '100%', maxWidth: '520px', fontFamily: 'var(--font-mono)' }}>
+        {/* title bar */}
+        <div style={{ background: '#111', borderBottom: '1px solid var(--border)', padding: '8px 14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div className="flex gap-1.5">
+            <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF5F57', display: 'inline-block' }} />
+            <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFBD2E', display: 'inline-block' }} />
+            <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#28C840', display: 'inline-block' }} />
+          </div>
+          <span style={{ fontSize: '0.58rem', color: '#404040', letterSpacing: '0.12em' }}>CYBER_PORTFOLIO — secure-terminal</span>
+        </div>
+        {/* body */}
+        <div className="p-5 space-y-1.5" style={{ minHeight: '220px' }}>
+          {visible.map((l, i) => (
+            <p key={i} className="terminal-line" style={{ fontSize: '0.7rem', color: l.color }}>{l.text}</p>
+          ))}
+          {visible.length < LINES.length && (
+            <span className="cursor-blink" style={{ fontSize: '0.7rem', color: 'var(--text-main)' }}>_</span>
+          )}
+        </div>
+        {/* progress */}
+        <div style={{ borderTop: '1px solid var(--border)', padding: '10px 20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
+            <span style={{ fontSize: '0.52rem', color: '#404040', letterSpacing: '0.14em' }}>LOADING ENVIRONMENT</span>
+            <span style={{ fontSize: '0.52rem', color: 'var(--accent)' }}>{progress}%</span>
+          </div>
+          <div style={{ height: '2px', background: '#1A1A1A', position: 'relative' }}>
+            <div style={{ height: '100%', background: 'var(--accent)', width: `${progress}%`, transition: 'width 0.3s ease' }} />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+/* ─────────────────────────────────────────
+   Home Template
+───────────────────────────────────────── */
+export const HomeTemplate = () => {
+  const [showLoader, setShowLoader] = useState(() => !sessionStorage.getItem('cyber_loaded'))
+  const [heroVisible, setHeroVisible] = useState(() => !!sessionStorage.getItem('cyber_loaded'))
+  const contactModal = useContactModal()
+
+  const handleLoaderDone = () => {
+    sessionStorage.setItem('cyber_loaded', '1')
+    setShowLoader(false)
+    setHeroVisible(true)
+  }
+
   const handleDownloadCV = () => {
     const link = document.createElement('a')
     link.href = CV
@@ -33,103 +102,83 @@ export const HomeTemplate = () => {
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
-    console.log('CV descargado')
   }
 
-  // Contactos sociales
   const socialContacts = [
-    {
-      name: 'GitHub',
-      icon: 'mdi:github',
-      url: 'https://github.com/JoseGonzalez-dev',
-      color: '#ffffff',
-      hoverColor: '#4f46e5',
-      description: 'Código y proyectos'
-    },
-    {
-      name: 'LinkedIn',
-      icon: 'mdi:linkedin',
-      url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-      color: '#0077b5',
-      hoverColor: '#005885',
-      description: 'Red profesional'
-    },
-    {
-      name: 'Email',
-      icon: 'mdi:email',
-      url: 'mailto:jgonzalez.242720@gmail.com',
-      color: '#ea4335',
-      hoverColor: '#d33b2c',
-      description: 'Contacto directo'
-    }
-  ]
-
-  // Estadísticas rápidas
-  const stats = [
-    { label: 'Proyectos', value: '9+', icon: 'mdi:rocket-launch' },
-    { label: 'Tecnologías', value: '15+', icon: 'mdi:code-tags' },
-    { label: 'Experiencia', value: '2+', icon: 'mdi:calendar' },
-    { label: 'APIs', value: '3+', icon: 'mdi:api' }
-  ]
-
-  // Tecnologías principales
-  const mainTechs = [
-    { name: 'Java', icon: 'logos:java', color: '#ED8B00' },
-    { name: 'Spring Boot', icon: 'logos:spring-icon', color: '#6DB33F' },
-    { name: 'React', icon: 'logos:react', color: '#61DAFB' },
-    { name: 'Node.js', icon: 'logos:nodejs-icon', color: '#339933' },
-    { name: 'MySQL', icon: 'logos:mysql-icon', color: '#4479A1' },
-    { name: 'React Native', icon: 'logos:react', color: '#61DAFB' }
+    { name: 'GitHub',   icon: 'mdi:github',  url: 'https://github.com/JoseGonzalez-dev',    color: '#ffffff', description: 'Código' },
+    { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', color: '#0077b5', description: 'LinkedIn' },
+    { name: 'Email',    icon: 'mdi:email',    url: 'mailto:jgonzalez.242720@gmail.com',      color: '#ea4335', description: 'Email' },
   ]
 
   return (
-    <div className='bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen relative'>
+    <div
+      style={{
+        background: '#0D0D0D',
+        minHeight: '100vh',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* ── Ambient background glows & Cyber Grid ── */}
+      <div style={{
+        position: 'fixed',
+        inset: 0,
+        pointerEvents: 'none',
+        zIndex: 0,
+      }}>
+        {/* Cyber grid overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+          opacity: 0.8,
+        }} />
 
-      {/* Loader de página */}
+        {/* Top-right wine glow */}
+        <div style={{
+          position: 'absolute',
+          top: '-10%',
+          right: '-5%',
+          width: '55vw',
+          height: '55vw',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(110, 18, 18, 0.4) 0%, rgba(70, 10, 10, 0.18) 45%, transparent 70%)',
+          filter: 'blur(45px)',
+        }} />
+        {/* Bottom-left warm amber glow */}
+        <div style={{
+          position: 'absolute',
+          bottom: '10%',
+          left: '-10%',
+          width: '42vw',
+          height: '42vw',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(110, 70, 15, 0.22) 0%, transparent 70%)',
+          filter: 'blur(55px)',
+        }} />
+        {/* Center subtle warm */}
+        <div style={{
+          position: 'absolute',
+          top: '25%',
+          left: '20%',
+          width: '50vw',
+          height: '35vw',
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(90, 20, 10, 0.15) 0%, transparent 65%)',
+          filter: 'blur(65px)',
+        }} />
+      </div>
+
+      {/* Loader */}
       <AnimatePresence>
-        {isLoading && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className='fixed inset-0 z-50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center'
-          >
-            <div className='text-center'>
-              <motion.div
-                animate={{
-                  rotate: 360,
-                  scale: [1, 1.2, 1]
-                }}
-                transition={{
-                  rotate: { duration: 2, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 1, repeat: Infinity, ease: "easeInOut" }
-                }}
-                className='w-16 h-16 border-4 border-blue-500/30 border-t-blue-500 rounded-full mx-auto mb-4'
-              />
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className='text-2xl font-bold text-white mb-2'
-              >
-                José González
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className='text-gray-400'
-              >
-                Cargando portafolio...
-              </motion.p>
-            </div>
-          </motion.div>
-        )}
+        {showLoader && <TerminalLoader onDone={handleLoaderDone} />}
       </AnimatePresence>
 
-
-
-      {/* Modal de contacto */}
+      {/* Contact Modal */}
       <ContactModal
         isOpen={contactModal.isContactModalOpen}
         onClose={contactModal.closeContactModal}
@@ -140,393 +189,406 @@ export const HomeTemplate = () => {
         socialContacts={socialContacts}
       />
 
-      {/* Hero Section */}
-      <section className='min-h-screen flex items-center justify-center px-4 py-20'>
-        <div className='max-w-7xl mx-auto w-full'>
-
-          {/* Layout principal con grid responsive */}
-          <div className='grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16'>
-
-            {/* Contenido de texto */}
-            <motion.div
-              className='text-center lg:text-left order-2 lg:order-1'
-              {...animationVariants.fadeInUp}
-            >
-              {/* Saludo */}
+      {/* ══════════════════════════════════════
+          HERO SECTION
+      ══════════════════════════════════════ */}
+      <section
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          position: 'relative',
+          zIndex: 1,
+        }}
+      >
+        <div className="w-full max-w-7xl mx-auto px-6 xl:px-10 pt-20 pb-16">
+          <AnimatePresence>
+            {heroVisible && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className='inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20 mb-8 hover:bg-white/15 transition-all duration-300'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7 }}
               >
-                <span className='text-2xl animate-pulse'>👋</span>
-                <span className='text-white font-medium text-lg'>¡Hola! Soy José González</span>
-              </motion.div>
-
-              {/* Título Principal */}
-              <motion.h1
-                className='text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6'
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.7 }}
-              >
-                Desarrollador{' '}
-                <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-pulse'>
-                  Full Stack
-                </span>
-              </motion.h1>
-
-              {/* Descripción */}
-              <motion.p
-                className='text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-10'
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-              >
-                Apasionado por la tecnología y el diseño.
-                <span className='block text-lg text-gray-400 mt-2'>
-                  Creando experiencias digitales excepcionales
-                </span>
-              </motion.p>
-
-              {/* Botones de Acción */}
-              <motion.div
-                className='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8'
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-              >
-                <button
-                  onClick={handleDownloadCV}
-                  className='group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border border-blue-500/30 flex items-center gap-3 justify-center'
-                >
-                  <Icon icon="mdi:download" className='text-xl group-hover:animate-bounce' />
-                  Descargar CV
-                </button>
-
-                <NavLink
-                  to='/about'
-                  className='group bg-transparent border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 px-8 py-4 rounded-full font-semibold transition-all duration-300 backdrop-blur-sm flex items-center gap-3 justify-center'
-                >
-                  <Icon icon="mdi:account" className='text-xl group-hover:scale-110 transition-transform' />
-                  Acerca de mí
-                </NavLink>
-
-                <button
-                  onClick={contactModal.openContactModal}
-                  className='group bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 px-8 py-4 rounded-full font-semibold transition-all duration-300 backdrop-blur-sm flex items-center gap-3 justify-center'
-                >
-                  <Icon icon="mdi:email" className='text-xl group-hover:scale-110 transition-transform' />
-                  Contáctame
-                </button>
-              </motion.div>
-
-              {/* Contactos Sociales - Sección elegante */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.0, duration: 0.6 }}
-                className='text-center lg:text-left'
-              >
-                <div className='inline-flex items-center gap-2 mb-4'>
-                  <div className='h-px bg-gradient-to-r from-transparent to-white/20 w-8'></div>
-                  <span className='text-gray-400 text-sm font-medium'>Conecta conmigo</span>
-                  <div className='h-px bg-gradient-to-l from-transparent to-white/20 w-8'></div>
-                </div>
-
-                <div className='flex gap-3 justify-center lg:justify-start'>
-                  {socialContacts.map((contact, index) => (
-                    <motion.a
-                      key={contact.name}
-                      href={contact.url}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 1.2 + index * 0.1, duration: 0.4 }}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className='group relative'
-                    >
-                      <div className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 hover:border-white/30 transition-all duration-300 hover:bg-white/10'>
-                        <Icon
-                          icon={contact.icon}
-                          className='text-2xl transition-colors duration-300'
-                          style={{ color: contact.color }}
-                        />
-                      </div>
-
-                      {/* Tooltip */}
-                      <div className='absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10'>
-                        {contact.description}
-                        <div className='absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800'></div>
-                      </div>
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Imagen de Perfil */}
-            <motion.div
-              className='flex justify-center order-1 lg:order-2'
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <div className='relative group'>
-                {/* Efecto de resplandor */}
-                <div className='absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-full blur-3xl scale-110 group-hover:scale-125 transition-transform duration-500'></div>
-
-                {/* Anillo decorativo */}
-                <div className='absolute inset-0 rounded-full border-2 border-gradient-to-r from-blue-400/50 to-purple-400/50 animate-spin-slow'></div>
-
-                <picture className='relative z-10'>
-                  <source
-                    srcSet='https://res.cloudinary.com/dzydnoljd/image/upload/e_background_removal/f_png/v1752813675/iyo_hmala0.jpg'
-                    media='(min-width: 740px)'
-                  />
-                  <img
-                    src='https://res.cloudinary.com/dzydnoljd/image/upload/e_background_removal/f_png/v1752813675/iyo_hmala0.jpg'
-                    alt='José Francisco González Ordoñez'
-                    className='h-80 w-80 md:h-96 md:w-96 lg:h-[28rem] lg:w-[28rem] object-contain rounded-full border-4 border-white/20 shadow-2xl group-hover:border-white/40 transition-all duration-300'
-                  />
-                </picture>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Code Showcase - Sección separada */}
-          <motion.div
-            className='flex justify-center mb-16'
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-          >
-            <div className='w-full max-w-4xl'>
-              <CodeShowcase />
-            </div>
-          </motion.div>
-
-          {/* Estadísticas Rápidas */}
-          <motion.div
-            className='grid grid-cols-2 md:grid-cols-4 gap-6'
-            variants={animationVariants.staggerContainer}
-            initial="initial"
-            animate="animate"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={animationVariants.staggerItem}
-                transition={{ delay: 1.2 + index * 0.1 }}
-                className='text-center group'
-              >
-                <div className='bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300 group-hover:scale-105'>
-                  <Icon
-                    icon={stat.icon}
-                    className='text-3xl text-blue-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300'
-                  />
-                  <div className='text-3xl font-bold text-white mb-1'>{stat.value}</div>
-                  <div className='text-gray-400 text-sm font-medium'>{stat.label}</div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Tecnologías Principales */}
-      <section className='py-20 px-4'>
-        <div className='max-w-7xl mx-auto'>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className='text-center mb-16'
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className='inline-flex items-center gap-2 bg-blue-500/10 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-500/20 mb-6'
-            >
-              <Icon icon="mdi:code-tags" className='text-blue-400 text-lg' />
-              <span className='text-blue-300 font-medium'>Mi Stack Tecnológico</span>
-            </motion.div>
-
-            <h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
-              Tecnologías que{' '}
-              <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400'>
-                Domino
-              </span>
-            </h2>
-            <p className='text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed'>
-              Stack tecnológico moderno y versátil para crear aplicaciones robustas,
-              escalables y con experiencias de usuario excepcionales
-            </p>
-          </motion.div>
-
-          <motion.div
-            className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6'
-            variants={animationVariants.staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={viewportConfig}
-          >
-            {mainTechs.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                variants={animationVariants.staggerItem}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.08, y: -8 }}
-                className='group'
-              >
-                <div className='bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/25 hover:bg-white/10 transition-all duration-300 text-center h-full flex flex-col justify-center items-center relative overflow-hidden'>
-                  {/* Efecto de brillo en hover */}
-                  <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700'></div>
-
-                  <Icon
-                    icon={tech.icon}
-                    className='text-5xl mx-auto mb-4 group-hover:scale-125 transition-all duration-300 relative z-10'
-                    style={{ color: tech.color }}
-                  />
-                  <h3 className='text-white font-semibold text-base group-hover:text-gray-100 transition-colors relative z-10'>
-                    {tech.name}
-                  </h3>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className='py-20 px-4'>
-        <div className='max-w-6xl mx-auto'>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className='text-center'
-          >
-            <div className='relative bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 backdrop-blur-sm rounded-3xl p-8 md:p-16 border border-blue-500/30 overflow-hidden'>
-              {/* Efectos de fondo decorativos */}
-              <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl'></div>
-              <div className='absolute -top-10 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl'></div>
-              <div className='absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl'></div>
-
-              <div className='relative z-10'>
-                {/* Badge */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm px-6 py-3 rounded-full border border-blue-400/30 mb-8'
-                >
-                  <Icon icon="mdi:handshake" className='text-blue-400 text-xl' />
-                  <span className='text-blue-300 font-medium'>Colaboremos Juntos</span>
-                </motion.div>
-
-                {/* Título principal */}
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  viewport={{ once: true }}
-                  className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight'
-                >
-                  ¿Listo para{' '}
-                  <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400'>
-                    trabajar juntos?
-                  </span>
-                </motion.h2>
-
-                {/* Descripción */}
+                {/* Status badge */}
                 <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className='text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed'
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 0.5 }}
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.62rem',
+                    color: '#B89855',
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '24px',
+                  }}
                 >
-                  Estoy disponible para nuevos proyectos y oportunidades de colaboración.
-                  <span className='block text-lg text-gray-400 mt-2'>
-                    ¡Hablemos sobre tu próxima idea y hagámosla realidad!
-                  </span>
+                  <span className="pulse-dot" style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#D9A553', display: 'inline-block' }} />
+                  System Active // Protocol Secure
                 </motion.p>
 
-                {/* Botones de navegación */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  viewport={{ once: true }}
-                  className='flex flex-wrap gap-4 justify-center'
+                {/* Headline */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.7 }}
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 700,
+                    lineHeight: 1.06,
+                    fontSize: 'clamp(2.7rem, 6vw, 4.4rem)',
+                    maxWidth: '740px',
+                    marginBottom: '28px',
+                    color: '#F4F0EA',
+                  }}
                 >
-                  <NavLink
-                    to='/about'
-                    className='group inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 backdrop-blur-sm border border-white/20 hover:border-white/40 hover:scale-105'
+                  Securing the Digital{' '}
+                  <span className="text-gradient-future">
+                    Future
+                  </span>
+                  {' '}Against Unseen Threats.
+                </motion.h1>
+
+                {/* Subtext with left accent line */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35, duration: 0.6 }}
+                  style={{
+                    borderLeft: '2px solid rgba(180, 140, 70, 0.35)',
+                    paddingLeft: '18px',
+                    marginBottom: '36px',
+                    maxWidth: '520px',
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      color: '#8A8A8A',
+                      fontSize: '0.92rem',
+                      lineHeight: 1.7,
+                    }}
                   >
-                    <Icon icon="mdi:account" className='text-xl group-hover:scale-110 transition-transform' />
-                    Sobre Mí
+                    Desarrollador Full Stack enfocado en redes, ciberseguridad y arquitecturas zero-trust.
+                    Construyendo sistemas impenetrables para un mundo hiperconectado.
+                  </p>
+                </motion.div>
+
+                {/* CTA row */}
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                  style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center', marginBottom: '40px' }}
+                >
+                  {/* Primary — wine red filled with gold text/icon */}
+                  <NavLink
+                    to="/proyects"
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.62rem',
+                      letterSpacing: '0.14em',
+                      textTransform: 'uppercase',
+                      padding: '12px 24px',
+                      background: '#5C1212',
+                      border: '1px solid #8B2020',
+                      color: '#D9A553',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '9px',
+                      transition: 'background 0.2s, border-color 0.2s, color 0.2s',
+                      fontWeight: 600,
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#781818'; e.currentTarget.style.color = '#F2C978' }}
+                    onMouseLeave={e => { e.currentTarget.style.background = '#5C1212'; e.currentTarget.style.color = '#D9A553' }}
+                  >
+                    <Icon icon="mdi:code-greater-than" width={14} style={{ color: '#D9A553' }} />
+                    View Projects
                   </NavLink>
 
-                  <NavLink
-                    to='/education'
-                    className='group inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 backdrop-blur-sm border border-white/20 hover:border-white/40 hover:scale-105'
-                  >
-                    <Icon icon="mdi:school" className='text-xl group-hover:scale-110 transition-transform' />
-                    Educación
-                  </NavLink>
-
-                  <NavLink
-                    to='/proyects'
-                    className='group inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 backdrop-blur-sm border border-white/20 hover:border-white/40 hover:scale-105'
-                  >
-                    <Icon icon="mdi:rocket-launch" className='text-xl group-hover:scale-110 transition-transform' />
-                    Ver Proyectos
-                  </NavLink>
-
+                  {/* Secondary — outline with gold text/icon */}
                   <button
-                    onClick={contactModal.openContactModal}
-                    className='group inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-2xl transform hover:scale-110 transition-all duration-300 border border-blue-500/30'
+                    onClick={handleDownloadCV}
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.62rem',
+                      letterSpacing: '0.14em',
+                      textTransform: 'uppercase',
+                      padding: '12px 24px',
+                      background: 'rgba(20, 16, 12, 0.6)',
+                      border: '1px solid #382B1E',
+                      color: '#C49A50',
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '9px',
+                      transition: 'border-color 0.2s, color 0.2s, background 0.2s',
+                      fontWeight: 500,
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = '#5A4630'; e.currentTarget.style.color = '#E5BE78' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = '#382B1E'; e.currentTarget.style.color = '#C49A50' }}
                   >
-                    <Icon icon="mdi:email" className='text-xl group-hover:animate-bounce' />
-                    Contactar Ahora
+                    <Icon icon="mdi:download-outline" width={14} style={{ color: '#C49A50' }} />
+                    Download Resume
                   </button>
                 </motion.div>
 
-                {/* Información adicional */}
+
+                {/* Social links */}
                 <motion.div
                   initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  viewport={{ once: true }}
-                  className='mt-12 pt-8 border-t border-white/10'
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.65, duration: 0.5 }}
+                  style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}
                 >
-                  <div className='flex flex-col md:flex-row items-center justify-center gap-8 text-gray-400'>
-                    <div className='flex items-center gap-2'>
-                      <Icon icon="mdi:clock-outline" className='text-green-400' />
-                      <span>Respuesta en 24h</span>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                      <Icon icon="mdi:shield-check" className='text-blue-400' />
-                      <span>Trabajo profesional</span>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                      <Icon icon="mdi:heart" className='text-red-400' />
-                      <span>Pasión por el código</span>
-                    </div>
-                  </div>
+                  {socialContacts.map(c => (
+                    <a
+                      key={c.name}
+                      href={c.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.58rem',
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        color: '#4A4A4A',
+                        border: '1px solid #222',
+                        padding: '4px 11px',
+                        textDecoration: 'none',
+                        transition: 'border-color 0.2s, color 0.2s',
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.5)'; e.currentTarget.style.color = 'var(--accent)' }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = '#222'; e.currentTarget.style.color = '#4A4A4A' }}
+                    >
+                      [{c.name}]
+                    </a>
+                  ))}
                 </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          CORE CAPABILITIES
+      ══════════════════════════════════════ */}
+      <section style={{ position: 'relative', zIndex: 1, paddingBottom: '100px' }}>
+        <div className="max-w-7xl mx-auto px-6 xl:px-10">
+
+          {/* Section header */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.4rem', fontWeight: 600 }}>
+              Core Capabilities
+            </h2>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', color: '#404040', letterSpacing: '0.14em', cursor: 'pointer' }}
+              className="uppercase hover:text-[var(--accent)] transition-colors"
+            >
+              View All Protocols_
+            </span>
+          </div>
+
+          {/* ── Bento grid — matches mockup layout ── */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(12, 1fr)',
+            gridTemplateRows: 'auto',
+            gap: '8px',
+          }}>
+
+            {/* Card 1 — Penetration Testing (large, cols 1-7, row 1) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              style={{
+                gridColumn: '1 / 8',
+                gridRow: '1',
+                background: 'rgba(20,12,12,0.85)',
+                border: '1px solid #2A1A1A',
+                padding: '28px',
+                position: 'relative',
+                overflow: 'hidden',
+                minHeight: '220px',
+              }}
+              className="group hover:border-[#3D2020] transition-all duration-300"
+            >
+              {/* Subtle wine inner glow */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'radial-gradient(ellipse at 90% 10%, rgba(100,20,20,0.18) 0%, transparent 60%)',
+                pointerEvents: 'none',
+              }} />
+
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '48px' }}>
+                <div style={{
+                  background: 'rgba(107,20,20,0.45)',
+                  border: '1px solid rgba(139,26,26,0.6)',
+                  padding: '9px',
+                  display: 'inline-block',
+                }}>
+                  <Icon icon="mdi:magnify-scan" width={20} style={{ color: 'var(--accent)' }} />
+                </div>
+                <span style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.52rem',
+                  color: '#3A2A2A',
+                  letterSpacing: '0.14em',
+                  border: '1px solid #2A1A1A',
+                  padding: '2px 8px',
+                  textTransform: 'uppercase',
+                }}>
+                  NIVEL.03
+                </span>
               </div>
-            </div>
-          </motion.div>
+
+              <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: 600, marginBottom: '8px', position: 'relative' }}>
+                Penetration Testing
+              </h3>
+              <p style={{ fontFamily: 'var(--font-body)', color: '#5A5A5A', fontSize: '0.82rem', lineHeight: 1.65, maxWidth: '380px', position: 'relative' }}>
+                Explotación sistemática de vulnerabilidades para fortalecer perímetros de red antes de que actores maliciosos puedan atacar.
+              </p>
+            </motion.div>
+
+            {/* Card 2 — Zero Trust Arch (cols 8-12, row 1) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.08 }}
+              style={{
+                gridColumn: '8 / 13',
+                gridRow: '1',
+                background: 'rgba(16,14,12,0.85)',
+                border: '1px solid #221A14',
+                padding: '28px',
+                position: 'relative',
+                overflow: 'hidden',
+                minHeight: '220px',
+              }}
+              className="group hover:border-[#332A1A] transition-all duration-300"
+            >
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'radial-gradient(ellipse at 10% 90%, rgba(80,55,10,0.15) 0%, transparent 60%)',
+                pointerEvents: 'none',
+              }} />
+
+              <div style={{ marginBottom: '48px' }}>
+                <div style={{
+                  background: 'rgba(107,20,20,0.45)',
+                  border: '1px solid rgba(139,26,26,0.6)',
+                  padding: '9px',
+                  display: 'inline-block',
+                }}>
+                  <Icon icon="mdi:shield-lock-outline" width={20} style={{ color: 'var(--accent)' }} />
+                </div>
+              </div>
+
+              <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: 600, marginBottom: '8px', position: 'relative' }}>
+                Zero Trust Arch
+              </h3>
+              <p style={{ fontFamily: 'var(--font-body)', color: '#5A5A5A', fontSize: '0.82rem', lineHeight: 1.65, position: 'relative' }}>
+                Diseñando entornos donde la verificación es continua y el acceso está estrictamente limitado.
+              </p>
+            </motion.div>
+
+            {/* Card 3 — Threat Intel (cols 1-4, row 2) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.14 }}
+              style={{
+                gridColumn: '1 / 5',
+                gridRow: '2',
+                background: 'rgba(14,12,10,0.85)',
+                border: '1px solid #221A14',
+                padding: '28px',
+                position: 'relative',
+                minHeight: '200px',
+              }}
+              className="group hover:border-[#332A1A] transition-all duration-300"
+            >
+              <div style={{ background: 'rgba(107,20,20,0.45)', border: '1px solid rgba(139,26,26,0.6)', padding: '9px', display: 'inline-block', marginBottom: '40px' }}>
+                <Icon icon="mdi:shield-alert-outline" width={20} style={{ color: 'var(--accent)' }} />
+              </div>
+              <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1rem', fontWeight: 600, marginBottom: '6px' }}>
+                Threat Intel
+              </h3>
+              <p style={{ fontFamily: 'var(--font-body)', color: '#5A5A5A', fontSize: '0.8rem', lineHeight: 1.6 }}>
+                Monitoreo proactivo y análisis de amenazas globales emergentes para securizar activos críticos.
+              </p>
+            </motion.div>
+
+            {/* Card 4 — Incident Response (cols 5-12, row 2) — large with code symbol */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              style={{
+                gridColumn: '5 / 13',
+                gridRow: '2',
+                background: 'rgba(14,12,10,0.85)',
+                border: '1px solid #2A2A22',
+                padding: '28px',
+                position: 'relative',
+                overflow: 'hidden',
+                minHeight: '200px',
+              }}
+              className="group hover:border-[#383828] transition-all duration-300"
+            >
+              {/* Decorative code braces */}
+              <div style={{
+                position: 'absolute',
+                right: '24px',
+                bottom: '16px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '5rem',
+                color: 'rgba(201,168,76,0.06)',
+                fontWeight: 700,
+                lineHeight: 1,
+                userSelect: 'none',
+                pointerEvents: 'none',
+              }}>
+                {'{ }'}
+              </div>
+
+              <div style={{ maxWidth: '420px' }}>
+                <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: 600, marginBottom: '8px' }}>
+                  Incident Response
+                </h3>
+                <p style={{ fontFamily: 'var(--font-body)', color: '#5A5A5A', fontSize: '0.82rem', lineHeight: 1.65, marginBottom: '20px' }}>
+                  Despliegue rápido para contener, erradicar y recuperarse de brechas de seguridad, minimizando el downtime operacional.
+                </p>
+                <button
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.58rem',
+                    color: 'var(--accent)',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: 0,
+                    transition: 'color 0.2s',
+                  }}
+                  onClick={() => contactModal.openContactModal()}
+                >
+                  Read Case Studies →
+                </button>
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
     </div>

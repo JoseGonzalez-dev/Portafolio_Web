@@ -5,11 +5,11 @@ import { Footer } from './organism/Footer'
 
 export const Layout = () => {
   return (
-    <div>
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <header>
         <Navbar />
       </header>
-      <main>
+      <main style={{ flex: 1 }}>
         <Outlet />
       </main>
       <footer>

@@ -1,543 +1,329 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import SkillsOrbit from '../molecules/SkillsOrbit'
 import ContactModal from '../molecules/ContactModal'
 import { useContactModal } from '../../hooks/useContactModal'
-import { useScrollAnimations } from '../../hooks/useScrollAnimations'
 
 export const AboutMeTemplate = () => {
-    // Hooks personalizados
-    const contactModal = useContactModal()
-    const { animationVariants, viewportConfig } = useScrollAnimations()
-    
-    // Contactos sociales para el modal
-    const socialContacts = [
-        {
-            name: 'GitHub',
-            icon: 'mdi:github',
-            url: 'https://github.com/JoseGonzalez-dev',
-            color: '#ffffff'
-        },
-        {
-            name: 'LinkedIn',
-            icon: 'mdi:linkedin',
-            url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            color: '#0077b5'
-        },
-        {
-            name: 'Email',
-            icon: 'mdi:email',
-            url: 'mailto:jgonzalez.242720@gmail.com',
-            color: '#ea4335'
-        }
-    ]
+  const contactModal = useContactModal()
 
-    return (
-        <div className='bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen px-4 pt-20 pb-8'>
-            <div className='max-w-6xl mx-auto w-full'>
+  const socialContacts = [
+    { name: 'GitHub',   icon: 'mdi:github',  url: 'https://github.com/JoseGonzalez-dev',    color: '#ffffff' },
+    { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', color: '#0077b5' },
+    { name: 'Email',    icon: 'mdi:email',    url: 'mailto:jgonzalez.242720@gmail.com',      color: '#ea4335' },
+  ]
 
-                {/* Hero Section */}
-                <section className='text-center mb-16'>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <motion.div 
-                            className='mb-8'
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        >
-                            <img
-                                src='https://res.cloudinary.com/dzydnoljd/image/upload/e_background_removal/f_png/v1752813675/iyo_hmala0.jpg'
-                                alt='José Francisco González - Desarrollador Full Stack'
-                                className='w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-2xl border-4 border-white/20 object-cover hover:border-white/40 transition-all duration-300'
-                            />
-                        </motion.div>
+  const experience = [
+    {
+      role: 'Desarrollador Full Stack',
+      company: 'KINAL — Centro Educativo Técnico Laboral',
+      period: '2023 – Presente',
+      bullets: [
+        'Desarrollo de sistemas web con React, Node.js y MongoDB para proyectos académicos y comunitarios.',
+        'Implementación de arquitecturas REST escalables y mantenimiento de base de datos MySQL.',
+      ]
+    },
+    {
+      role: 'Desarrollador de Proyectos Comunitarios',
+      company: 'Proyectos Open Source / Colaborativos',
+      period: '2024 – 2025',
+      bullets: [
+        'Co-desarrollé AguaComun-sys, plataforma de gestión comunitaria del agua en Guatemala.',
+        'Integración de Socket.io para comunicación en tiempo real en plataforma anti-bullying Limae.',
+      ]
+    },
+  ]
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                        >
-                            <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
-                                Más sobre <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400'>Mi</span>
-                            </h1>
+  const skills = [
+    { name: 'React / React Native', pct: 85 },
+    { name: 'Node.js / Express',    pct: 80 },
+    { name: 'Java / Spring Boot',   pct: 75 },
+    { name: 'Redes & Seguridad',    pct: 65 },
+  ]
 
-                            <p className='text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed'>
-                                Hola mi nombre es: <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400'>José Francisco González Ordoñez</span> soy desarrollador Full Stack junior apasionado por crear soluciones digitales que impacten positivamente en la vida de las personas
-                            </p>
-                        </motion.div>
-                    </motion.div>
-                </section>
+  const arsenal = [
+    { icon: 'logos:react',        label: 'React' },
+    { icon: 'logos:nodejs-icon',  label: 'Node.js' },
+    { icon: 'logos:java',         label: 'Java' },
+    { icon: 'logos:mysql-icon',   label: 'MySQL' },
+    { icon: 'logos:mongodb-icon', label: 'MongoDB' },
+    { icon: 'cib:cisco',          label: 'CISCO' },
+  ]
 
-                {/* Mi Historia Section */}
-                <section className='mb-16'>
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={viewportConfig}
-                        className='bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10'
-                    >
-                        <motion.h2 
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={viewportConfig}
-                            className='text-3xl md:text-4xl font-bold text-white mb-8 text-center'
-                        >
-                            Mi Historia en el Desarrollo
-                        </motion.h2>
+  const stats = [
+    { value: '2+',   label: 'Years Active' },
+    { value: '10+',  label: 'Projects Built' },
+    { value: '15+',  label: 'Technologies' },
+  ]
 
-                        <div className='grid md:grid-cols-2 gap-8 items-center'>
-                            {/* Texto de la historia */}
-                            <motion.div 
-                                className='space-y-6'
-                                variants={animationVariants.staggerContainer}
-                                initial="initial"
-                                whileInView="animate"
-                                viewport={viewportConfig}
-                            >
-                                <motion.p 
-                                    variants={animationVariants.slideInLeft}
-                                    className='text-gray-300 text-lg leading-relaxed'
-                                >
-                                    Mi viaje en el mundo del desarrollo comenzó hace algunos años atras cuando descubrí la magia de convertir ideas en realidad a través del código. Lo que empezó como curiosidad se transformó en una verdadera pasión.
-                                </motion.p>
+  const cardStyle = {
+    background: 'var(--bg-card)',
+    border: '1px solid var(--border)',
+  }
 
-                                <motion.p 
-                                    variants={animationVariants.slideInLeft}
-                                    className='text-gray-300 text-lg leading-relaxed'
-                                >
-                                    Tengo conocimiento en varias tecnologías modernas como <span className='text-blue-400 font-semibold'>React</span>, <span className='text-green-400 font-semibold'>Node.js</span> y <span className='text-purple-400 font-semibold'>JavaScript</span>, siempre manteniéndome actualizado con las últimas tendencias del desarrollo.
-                                </motion.p>
+  return (
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '80px', paddingBottom: '80px' }}>
+      <div className="max-w-7xl mx-auto px-6 xl:px-10">
 
-                                <motion.p 
-                                    variants={animationVariants.slideInLeft}
-                                    className='text-gray-300 text-lg leading-relaxed'
-                                >
-                                    Cada proyecto es una oportunidad para aprender algo nuevo y crear soluciones que no solo funcionen bien, sino que también brinden una experiencia excepcional al usuario.
-                                </motion.p>
-                            </motion.div>
+        {/* ── HERO ── */}
+        <section className="mb-16">
+          {/* Badge */}
+          <div className="flex items-center gap-2 mb-6">
+            <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block" />
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.16em' }} className="uppercase">
+              Identity.Verified
+            </span>
+          </div>
 
-                            {/* Imagen o elemento visual */}
-                            <motion.div 
-                                className='flex justify-center'
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.8, delay: 0.3 }}
-                                viewport={viewportConfig}
-                            >
-                                <div className='relative'>
-                                    <motion.div 
-                                        className='w-64 h-64 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300'
-                                        whileHover={{ scale: 1.05, rotate: 2 }}
-                                    >
-                                        <div className='text-center'>
-                                            <motion.div 
-                                                className='text-4xl mb-4'
-                                                animate={{ rotate: [0, 10, -10, 0] }}
-                                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                                            >
-                                                💻
-                                            </motion.div>
-                                            <h3 className='text-white font-bold text-xl mb-2'>Código con Propósito</h3>
-                                            <p className='text-gray-400 text-sm'>Creando soluciones que importan</p>
-                                        </div>
-                                    </motion.div>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left — text */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <h1
+                style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', lineHeight: 1.1 }}
+                className="text-4xl md:text-5xl font-bold mb-4"
+              >
+                Architecting{' '}
+                <span style={{ color: 'var(--accent)' }}>Secure</span>
+                {' '}Digital Systems.
+              </h1>
+              <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '480px' }}
+                className="text-base mb-8"
+              >
+                Hola, soy <span style={{ color: 'var(--text-main)' }}>José Francisco González Ordoñez</span> — desarrollador Full Stack junior con pasión por la seguridad informática y redes. Construyo sistemas que son funcionales, seguros y escalables.
+              </p>
 
-                                    {/* Elementos decorativos */}
-                                    <motion.div 
-                                        className='absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full opacity-60'
-                                        animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
-                                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                                    />
-                                    <motion.div 
-                                        className='absolute -bottom-4 -left-4 w-6 h-6 bg-purple-500 rounded-full opacity-60'
-                                        animate={{ scale: [1, 1.3, 1], opacity: [0.6, 1, 0.6] }}
-                                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                    />
-                                </div>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                </section>
-
-                {/* Skills Orbital Section */}
-                <section className='mb-16'>
-                    <motion.div 
-                        className='text-center mb-12'
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true, margin: "-50px", amount: 0.2 }}
-                    >
-                        <motion.h2 
-                            className='text-3xl md:text-4xl font-bold text-white mb-4'
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                        >
-                            Mis Habilidades
-                        </motion.h2>
-                        <motion.p 
-                            className='text-gray-300 text-lg max-w-2xl mx-auto'
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                        >
-                            Tecnologías y herramientas que domino para crear experiencias digitales excepcionales
-                        </motion.p>
-                    </motion.div>
-
-                    {/* Contenedor de habilidades orbitales - Optimizado para móviles */}
-                    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 xl:gap-16'>
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                            viewport={{ once: true, margin: "-100px", amount: 0.3 }}
-                            className='flex justify-center'
-                        >
-                            <SkillsOrbit category="frontend" title="Frontend" />
-                        </motion.div>
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true, margin: "-100px", amount: 0.3 }}
-                            className='flex justify-center'
-                        >
-                            <SkillsOrbit category="backend" title="Backend" />
-                        </motion.div>
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true, margin: "-100px", amount: 0.3 }}
-                            className='flex justify-center md:col-span-2 xl:col-span-1'
-                        >
-                            <SkillsOrbit category="tools" title="Herramientas" />
-                        </motion.div>
+              {/* Stats row */}
+              <div className="flex gap-8">
+                {stats.map(({ value, label }) => (
+                  <div key={label}>
+                    <div style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.8rem', fontWeight: 700, lineHeight: 1 }}>
+                      {value}
                     </div>
-                </section>
-
-                {/* Estadísticas y Logros */}
-                <section className='mb-16'>
-                    <motion.div 
-                        className='bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10'
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={viewportConfig}
-                    >
-                        <motion.h2 
-                            className='text-3xl md:text-4xl font-bold text-white mb-8 text-center'
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={viewportConfig}
-                        >
-                            En Números
-                        </motion.h2>
-
-                        <motion.div 
-                            className='grid grid-cols-2 md:grid-cols-4 gap-6'
-                            variants={animationVariants.staggerContainer}
-                            initial="initial"
-                            whileInView="animate"
-                            viewport={viewportConfig}
-                        >
-                            <motion.div
-                                className='text-center group'
-                                variants={animationVariants.bounceIn}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                            >
-                                <div className='text-3xl md:text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform'>2+</div>
-                                <div className='text-gray-300 text-sm'>Años de Experiencia</div>
-                            </motion.div>
-
-                            <motion.div
-                                className='text-center group'
-                                variants={animationVariants.bounceIn}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                            >
-                                <div className='text-3xl md:text-4xl font-bold text-green-400 mb-2 group-hover:scale-110 transition-transform'>10+</div>
-                                <div className='text-gray-300 text-sm'>Proyectos Completados</div>
-                            </motion.div>
-
-                            <motion.div
-                                className='text-center group'
-                                variants={animationVariants.bounceIn}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                            >
-                                <div className='text-3xl md:text-4xl font-bold text-purple-400 mb-2 group-hover:scale-110 transition-transform'>8+</div>
-                                <div className='text-gray-300 text-sm'>Tecnologías Dominadas</div>
-                            </motion.div>
-
-                            <motion.div
-                                className='text-center group'
-                                variants={animationVariants.bounceIn}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                            >
-                                <div className='text-3xl md:text-4xl font-bold text-orange-400 mb-2 group-hover:scale-110 transition-transform'>100%</div>
-                                <div className='text-gray-300 text-sm'>Dedicación</div>
-                            </motion.div>
-                        </motion.div>
-                    </motion.div>
-                </section>
-
-                {/* Filosofía de Trabajo */}
-                <section className='mb-16'>
-                    <motion.div 
-                        className='text-center mb-12'
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true, margin: "-50px", amount: 0.2 }}
-                    >
-                        <motion.h2 
-                            className='text-3xl md:text-4xl font-bold text-white mb-4'
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                        >
-                            Mi Filosofía de Trabajo
-                        </motion.h2>
-                        <motion.p 
-                            className='text-gray-300 text-lg max-w-2xl mx-auto'
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                        >
-                            Los principios que guían mi desarrollo profesional
-                        </motion.p>
-                    </motion.div>
-
-                    {/* Grid optimizado para responsive */}
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                        <motion.div
-                            className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                        >
-                            <motion.div 
-                                className='text-4xl mb-4'
-                                animate={{ rotate: [0, 5, -5, 0] }}
-                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                🎯
-                            </motion.div>
-                            <h3 className='text-white font-bold text-lg mb-3 group-hover:text-blue-400 transition-colors'>Orientado a Resultados</h3>
-                            <p className='text-gray-400 text-sm'>
-                                Cada línea de código tiene un propósito claro y contribuye al objetivo final del proyecto.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                        >
-                            <motion.div 
-                                className='text-4xl mb-4'
-                                animate={{ y: [0, -5, 0] }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                🚀
-                            </motion.div>
-                            <h3 className='text-white font-bold text-lg mb-3 group-hover:text-green-400 transition-colors'>Aprendizaje Continuo</h3>
-                            <p className='text-gray-400 text-sm'>
-                                La tecnología evoluciona constantemente, y yo evoluciono con ella manteniéndome actualizado.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                        >
-                            <motion.div 
-                                className='text-4xl mb-4'
-                                animate={{ scale: [1, 1.1, 1] }}
-                                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                👥
-                            </motion.div>
-                            <h3 className='text-white font-bold text-lg mb-3 group-hover:text-purple-400 transition-colors'>Trabajo en Equipo</h3>
-                            <p className='text-gray-400 text-sm'>
-                                Los mejores proyectos nacen de la colaboración y el intercambio de ideas.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
-                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                        >
-                            <motion.div 
-                                className='text-4xl mb-4'
-                                animate={{ rotate: [0, 15, -15, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                💡
-                            </motion.div>
-                            <h3 className='text-white font-bold text-lg mb-3 group-hover:text-yellow-400 transition-colors'>Innovación</h3>
-                            <p className='text-gray-400 text-sm'>
-                                Busco siempre nuevas formas de resolver problemas y mejorar la experiencia del usuario.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.5 }}
-                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                        >
-                            <motion.div 
-                                className='text-4xl mb-4'
-                                animate={{ rotate: [0, -10, 10, 0] }}
-                                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                🔧
-                            </motion.div>
-                            <h3 className='text-white font-bold text-lg mb-3 group-hover:text-orange-400 transition-colors'>Código Limpio</h3>
-                            <p className='text-gray-400 text-sm'>
-                                Escribo código que no solo funciona, sino que es mantenible y escalable.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300 group'
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.6 }}
-                            viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                        >
-                            <motion.div 
-                                className='text-4xl mb-4'
-                                animate={{ scale: [1, 1.2, 1] }}
-                                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                ⚡
-                            </motion.div>
-                            <h3 className='text-white font-bold text-lg mb-3 group-hover:text-cyan-400 transition-colors'>Eficiencia</h3>
-                            <p className='text-gray-400 text-sm'>
-                                Optimizo tanto el rendimiento del código como los procesos de desarrollo.
-                            </p>
-                        </motion.div>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-muted)', letterSpacing: '0.12em', textTransform: 'uppercase', marginTop: '4px' }}>
+                      {label}
                     </div>
-                </section>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
-                {/* Call to Action - Navegación a otras secciones */}
-                <section className='mb-16'>
-                    <motion.div 
-                        className='bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-blue-500/30'
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={viewportConfig}
-                    >
-                        <motion.div 
-                            className='text-center mb-8'
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={viewportConfig}
-                        >
-                            <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-                                ¿Quieres Saber Más?
-                            </h2>
-                            <p className='text-gray-300 text-lg max-w-2xl mx-auto'>
-                                Explora mi trayectoria académica, experiencia profesional y proyectos destacados
-                            </p>
-                        </motion.div>
+            {/* Right — photo with frame */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="flex justify-center lg:justify-end"
+            >
+              <div className="relative">
+                {/* OP_ID label */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    background: 'rgba(13,13,13,0.85)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.55rem',
+                    color: 'var(--accent)',
+                    letterSpacing: '0.14em',
+                    padding: '4px 10px',
+                    zIndex: 10,
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  OP_ID: JG-24-GT
+                </div>
 
-                        <motion.div 
-                            className='grid md:grid-cols-3 gap-6'
-                            variants={animationVariants.staggerContainer}
-                            initial="initial"
-                            whileInView="animate"
-                            viewport={viewportConfig}
-                        >
-                            <motion.a
-                                href="/education"
-                                className='bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center transition-all duration-300 group'
-                                variants={animationVariants.scaleIn}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <Icon icon="mdi:school" className='text-4xl text-blue-400 mb-4 mx-auto group-hover:scale-110 transition-transform' />
-                                <h3 className='text-white font-bold text-lg mb-2 group-hover:text-blue-400 transition-colors'>Educación</h3>
-                                <p className='text-gray-400 text-sm'>
-                                    Formación académica y certificaciones
-                                </p>
-                            </motion.a>
+                <img
+                  src="https://res.cloudinary.com/dzydnoljd/image/upload/e_background_removal/f_png/v1752813675/iyo_hmala0.jpg"
+                  alt="José Francisco González Ordoñez"
+                  style={{
+                    width: '280px',
+                    height: '320px',
+                    objectFit: 'cover',
+                    border: '1px solid var(--border-light)',
+                    display: 'block',
+                  }}
+                />
 
-                            <motion.a
-                                href="/proyects"
-                                className='bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center transition-all duration-300 group'
-                                variants={animationVariants.scaleIn}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <Icon icon="mdi:rocket-launch" className='text-4xl text-green-400 mb-4 mx-auto group-hover:scale-110 transition-transform' />
-                                <h3 className='text-white font-bold text-lg mb-2 group-hover:text-green-400 transition-colors'>Proyectos</h3>
-                                <p className='text-gray-400 text-sm'>
-                                    Mis trabajos y desarrollos
-                                </p>
-                            </motion.a>
+                {/* Corner decorations */}
+                <div style={{ position: 'absolute', bottom: 0, right: 0, width: '28px', height: '28px', borderBottom: '2px solid var(--accent)', borderRight: '2px solid var(--accent)' }} />
+                <div style={{ position: 'absolute', top: 0, right: 0, width: '28px', height: '28px', borderTop: '2px solid var(--accent)', borderRight: '2px solid var(--accent)' }} />
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-                            <motion.button
-                                onClick={contactModal.openContactModal}
-                                className='bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl p-6 text-center transition-all duration-300 group w-full'
-                                variants={animationVariants.scaleIn}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <Icon icon="mdi:email" className='text-4xl text-white mb-4 mx-auto group-hover:scale-110 group-hover:animate-bounce transition-transform' />
-                                <h3 className='text-white font-bold text-lg mb-2'>Contacto</h3>
-                                <p className='text-white/80 text-sm'>
-                                    Hablemos sobre tu próximo proyecto
-                                </p>
-                            </motion.button>
-                        </motion.div>
-                    </motion.div>
-                </section>
+        {/* ── OPERATIONAL HISTORY ── */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <Icon icon="mdi:history" width={18} style={{ color: 'var(--accent)' }} />
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.3rem', fontWeight: 600 }}>
+              Operational History
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {experience.map((exp, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                style={{ ...cardStyle, paddingLeft: '20px', borderLeft: '2px solid var(--accent)' }}
+                className="p-5"
+              >
+                <div className="flex items-start justify-between mb-1">
+                  <div>
+                    <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1rem', fontWeight: 600 }}>
+                      {exp.role}
+                    </h3>
+                    <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '2px' }}>
+                      {exp.company}
+                    </p>
+                  </div>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.08em', whiteSpace: 'nowrap', marginLeft: '12px' }}>
+                    {exp.period}
+                  </span>
+                </div>
+
+                <ul className="mt-3 space-y-2">
+                  {exp.bullets.map((b, j) => (
+                    <li key={j} className="flex gap-2" style={{ fontFamily: 'var(--font-body)', fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                      <Icon icon="mdi:checkbox-blank-outline" width={14} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '2px' }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── TECHNICAL CAPABILITIES ── */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <Icon icon="mdi:cpu-64-bit" width={18} style={{ color: 'var(--accent)' }} />
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.3rem', fontWeight: 600 }}>
+              Technical Capabilities
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Proficiency Matrix */}
+            <div style={cardStyle} className="p-6">
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--accent)', letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: '16px' }}>
+                ● Proficiency Matrix
+              </p>
+              <div className="space-y-5">
+                {skills.map(({ name, pct }, i) => (
+                  <motion.div
+                    key={name}
+                    initial={{ opacity: 0, x: -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                  >
+                    <div className="flex justify-between mb-1.5">
+                      <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.82rem', color: 'var(--text-muted)' }}>{name}</span>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--accent)' }}>{pct}%</span>
+                    </div>
+                    <div className="cyber-progress" style={{ height: '2px' }}>
+                      <motion.div
+                        className="h-full"
+                        style={{ background: 'var(--accent)' }}
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${pct}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: i * 0.1 + 0.2 }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
-            {/* Modal de contacto */}
-            <ContactModal
-                isOpen={contactModal.isContactModalOpen}
-                onClose={contactModal.closeContactModal}
-                formData={contactModal.formData}
-                isSubmitting={contactModal.isSubmitting}
-                onInputChange={contactModal.handleInputChange}
-                onSubmit={contactModal.handleSubmit}
-                socialContacts={socialContacts}
-            />
-        </div>
-    )
+            {/* Arsenal / Tooling */}
+            <div style={cardStyle} className="p-6">
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--accent)', letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: '16px' }}>
+                ● Arsenal / Tooling
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {arsenal.map(({ icon, label }, i) => (
+                  <motion.div
+                    key={label}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: i * 0.06 }}
+                    style={{ border: '1px solid var(--border)', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: '8px', transition: 'border-color 0.2s' }}
+                    className="hover:border-[var(--border-light)] cursor-default"
+                  >
+                    <Icon icon={icon} width={16} style={{ flexShrink: 0 }} />
+                    <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>{label}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Contact CTA ── */}
+        <section>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            style={{ border: '1px solid var(--border)', background: 'var(--bg-card)', padding: '32px' }}
+            className="flex flex-col md:flex-row items-center justify-between gap-6"
+          >
+            <div>
+              <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.2rem', fontWeight: 600, marginBottom: '4px' }}>
+                ¿Tienes un proyecto en mente?
+              </h3>
+              <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                Hablemos sobre tu próxima idea. Respondo en menos de 24h.
+              </p>
+            </div>
+            <button
+              onClick={contactModal.openContactModal}
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.65rem',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                padding: '10px 22px',
+                background: 'var(--danger)',
+                border: '1px solid var(--danger)',
+                color: 'var(--text-main)',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                transition: 'background 0.2s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'var(--danger-hover)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'var(--danger)'}
+            >
+              ● Secure Contact
+            </button>
+          </motion.div>
+        </section>
+      </div>
+
+      <ContactModal
+        isOpen={contactModal.isContactModalOpen}
+        onClose={contactModal.closeContactModal}
+        formData={contactModal.formData}
+        isSubmitting={contactModal.isSubmitting}
+        onInputChange={contactModal.handleInputChange}
+        onSubmit={contactModal.handleSubmit}
+        socialContacts={socialContacts}
+      />
+    </div>
+  )
 }

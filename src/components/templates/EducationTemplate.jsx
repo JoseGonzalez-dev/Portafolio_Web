@@ -3,435 +3,343 @@ import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
 export const EducationTemplate = () => {
-    // Cargar el script de Credly cuando el componente se monta
-    useEffect(() => {
-        const script = document.createElement('script')
-        script.type = 'text/javascript'
-        script.async = true
-        script.src = '//cdn.credly.com/assets/utilities/embed.js'
-        document.head.appendChild(script)
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.async = true
+    script.src = '//cdn.credly.com/assets/utilities/embed.js'
+    document.head.appendChild(script)
+    return () => {
+      const existing = document.querySelector('script[src="//cdn.credly.com/assets/utilities/embed.js"]')
+      if (existing) document.head.removeChild(existing)
+    }
+  }, [])
 
-        return () => {
-            // Limpiar el script cuando el componente se desmonte
-            const existingScript = document.querySelector('script[src="//cdn.credly.com/assets/utilities/embed.js"]')
-            if (existingScript) {
-                document.head.removeChild(existingScript)
-            }
-        }
-    }, [])
+  const timeline = [
+    {
+      period: '2026 - Actual',
+      title: 'Ingeniería en Sistemas de la Información y Ciencias de la Computación',
+      institution: 'Universidad Mariano Gálvez de Guatemala',
+      location: 'Guatemala',
+      tags: ['Ingeniería', 'Sistemas', 'Informática', 'Ciencias de la Computación'],
+      description: 'Formación integral en desarrollo de software, arquitectura de sistemas, gestión de datos y ciencias computacionales avanzadas.',
+    },
+    {
+      period: '2023 – 2025',
+      title: 'Perito en Computación',
+      institution: 'Centro Educativo Técnico Laboral Kinal',
+      location: 'Guatemala',
+      tags: ['Redes', 'Programación', 'Sistemas Operativos'],
+      description: 'Diversificado con especialización en tecnología. Formación sólida en administración de sistemas, redes y desarrollo de software.',
+    },
+    {
+      period: '2016 – 2023',
+      title: 'Educación Básica',
+      institution: 'Centro de Estudios Guatemala',
+      location: 'Guatemala',
+      tags: ['Matemáticas', 'Ciencias', 'Tecnología'],
+      description: 'Bases en matemáticas, ciencias e introducción a la tecnología informática.',
+    },
+  ]
 
-    // Datos de certificaciones
     const certifications = [
-        {
-            title: "Operating Systems Basics",
-            provider: "CISCO Networking Academy",
-            status: "Completado",
-            date: "2024",
-            icon: "cib:cisco",
-            color: "#1BA0D7",
-            description: "Fundamentos de sistemas operativos y administración básica",
-            credlyBadge: {
-                id: "6560200d-6f18-499a-af36-7e38c188a7d7",
-                width: "150",
-                height: "270"
-            },
-            verified: true
-        },
-        {
-            title: "CCNAv7: Introduction to Networks",
-            provider: "CISCO Networking Academy",
-            status: "Completado",
-            date: "2023",
-            icon: "cib:cisco",
-            color: "#1BA0D7",
-            description: "Introducción a redes y conceptos fundamentales de networking",
-            credlyBadge: {
-                id: "76b1ed65-3646-401d-a871-699889c9581d",
-                width: "150",
-                height: "270"
-            },
-            verified: true
-        },
-        // {
-        //     title: "AWS Cloud Practitioner",
-        //     provider: "Amazon Web Services",
-        //     status: "En Proceso",
-        //     date: "2025",
-        //     icon: "logos:aws",
-        //     color: "#FF9900",
-        //     description: "Fundamentos de computación en la nube con AWS"
-        // },
-        {
-            title: "IT Essentials",
-            provider: "CISCO",
-            status: "Próximamente",
-            date: "2025",
-            icon: "cib:cisco",
-            color: "#1BA0D7",
-            description: "Fundamentos de hardware y software de computadoras"
-        }
-    ]
+    {
+      title: 'Ethical Hacker',
+      provider: 'CISCO Networking Academy',
+      description: 'Pruebas de penetración, seguridad en la nube, análisis de malware, ingeniería social y defensas de red.',
+      status: 'Valid',
+      credlyUrl: 'https://www.credly.com/users/jose-gonzalez',
+      pdfUrl: null, // Puedes colocar la ruta de tu PDF, ej: '/certs/ethical_hacker.pdf'
+      date: 'Jun 2026',
+    },
+    {
+      title: 'Introduction to Cybersecurity',
+      provider: 'CISCO Networking Academy',
+      description: 'Fundamentos de ciberseguridad, análisis de amenazas, defensa de redes y salvaguardias de sistemas.',
+      status: 'Valid',
+      credlyUrl: 'https://www.credly.com/users/jose-gonzalez',
+      pdfUrl: null,
+      date: 'Sept 2025',
+    },
+    {
+      title: 'Operating Systems Basics',
+      provider: 'CISCO Networking Academy',
+      description: 'Administración y conceptos esenciales de sistemas operativos Windows, Linux y dispositivos móviles.',
+      status: 'Valid',
+      credlyUrl: null,
+      pdfUrl: null,
+      date: 'Nov 2024',
+    },
+    {
+      title: 'CCNA: Introduction to Networks',
+      provider: 'CISCO Networking Academy',
+      description: 'Arquitecturas de red, modelos OSI/TCP-IP, direccionamiento IPv4/IPv6 y configuración de switches/routers.',
+      status: 'Valid',
+      credlyUrl: null,
+      pdfUrl: null,
+      date: 'Ene 2023',
+    },
+    {
+      title: 'Networking Academy Learn-A-Thon',
+      provider: 'CISCO (Ediciones 2024, 2025, 2026)',
+      description: 'Insignias de participación activa y excelencia en maratones de tecnología y aprendizaje Cisco.',
+      status: 'Valid',
+      credlyUrl: 'https://www.credly.com/users/jose-gonzalez',
+      pdfUrl: null,
+      date: '2024 - 2026',
+    },
+  ]
 
-    // Datos de cursos adicionales
-    const courses = [
-        {
-            title: "Microsoft Azure Fundamentals",
-            provider: "Microsoft Learn",
-            type: "Curso Gratuito",
-            icon: "logos:microsoft-azure",
-            color: "#0078D4"
-        },
-        {
-            title: "Introducción a Ciberseguridad",
-            provider: "Autodidacta",
-            type: "En Progreso",
-            icon: "mdi:shield-check",
-            color: "#DC2626"
-        },
-        {
-            title: "Fundamentos de Redes",
-            provider: "Varios Proveedores",
-            type: "Cursos Básicos",
-            icon: "mdi:network",
-            color: "#059669"
-        }
-    ]
+  const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)' }
 
-    return (
-        <div className='bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen pt-20 px-4 pb-8'>
-            <div className='max-w-6xl mx-auto w-full'>
+  const statusStyle = (status) => {
+    if (status === 'Valid') return { background: 'var(--green-valid)', color: 'var(--green-text)', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', padding: '2px 8px', textTransform: 'uppercase' }
+    if (status === 'En Proceso') return { background: 'rgba(180,130,20,0.15)', color: '#C9A84C', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', padding: '2px 8px', textTransform: 'uppercase' }
+    return { background: 'rgba(60,60,60,0.4)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', padding: '2px 8px', textTransform: 'uppercase' }
+  }
 
-                {/* Hero Section */}
-                <section className='text-center mb-16'>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <div className='mb-8'>
-                            <div className='w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6'>
-                                <Icon icon="mdi:school" className='text-3xl text-white' />
-                            </div>
+  return (
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '80px', paddingBottom: '80px' }}>
+      <div className="max-w-7xl mx-auto px-6 xl:px-10">
+
+        {/* ── PAGE HEADER ── */}
+        <section className="mb-14">
+          <div className="flex items-center gap-2 mb-5">
+            <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block" />
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.16em' }} className="uppercase">
+              System Record / Education Data
+            </span>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1
+              style={{ lineHeight: 1.1 }}
+              className="text-4xl md:text-5xl font-bold mb-4"
+            >
+              <span style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)' }}>Knowledge </span>
+              <span style={{ fontFamily: 'var(--font-display)', color: 'var(--text-muted)', fontStyle: 'italic', fontWeight: 300 }}>Architecture</span>
+            </h1>
+            <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', maxWidth: '560px', lineHeight: 1.7 }}>
+              Registro cronológico de educación formal y certificaciones técnicas especializadas.
+              Estableciendo la teoría que fundamenta los mecanismos de defensa prácticos.
+            </p>
+          </motion.div>
+        </section>
+
+        {/* ── TWO COLUMNS ── */}
+        <div className="grid lg:grid-cols-3 gap-8">
+
+          {/* Left — Timeline */}
+          <div className="lg:col-span-2">
+            <div className="relative">
+              {/* Vertical line */}
+              <div
+                style={{ position: 'absolute', left: '10px', top: 0, bottom: 0, width: '1px', background: 'var(--border)' }}
+              />
+
+              <div className="space-y-6 pl-10">
+                {timeline.map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.12 }}
+                    className="relative"
+                  >
+                    {/* Timeline dot */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        left: '-36px',
+                        top: '18px',
+                        width: '10px',
+                        height: '10px',
+                        borderRadius: '50%',
+                        border: '1px solid var(--accent)',
+                        background: 'var(--bg-primary)',
+                      }}
+                    />
+
+                    <div style={{ ...cardStyle, padding: '20px 24px' }}>
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: 600 }}>
+                            {item.title}
+                          </h3>
+                          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '3px' }}>
+                            {item.institution}
+                          </p>
                         </div>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.08em', whiteSpace: 'nowrap', marginLeft: '12px', border: '1px solid var(--border)', padding: '2px 8px' }}>
+                          {item.period}
+                        </span>
+                      </div>
 
-                        <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
-                            Mi <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400'>Formación</span> Académica
-                        </h1>
+                      <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '12px' }}>
+                        {item.description}
+                      </p>
 
-                        <p className='text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed'>
-                            Un recorrido por mi trayectoria educativa en tecnología, desde estudios formales hasta certificaciones especializadas
-                        </p>
-                    </motion.div>
-                </section>
-
-                {/* Estudios Formales */}
-                <section className='mb-16'>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        viewport={{ once: true }}
-                        className='bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10'
-                    >
-                        <h2 className='text-3xl md:text-4xl font-bold text-white mb-8 text-center'>
-                            Estudios Formales
-                        </h2>
-
-                        <div className='flex flex-col md:flex-row items-center gap-8'>
-                            <div className='md:flex-1'>
-                                <div className='bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl p-6 border border-blue-500/30'>
-                                    <div className='flex items-center mb-4'>
-                                        <Icon icon="mdi:school-outline" className='text-3xl text-blue-400 mr-3' />
-                                        <div>
-                                            <h3 className='text-xl font-bold text-white'>Perito en Computación</h3>
-                                            <p className='text-blue-400'>Diversificado - Último Año</p>
-                                        </div>
-                                    </div>
-
-                                    <div className='space-y-3'>
-                                        <div className='flex items-center text-gray-300'>
-                                            <Icon icon="mdi:calendar" className='text-lg mr-2 text-blue-400' />
-                                            <span>2023 - 2025 (En curso)</span>
-                                        </div>
-                                        <div className='flex items-center text-gray-300'>
-                                            <Icon icon="mdi:map-marker" className='text-lg mr-2 text-blue-400' />
-                                            <span>Centro educativo técnico laboral Kinal, Guatemala</span>
-                                        </div>
-                                        <div className='flex items-center text-gray-300'>
-                                            <Icon icon="mdi:chart-line" className='text-lg mr-2 text-blue-400' />
-                                            <span>Especialización en Tecnología</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='md:flex-1'>
-                                <div className='text-center'>
-                                    <div className='text-6xl mb-4'>🎓</div>
-                                    <h4 className='text-white font-bold text-lg mb-2'>Formación Técnica</h4>
-                                    <p className='text-gray-400 text-sm leading-relaxed'>
-                                        Especializándome en computación con enfoque en desarrollo de software,
-                                        redes y administración de sistemas. Una base sólida para mi carrera en tecnología.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                </section>
-
-                {/* Certificaciones Técnicas */}
-                <section className='mb-16'>
-                    <div className='text-center mb-12'>
-                        <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-                            Certificaciones Técnicas
-                        </h2>
-                        <p className='text-gray-300 text-lg max-w-2xl mx-auto'>
-                            Certificaciones oficiales que validan mis conocimientos en tecnologías específicas
-                        </p>
-                    </div>
-
-                    <div className='grid md:grid-cols-2 gap-6'>
-                        {certifications.map((cert, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300'
-                            >
-                                <div className='flex items-start gap-4'>
-                                    {/* Badge oficial o icono */}
-                                    <div className='flex-shrink-0'>
-                                        {cert.credlyBadge ? (
-                                            <div className='relative group cursor-pointer'>
-                                                {/* Badge visual estilo CISCO */}
-                                                <div className='w-16 h-16 rounded-lg shadow-lg border-2 border-white/20 hover:shadow-xl hover:border-white/40 transition-all duration-300 overflow-hidden'
-                                                    style={{
-                                                        background: 'linear-gradient(135deg, #1BA0D7 0%, #0891b2 100%)'
-                                                    }}>
-                                                    <div className='flex flex-col items-center justify-center h-full p-1'>
-                                                        <Icon icon="cib:cisco" className='text-white text-xl mb-1' />
-                                                        <div className='text-white text-xs font-bold text-center leading-none'>
-                                                            CISCO
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                {/* Indicador de verificación */}
-                                                <div className='absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center border-2 border-slate-900'>
-                                                    <Icon icon="mdi:check" className='text-white text-xs' />
-                                                </div>
-
-                                                {/* Enlace a Credly */}
-                                                <a
-                                                    href={`https://www.credly.com/badges/${cert.credlyBadge.id}`}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className='absolute inset-0 z-10'
-                                                    title="Ver certificación en Credly"
-                                                ></a>
-                                            </div>
-                                        ) : (
-                                            <div className='w-16 h-16 rounded-lg flex items-center justify-center shadow-lg border border-white/10' style={{ backgroundColor: `${cert.color}20` }}>
-                                                <Icon icon={cert.icon} className='text-2xl' style={{ color: cert.color }} />
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div className='flex-1'>
-                                        <div className='flex items-center justify-between mb-2'>
-                                            <h3 className='text-white font-bold text-lg'>{cert.title}</h3>
-                                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${cert.status === 'Completado' ? 'bg-green-500/20 text-green-400' :
-                                                cert.status === 'En Proceso' ? 'bg-yellow-500/20 text-yellow-400' :
-                                                    'bg-blue-500/20 text-blue-400'
-                                                }`}>
-                                                {cert.status}
-                                            </span>
-                                        </div>
-
-                                        <p className='text-gray-400 text-sm mb-3'>{cert.description}</p>
-
-                                        <div className='flex items-center justify-between'>
-                                            <div className='flex items-center gap-2'>
-                                                <span className='text-gray-300 font-medium'>{cert.provider}</span>
-                                                {cert.verified && (
-                                                    <span className='inline-flex items-center px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-medium'>
-                                                        <Icon icon="mdi:check-circle" className='mr-1' />
-                                                        Verified
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <span className='text-gray-400 text-sm'>{cert.date}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
+                      <div className="flex flex-wrap gap-2">
+                        {item.tags.map(tag => (
+                          <span
+                            key={tag}
+                            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-muted)', border: '1px solid var(--border)', padding: '2px 8px', letterSpacing: '0.08em' }}
+                          >
+                            {tag}
+                          </span>
                         ))}
+                      </div>
                     </div>
-                </section>
-
-                {/* Cursos y Especializaciones */}
-                <section className='mb-16'>
-                    <div className='text-center mb-12'>
-                        <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-                            Cursos y Especializaciones
-                        </h2>
-                        <p className='text-gray-300 text-lg max-w-2xl mx-auto'>
-                            Formación continua y cursos complementarios para ampliar mis conocimientos
-                        </p>
-                    </div>
-
-                    <div className='grid md:grid-cols-3 gap-6'>
-                        {courses.map((course, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                className='bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:border-white/20 transition-all duration-300'
-                            >
-                                <div className='w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center' style={{ backgroundColor: `${course.color}20` }}>
-                                    <Icon icon={course.icon} className='text-3xl' style={{ color: course.color }} />
-                                </div>
-
-                                <h3 className='text-white font-bold text-lg mb-2'>{course.title}</h3>
-                                <p className='text-gray-400 text-sm mb-3'>{course.provider}</p>
-                                <span className='inline-block px-3 py-1 bg-gray-500/20 text-gray-300 rounded-full text-xs font-medium'>
-                                    {course.type}
-                                </span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* Timeline Educativo */}
-                <section className='mb-16'>
-                    <div className='text-center mb-12'>
-                        <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-                            Mi Trayectoria Educativa
-                        </h2>
-                        <p className='text-gray-300 text-lg max-w-2xl mx-auto'>
-                            Línea de tiempo de mi formación académica y profesional
-                        </p>
-                    </div>
-
-                    <div className='relative'>
-                        {/* Línea vertical */}
-                        <div className='absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full'></div>
-
-                        <div className='space-y-12'>
-                            {/* 2022 - Inicio Diversificado */}
-                            <motion.div
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6 }}
-                                viewport={{ once: true }}
-                                className='flex items-center'
-                            >
-                                <div className='w-1/2 pr-8 text-right'>
-                                    <div className='bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10'>
-                                        <h4 className='text-white font-bold'>Inicio de Diversificado</h4>
-                                        <p className='text-gray-400 text-sm'>Perito en Computación</p>
-                                    </div>
-                                </div>
-                                <div className='w-8 h-8 bg-blue-500 rounded-full border-4 border-slate-900 z-10'></div>
-                                <div className='w-1/2 pl-8'>
-                                    <span className='text-blue-400 font-bold'>2023</span>
-                                </div>
-                            </motion.div>
-
-                            {/* 2024 - Certificaciones CISCO */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6 }}
-                                viewport={{ once: true }}
-                                className='flex items-center'
-                            >
-                                <div className='w-1/2 pr-8 text-right'>
-                                    <span className='text-green-400 font-bold'>2023 y 2024</span>
-                                </div>
-                                <div className='w-8 h-8 bg-green-500 rounded-full border-4 border-slate-900 z-10'></div>
-                                <div className='w-1/2 pl-8'>
-                                    <div className='bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10'>
-                                        <h4 className='text-white font-bold'>Certificaciones CISCO</h4>
-                                        <p className='text-gray-400 text-sm'>Operating Systems & CCNAv7</p>
-                                    </div>
-                                </div>
-                            </motion.div>
-
-                            {/* 2025 - Graduación y AWS */}
-                            <motion.div
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6 }}
-                                viewport={{ once: true }}
-                                className='flex items-center'
-                            >
-                                <div className='w-1/2 pr-8 text-right'>
-                                    <div className='bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10'>
-                                        <h4 className='text-white font-bold'>Graduación</h4>
-                                        <p className='text-gray-400 text-sm'>Perito en computación</p>
-                                    </div>
-                                </div>
-                                <div className='w-8 h-8 bg-purple-500 rounded-full border-4 border-slate-900 z-10'></div>
-                                <div className='w-1/2 pl-8'>
-                                    <span className='text-purple-400 font-bold'>2025</span>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Próximos Objetivos */}
-                <section className='mb-16'>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        viewport={{ once: true }}
-                        className='bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-blue-500/30'
-                    >
-                        <div className='text-center mb-8'>
-                            <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-                                Próximos Objetivos
-                            </h2>
-                            <p className='text-gray-300 text-lg max-w-2xl mx-auto'>
-                                Mis metas educativas y profesionales a corto y mediano plazo
-                            </p>
-                        </div>
-
-                        <div className='grid md:grid-cols-3 gap-6'>
-                            <div className='text-center'>
-                                <div className='text-4xl mb-4'>🎯</div>
-                                <h3 className='text-white font-bold text-lg mb-2'>2025</h3>
-                                <p className='text-gray-400 text-sm'>
-                                    Completar CISCO IT Essentials, Graduación y más certificados
-                                </p>
-                            </div>
-
-                            <div className='text-center'>
-                                <div className='text-4xl mb-4'>🛡️</div>
-                                <h3 className='text-white font-bold text-lg mb-2'>Ciberseguridad</h3>
-                                <p className='text-gray-400 text-sm'>
-                                    Profundizar en seguridad informática y obtener certificaciones especializadas
-                                </p>
-                            </div>
-
-                            <div className='text-center'>
-                                <div className='text-4xl mb-4'>🚀</div>
-                                <h3 className='text-white font-bold text-lg mb-2'>Universidad</h3>
-                                <p className='text-gray-400 text-sm'>
-                                    Continuar estudios superiores en Ingeniería en Sistemas o Ciberseguridad
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
-                </section>
-
+                  </motion.div>
+                ))}
+              </div>
             </div>
+          </div>
+
+          {/* Right — Active Certifications */}
+          <div>
+            <div className="flex items-center justify-between gap-2 mb-5">
+              <div className="flex items-center gap-2">
+                <Icon icon="mdi:shield-check" width={15} style={{ color: '#D49A4B' }} />
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', color: '#D49A4B', letterSpacing: '0.16em' }} className="uppercase font-semibold">
+                  Active Certifications
+                </span>
+              </div>
+              <a
+                href="https://www.credly.com/users/jose-gonzalez"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A8A8A', letterSpacing: '0.1em' }}
+                className="hover:text-[var(--accent)] transition-colors uppercase"
+              >
+                [Credly Profile ↗]
+              </a>
+            </div>
+
+            <div className="space-y-4">
+              {certifications.map((cert, i) => {
+                // Determine left border accent like mockup
+                let borderLeftStyle = '1px solid var(--border)'
+                if (i === 0) borderLeftStyle = '2px solid #D49A4B'
+                else if (i === 1) borderLeftStyle = '2px solid #8B1A1A'
+                else if (cert.status === 'Valid') borderLeftStyle = '2px solid rgba(201,168,76,0.35)'
+
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    style={{
+                      ...cardStyle,
+                      borderLeft: borderLeftStyle,
+                      padding: '16px 18px',
+                      position: 'relative',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-1.5">
+                      <h4 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '0.92rem', fontWeight: 600, lineHeight: 1.3 }}>
+                        {cert.title}
+                      </h4>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.52rem',
+                          letterSpacing: '0.12em',
+                          padding: '2px 7px',
+                          textTransform: 'uppercase',
+                          border: cert.status === 'Valid' ? '1px solid rgba(201,168,76,0.4)' : '1px solid #3A3A3A',
+                          color: cert.status === 'Valid' ? '#C9A84C' : '#7A7A7A',
+                          background: cert.status === 'Valid' ? 'rgba(201,168,76,0.08)' : 'transparent',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {cert.status}
+                      </span>
+                    </div>
+
+                    <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', color: '#7A7A7A', letterSpacing: '0.08em', marginBottom: '8px', textTransform: 'uppercase' }}>
+                      {cert.provider}
+                    </p>
+
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', color: '#8A8A8A', lineHeight: 1.5, marginBottom: '12px' }}>
+                      {cert.description}
+                    </p>
+
+                    {/* Gradient bar for certification card (like OSCP mockup) */}
+                    <div
+                      style={{
+                        height: '2px',
+                        width: '100%',
+                        background: i % 2 === 0
+                          ? 'linear-gradient(90deg, #8B1A1A 0%, #D49A4B 60%, #E8ACA3 100%)'
+                          : 'linear-gradient(90deg, #6B1414 0%, #8B1A1A 50%, #C9A84C 100%)',
+                        marginBottom: '12px',
+                        borderRadius: '1px',
+                        opacity: 0.9,
+                      }}
+                    />
+
+                    <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
+                      <div className="flex items-center gap-3">
+                        {cert.credlyUrl || cert.credlyId ? (
+                          <a
+                            href={cert.credlyUrl || `https://www.credly.com/badges/${cert.credlyId}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--accent)', letterSpacing: '0.1em', textDecoration: 'none', textTransform: 'uppercase' }}
+                            className="hover:underline flex items-center gap-1"
+                          >
+                            [VERIFY ON CREDLY ↗]
+                          </a>
+                        ) : (
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#A38444', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                            [VERIFIED BY NETACAD]
+                          </span>
+                        )}
+
+                        {cert.pdfUrl && (
+                          <a
+                            href={cert.pdfUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#E8ACA3', letterSpacing: '0.1em', textDecoration: 'none', textTransform: 'uppercase' }}
+                            className="hover:underline flex items-center gap-1"
+                          >
+                            [VIEW PDF 📄↗]
+                          </a>
+                        )}
+                      </div>
+
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#5A5A5A', letterSpacing: '0.08em' }}>
+                        {cert.date}
+                      </span>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
+
+
         </div>
-    )
+
+        {/* ── Footer label ── */}
+        <div className="mt-16 pt-6" style={{ borderTop: '1px solid var(--border)' }}>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-dim)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+            © {new Date().getFullYear()} Cyber_Portfolio.&nbsp;
+            <span style={{ color: 'var(--accent-dim)' }}>Secure Access Granted.</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  )
 }

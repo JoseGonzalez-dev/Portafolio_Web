@@ -1,183 +1,156 @@
-import React, { useState } from 'react'
-import { Icon } from '@iconify/react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import ContactModal from '../molecules/ContactModal'
 import { useContactModal } from '../../hooks/useContactModal'
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const navigate = useNavigate()
-
-  // Hook del modal de contacto
+  const [scrolled, setScrolled] = useState(false)
   const contactModal = useContactModal()
 
-  // Contactos sociales para el modal
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   const socialContacts = [
-    {
-      name: 'GitHub',
-      icon: 'mdi:github',
-      url: 'https://github.com/JoseGonzalez-dev',
-      color: '#ffffff'
-    },
-    {
-      name: 'LinkedIn',
-      icon: 'mdi:linkedin',
-      url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-      color: '#0077b5'
-    },
-    {
-      name: 'Email',
-      icon: 'mdi:email',
-      url: 'mailto:jgonzalez.242720@gmail.com',
-      color: '#ea4335'
-    }
+    { name: 'GitHub',   icon: 'mdi:github',   url: 'https://github.com/JoseGonzalez-dev',      color: '#ffffff' },
+    { name: 'LinkedIn', icon: 'mdi:linkedin',  url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', color: '#0077b5' },
+    { name: 'Email',    icon: 'mdi:email',     url: 'mailto:jgonzalez.242720@gmail.com',        color: '#ea4335' }
   ]
 
-  // Datos del menú centralizados
-  const menuItems = [
-    { href: '/', label: 'Inicio', isSpecial: false },
-    { href: '/about', label: 'Acerca de mi', isSpecial: false },
-    { href: '/education', label: 'Educación', isSpecial: false },
-    { href: '/proyects', label: 'Proyectos', isSpecial: false },
-    { href: '/contact', label: 'Contactame', isSpecial: true }
+  const navLinks = [
+    { to: '/',          label: 'Home' },
+    { to: '/education', label: 'Education' },
+    { to: '/proyects',  label: 'Projects' },
+    { to: '/about',     label: 'About Me' },
   ]
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-  const closeMenu = () => setIsMenuOpen(false)
-
-  // Estilos reutilizables
-  const styles = {
-    regularLink: "text-gray-300 hover:text-white transition-colors duration-300 font-medium",
-    activeRegularLink: "text-white font-semibold",
-    specialButton: "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-blue-500/30",
-    mobileRegularLink: "block text-gray-300 hover:text-white hover:bg-slate-700 px-4 py-3 rounded-lg transition-all duration-200 font-medium",
-    activeMobileRegularLink: "block text-white bg-slate-700 px-4 py-3 rounded-lg font-semibold",
-    mobileSpecialButton: "block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-blue-500/30 text-center"
-  }
-
-  // Componente para enlaces del menú desktop
-  const DesktopMenuItem = ({ item }) => {
-    if (item.isSpecial) {
-      return (
-        <button
-          onClick={contactModal.openContactModal}
-          className={`${styles.specialButton} px-6 py-2 rounded-full`}
-        >
-          {item.label}
-        </button>
-      )
-    }
-
-    return (
-      <NavLink
-        to={item.href}
-        className={({ isActive }) =>
-          isActive
-            ? `${styles.regularLink} ${styles.activeRegularLink}`
-            : styles.regularLink
-        }
-      >
-        {item.label}
-      </NavLink>
-    )
-  }
-
-  // Componente para enlaces del menú mobile
-  const MobileMenuItem = ({ item }) => {
-    if (item.isSpecial) {
-      return (
-        <button
-          onClick={() => {
-            contactModal.openContactModal()
-            closeMenu()
-          }}
-          className={`${styles.mobileSpecialButton} w-full text-left`}
-        >
-          {item.label}
-        </button>
-      )
-    }
-
-    return (
-      <NavLink
-        to={item.href}
-        onClick={closeMenu}
-        className={({ isActive }) =>
-          isActive
-            ? `${styles.mobileRegularLink} ${styles.activeMobileRegularLink}`
-            : styles.mobileRegularLink
-        }
-      >
-        {item.label}
-      </NavLink>
-    )
-  }
+  const linkBase   = 'relative font-mono text-xs tracking-widest uppercase transition-colors duration-200'
+  const linkActive = 'text-[var(--text-main)] after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-[1px] after:bg-[var(--accent)]'
+  const linkIdle   = 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
 
   return (
     <>
-      <nav className="bg-transparent backdrop-blur-md  fixed top-0 left-0 right-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 xl:px-10 2xl:px-1 pt-2 pb-2">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center group cursor-pointer">
-              <div className="flex items-center space-x-3">
-                {/* Monograma minimalista */}
-                <div className="relative">
-                  <div className="w-10 h-10 border-2 border-white/20 rounded-lg flex items-center justify-center group-hover:border-blue-400/60 transition-all duration-300">
-                    <span className="text-white font-bold text-lg tracking-tight group-hover:text-blue-400 transition-colors duration-300">
-                      JG
-                    </span>
-                  </div>
-                </div>
+      <nav
+        style={{
+          background: scrolled
+            ? 'rgba(13,13,13,0.95)'
+            : 'rgba(13,13,13,0.7)',
+          borderBottom: '1px solid var(--border)',
+          backdropFilter: 'blur(12px)',
+        }}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      >
+        <div className="max-w-7xl mx-auto px-6 xl:px-10 h-14 flex items-center justify-between">
 
-                {/* Texto del logo */}
-                <div className="flex flex-col">
-                  <h1 className="text-white text-xl xl:text-2xl font-semibold tracking-tight leading-none">
-                    José González
-                  </h1>
-                  <div className="text-sm text-gray-400 font-light tracking-wide">
-                    Full Stack Developer
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* ── Logo ── */}
+          <NavLink to="/" className="flex items-center gap-2 group">
+            <span className="pulse-dot w-2 h-2 rounded-full bg-[var(--accent)] inline-block" />
+            <span
+              style={{ fontFamily: 'var(--font-mono)', letterSpacing: '0.05em' }}
+              className="text-sm font-semibold text-[var(--text-main)] uppercase"
+            >
+              Cyber<span style={{ color: 'var(--accent)' }}>_</span>Portfolio
+            </span>
+          </NavLink>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8 xl:space-x-12 2xl:space-x-16 xl:ml-16 2xl:ml-24">
-              {menuItems.map((item, index) => (
-                <DesktopMenuItem key={index} item={item} />
-              ))}
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={toggleMenu}
-                className="text-gray-300 hover:text-white focus:outline-none transition-colors duration-200"
-                aria-label="Toggle menu"
+          {/* ── Desktop links ── */}
+          <div className="hidden md:flex items-center gap-8 xl:gap-10">
+            {navLinks.map(({ to, label }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={to === '/'}
+                className={({ isActive }) =>
+                  `${linkBase} ${isActive ? linkActive : linkIdle}`
+                }
               >
-                <Icon
-                  icon={isMenuOpen ? "mdi:close" : "mdi:menu"}
-                  width="28"
-                  height="28"
-                />
-              </button>
-            </div>
+                {label}
+              </NavLink>
+            ))}
+
+            {/* Secure Contact button */}
+            <button
+              id="navbar-secure-contact-btn"
+              onClick={contactModal.openContactModal}
+              style={{
+                border: '1px solid #5A1010',
+                color: 'var(--text-main)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.65rem',
+                letterSpacing: '0.12em',
+                padding: '7px 16px',
+                background: '#6B1414',
+                transition: 'background 0.2s ease',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = '#8B1A1A'}
+              onMouseLeave={e => e.currentTarget.style.background = '#6B1414'}
+              className="uppercase tracking-widest cursor-pointer"
+            >
+              ● Secure Contact
+            </button>
           </div>
 
-          {/* Mobile Menu */}
-          <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-            }`}>
-            <div className="px-2 pt-2 pb-4 space-y-2 bg-black/20 backdrop-blur-md border-t border-white/10">
-              {menuItems.map((item, index) => (
-                <MobileMenuItem key={index} item={item} />
-              ))}
-            </div>
-          </div>
+          {/* ── Mobile hamburger ── */}
+          <button
+            id="navbar-mobile-menu-toggle"
+            onClick={() => setIsMenuOpen(o => !o)}
+            style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}
+            className="md:hidden text-xs tracking-widest uppercase focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? '[CLOSE]' : '[MENU]'}
+          </button>
         </div>
+
+        {/* ── Mobile dropdown ── */}
+        {isMenuOpen && (
+          <div
+            style={{ borderTop: '1px solid var(--border)', background: 'rgba(13,13,13,0.97)' }}
+            className="md:hidden px-6 py-4 space-y-4"
+          >
+            {navLinks.map(({ to, label }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={to === '/'}
+                onClick={() => setIsMenuOpen(false)}
+                className={({ isActive }) =>
+                  `block font-mono text-xs tracking-widest uppercase py-2 transition-colors ${
+                    isActive
+                      ? 'text-[var(--accent)]'
+                      : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
+                  }`
+                }
+              >
+                {label}
+              </NavLink>
+            ))}
+
+            <button
+              onClick={() => { contactModal.openContactModal(); setIsMenuOpen(false) }}
+              style={{
+                border: '1px solid #5A1010',
+                color: 'var(--text-main)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.65rem',
+                letterSpacing: '0.12em',
+                padding: '9px 14px',
+                background: '#6B1414',
+                transition: 'background 0.2s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = '#8B1A1A'}
+              onMouseLeave={e => e.currentTarget.style.background = '#6B1414'}
+              className="w-full uppercase"
+            >
+              ● Secure Contact
+            </button>
+          </div>
+        )}
       </nav>
 
-      {/* Modal de contacto */}
       <ContactModal
         isOpen={contactModal.isContactModalOpen}
         onClose={contactModal.closeContactModal}
