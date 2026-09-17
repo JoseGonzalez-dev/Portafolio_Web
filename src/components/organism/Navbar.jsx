@@ -16,15 +16,15 @@ export const Navbar = () => {
 
   const socialContacts = [
     { name: 'GitHub',   icon: 'mdi:github',   url: 'https://github.com/JoseGonzalez-dev',      color: '#ffffff' },
-    { name: 'LinkedIn', icon: 'mdi:linkedin',  url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', color: '#0077b5' },
+    { name: 'LinkedIn', icon: 'mdi:linkedin',  url: 'https://www.linkedin.com/in/jgonzalez-dev',                color: '#0077b5' },
     { name: 'Email',    icon: 'mdi:email',     url: 'mailto:jgonzalez.242720@gmail.com',        color: '#ea4335' }
   ]
 
   const navLinks = [
-    { to: '/',          label: 'Home' },
-    { to: '/education', label: 'Education' },
-    { to: '/proyects',  label: 'Projects' },
-    { to: '/about',     label: 'About Me' },
+    { to: '/',          label: 'Inicio' },
+    { to: '/education', label: 'Educación' },
+    { to: '/proyects',  label: 'Proyectos' },
+    { to: '/about',     label: 'Sobre Mí' },
   ]
 
   const linkBase   = 'relative font-mono text-xs tracking-widest uppercase transition-colors duration-200'
@@ -89,7 +89,7 @@ export const Navbar = () => {
               onMouseLeave={e => e.currentTarget.style.background = '#6B1414'}
               className="uppercase tracking-widest cursor-pointer"
             >
-              ● Secure Contact
+              ● Contacto Seguro
             </button>
           </div>
 
@@ -101,7 +101,7 @@ export const Navbar = () => {
             className="md:hidden text-xs tracking-widest uppercase focus:outline-none"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? '[CLOSE]' : '[MENU]'}
+            {isMenuOpen ? '[CERRAR]' : '[MENÚ]'}
           </button>
         </div>
 
@@ -145,7 +145,7 @@ export const Navbar = () => {
               onMouseLeave={e => e.currentTarget.style.background = '#6B1414'}
               className="w-full uppercase"
             >
-              ● Secure Contact
+              ● Contacto Seguro
             </button>
           </div>
         )}

@@ -81,7 +81,7 @@ const ContactModal = ({
                   <span className="w-3 h-3 rounded-full bg-[#28C840]" />
                 </div>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
-                  SECURE_CHANNEL // ESTABLISH_CONNECTION
+                  CANAL_SEGURO // ESTABLECER_CONEXION
                 </span>
               </div>
               <button
@@ -99,7 +99,7 @@ const ContactModal = ({
               {/* Header */}
               <div className="mb-6">
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--accent)', letterSpacing: '0.15em' }} className="uppercase mb-2">
-                  ● Transmission Protocol Active
+                  ● Protocolo de Transmisión Activo
                 </p>
                 <h2
                   style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.6rem', fontWeight: 700 }}
@@ -199,7 +199,7 @@ const ContactModal = ({
                     onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-light)'; e.currentTarget.style.color = 'var(--text-main)' }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-muted)' }}
                   >
-                    [CANCEL]
+                    [CANCELAR]
                   </button>
                   <button
                     id="contact-submit-btn"
@@ -223,10 +223,10 @@ const ContactModal = ({
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center gap-2">
-                        <span className="cursor-blink">_</span> TRANSMITTING...
+                        <span className="cursor-blink">_</span> TRANSMITIENDO...
                       </span>
                     ) : (
-                      '▶ TRANSMIT_MESSAGE'
+                      '▶ TRANSMITIR_MENSAJE'
                     )}
                   </button>
                 </div>
@@ -236,7 +236,7 @@ const ContactModal = ({
               {socialContacts.length > 0 && (
                 <div style={{ borderTop: '1px solid var(--border)', marginTop: '24px', paddingTop: '20px' }}>
                   <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-muted)', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    // Direct channels
+                    // Canales directos
                   </p>
                   <div className="flex gap-4">
                     {socialContacts.map((contact, i) => (

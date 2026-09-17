@@ -10,17 +10,17 @@ import CV from '../../assets/CV.pdf'
    Terminal Loader
 ───────────────────────────────────────── */
 const LINES = [
-  { text: '> Initializing cyber_portfolio v2.4.1...', color: '#6B6B6B', delay: 0 },
-  { text: '> Establishing secure connection...', color: '#6B6B6B', delay: 320 },
-  { text: '  ✓ TLS_1.3 handshake complete', color: '#4CAF50', delay: 640 },
-  { text: '> Installing dependencies:', color: '#6B6B6B', delay: 960 },
+  { text: '> Inicializando cyber_portfolio v2.4.1...', color: '#6B6B6B', delay: 0 },
+  { text: '> Estableciendo conexión segura...', color: '#6B6B6B', delay: 320 },
+  { text: '  ✓ Protocolo TLS_1.3 completado', color: '#4CAF50', delay: 640 },
+  { text: '> Instalando dependencias:', color: '#6B6B6B', delay: 960 },
   { text: '  ✓ zero-trust-auth@3.1.2', color: '#4CAF50', delay: 1180 },
   { text: '  ✓ cryptoshield@latest', color: '#4CAF50', delay: 1360 },
   { text: '  ✓ portfolio-core@5.0.0', color: '#4CAF50', delay: 1540 },
-  { text: '  ⟳ loading threat-intel-module...', color: '#FFBD2E', delay: 1720 },
-  { text: '  ✓ threat-intel-module loaded', color: '#4CAF50', delay: 1950 },
-  { text: '> Compiling secure assets...', color: '#6B6B6B', delay: 2150 },
-  { text: '> STATUS: READY — ACCESS GRANTED', color: '#C9A84C', delay: 2450 },
+  { text: '  ⟳ cargando módulo-intel-amenazas...', color: '#FFBD2E', delay: 1720 },
+  { text: '  ✓ módulo-intel-amenazas cargado', color: '#4CAF50', delay: 1950 },
+  { text: '> Compilando activos seguros...', color: '#6B6B6B', delay: 2150 },
+  { text: '> ESTADO: LISTO — ACCESO CONCEDIDO', color: '#C9A84C', delay: 2450 },
 ]
 
 const TerminalLoader = ({ onDone }) => {
@@ -54,7 +54,7 @@ const TerminalLoader = ({ onDone }) => {
             <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFBD2E', display: 'inline-block' }} />
             <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#28C840', display: 'inline-block' }} />
           </div>
-          <span style={{ fontSize: '0.58rem', color: '#404040', letterSpacing: '0.12em' }}>CYBER_PORTFOLIO — secure-terminal</span>
+          <span style={{ fontSize: '0.58rem', color: '#404040', letterSpacing: '0.12em' }}>CYBER_PORTFOLIO — terminal-seguro</span>
         </div>
         {/* body */}
         <div className="p-5 space-y-1.5" style={{ minHeight: '220px' }}>
@@ -68,7 +68,7 @@ const TerminalLoader = ({ onDone }) => {
         {/* progress */}
         <div style={{ borderTop: '1px solid var(--border)', padding: '10px 20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-            <span style={{ fontSize: '0.52rem', color: '#404040', letterSpacing: '0.14em' }}>LOADING ENVIRONMENT</span>
+            <span style={{ fontSize: '0.52rem', color: '#404040', letterSpacing: '0.14em' }}>CARGANDO ENTORNO</span>
             <span style={{ fontSize: '0.52rem', color: 'var(--accent)' }}>{progress}%</span>
           </div>
           <div style={{ height: '2px', background: '#1A1A1A', position: 'relative' }}>
@@ -106,7 +106,7 @@ export const HomeTemplate = () => {
 
   const socialContacts = [
     { name: 'GitHub',   icon: 'mdi:github',  url: 'https://github.com/JoseGonzalez-dev',    color: '#ffffff', description: 'Código' },
-    { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', color: '#0077b5', description: 'LinkedIn' },
+    { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/jgonzalez-dev', color: '#0077b5', description: 'LinkedIn' },
     { name: 'Email',    icon: 'mdi:email',    url: 'mailto:jgonzalez.242720@gmail.com',      color: '#ea4335', description: 'Email' },
   ]
 
@@ -227,7 +227,7 @@ export const HomeTemplate = () => {
                   }}
                 >
                   <span className="pulse-dot" style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#D9A553', display: 'inline-block' }} />
-                  System Active // Protocol Secure
+                  Full Stack Developer Jr. // Est. Ingeniería en Sistemas
                 </motion.p>
 
                 {/* Headline */}
@@ -245,11 +245,11 @@ export const HomeTemplate = () => {
                     color: '#F4F0EA',
                   }}
                 >
-                  Securing the Digital{' '}
+                  Construyendo Soluciones Web{' '}
                   <span className="text-gradient-future">
-                    Future
+                    Seguras
                   </span>
-                  {' '}Against Unseen Threats.
+                  {' '}& Escalables.
                 </motion.h1>
 
                 {/* Subtext with left accent line */}
@@ -272,8 +272,7 @@ export const HomeTemplate = () => {
                       lineHeight: 1.7,
                     }}
                   >
-                    Desarrollador Full Stack enfocado en redes, ciberseguridad y arquitecturas zero-trust.
-                    Construyendo sistemas impenetrables para un mundo hiperconectado.
+                    Desarrollador Full Stack Jr. enfocado en la construcción de interfaces responsivas y servicios backend optimizados. Con experiencia en administración de datos, flujos de trabajo ágiles (Scrum) y despliegues confiables (CI/CD), con una sólida base en sistemas operativos y ciberseguridad.
                   </p>
                 </motion.div>
 
@@ -307,7 +306,7 @@ export const HomeTemplate = () => {
                     onMouseLeave={e => { e.currentTarget.style.background = '#5C1212'; e.currentTarget.style.color = '#D9A553' }}
                   >
                     <Icon icon="mdi:code-greater-than" width={14} style={{ color: '#D9A553' }} />
-                    View Projects
+                    Ver Proyectos
                   </NavLink>
 
                   {/* Secondary — outline with gold text/icon */}
@@ -333,7 +332,7 @@ export const HomeTemplate = () => {
                     onMouseLeave={e => { e.currentTarget.style.borderColor = '#382B1E'; e.currentTarget.style.color = '#C49A50' }}
                   >
                     <Icon icon="mdi:download-outline" width={14} style={{ color: '#C49A50' }} />
-                    Download Resume
+                    Descargar CV
                   </button>
                 </motion.div>
 
@@ -384,12 +383,12 @@ export const HomeTemplate = () => {
           {/* Section header */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.4rem', fontWeight: 600 }}>
-              Core Capabilities
+              Capacidades Principales
             </h2>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', color: '#404040', letterSpacing: '0.14em', cursor: 'pointer' }}
               className="uppercase hover:text-[var(--accent)] transition-colors"
             >
-              View All Protocols_
+              Ver Todos los Protocolos_
             </span>
           </div>
 
@@ -449,14 +448,14 @@ export const HomeTemplate = () => {
               </div>
 
               <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: 600, marginBottom: '8px', position: 'relative' }}>
-                Penetration Testing
+                Desarrollo Frontend & Backend
               </h3>
               <p style={{ fontFamily: 'var(--font-body)', color: '#5A5A5A', fontSize: '0.82rem', lineHeight: 1.65, maxWidth: '380px', position: 'relative' }}>
-                Explotación sistemática de vulnerabilidades para fortalecer perímetros de red antes de que actores maliciosos puedan atacar.
+                Construcción de interfaces reactivas y aplicaciones web con React y Tailwind CSS, integradas con microservicios y APIs robustas en Node.js y Express.
               </p>
             </motion.div>
 
-            {/* Card 2 — Zero Trust Arch (cols 8-12, row 1) */}
+            {/* Card 2 — Architecture & Security (cols 8-12, row 1) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -492,14 +491,14 @@ export const HomeTemplate = () => {
               </div>
 
               <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: 600, marginBottom: '8px', position: 'relative' }}>
-                Zero Trust Arch
+                Arquitectura Segura & APIs
               </h3>
               <p style={{ fontFamily: 'var(--font-body)', color: '#5A5A5A', fontSize: '0.82rem', lineHeight: 1.65, position: 'relative' }}>
-                Diseñando entornos donde la verificación es continua y el acceso está estrictamente limitado.
+                Autenticación segura con JWT, control de acceso basado en roles y protección de endpoints contra vulnerabilidades críticas.
               </p>
             </motion.div>
 
-            {/* Card 3 — Threat Intel (cols 1-4, row 2) */}
+            {/* Card 3 — Automation & Scraping (cols 1-4, row 2) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -517,17 +516,17 @@ export const HomeTemplate = () => {
               className="group hover:border-[#332A1A] transition-all duration-300"
             >
               <div style={{ background: 'rgba(107,20,20,0.45)', border: '1px solid rgba(139,26,26,0.6)', padding: '9px', display: 'inline-block', marginBottom: '40px' }}>
-                <Icon icon="mdi:shield-alert-outline" width={20} style={{ color: 'var(--accent)' }} />
+                <Icon icon="mdi:database-sync-outline" width={20} style={{ color: 'var(--accent)' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1rem', fontWeight: 600, marginBottom: '6px' }}>
-                Threat Intel
+                Automatización & Datos
               </h3>
               <p style={{ fontFamily: 'var(--font-body)', color: '#5A5A5A', fontSize: '0.8rem', lineHeight: 1.6 }}>
-                Monitoreo proactivo y análisis de amenazas globales emergentes para securizar activos críticos.
+                Scripts de Web Scraping para extracción de datos, optimización de flujos y gestión en MongoDB, MySQL y SQL Server.
               </p>
             </motion.div>
 
-            {/* Card 4 — Incident Response (cols 5-12, row 2) — large with code symbol */}
+            {/* Card 4 — Agile & DevOps (cols 5-12, row 2) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -563,10 +562,10 @@ export const HomeTemplate = () => {
 
               <div style={{ maxWidth: '420px' }}>
                 <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: 600, marginBottom: '8px' }}>
-                  Incident Response
+                  Flujos Ágiles, CI/CD & Sistemas
                 </h3>
                 <p style={{ fontFamily: 'var(--font-body)', color: '#5A5A5A', fontSize: '0.82rem', lineHeight: 1.65, marginBottom: '20px' }}>
-                  Despliegue rápido para contener, erradicar y recuperarse de brechas de seguridad, minimizando el downtime operacional.
+                  Desarrollo bajo metodología Scrum, integración y entrega continua (CI/CD), contenedores Docker y sólida gestión de sistemas operativos.
                 </p>
                 <button
                   style={{
@@ -583,7 +582,7 @@ export const HomeTemplate = () => {
                   }}
                   onClick={() => contactModal.openContactModal()}
                 >
-                  Read Case Studies →
+                  Contactar para Proyectos →
                 </button>
               </div>
             </motion.div>

@@ -17,15 +17,15 @@ export const EducationTemplate = () => {
 
   const timeline = [
     {
-      period: '2026 - Actual',
-      title: 'Ingeniería en Sistemas de la Información y Ciencias de la Computación',
+      period: 'Feb 2026 - Presente',
+      title: 'Ingeniería en Sistemas de Información y Ciencias de la Computación',
       institution: 'Universidad Mariano Gálvez de Guatemala',
       location: 'Guatemala',
       tags: ['Ingeniería', 'Sistemas', 'Informática', 'Ciencias de la Computación'],
       description: 'Formación integral en desarrollo de software, arquitectura de sistemas, gestión de datos y ciencias computacionales avanzadas.',
     },
     {
-      period: '2023 – 2025',
+      period: 'Ene 2023 – Nov 2025',
       title: 'Perito en Computación',
       institution: 'Centro Educativo Técnico Laboral Kinal',
       location: 'Guatemala',
@@ -42,15 +42,15 @@ export const EducationTemplate = () => {
     },
   ]
 
-    const certifications = [
+  const certifications = [
     {
-      title: 'Ethical Hacker',
-      provider: 'CISCO Networking Academy',
+      title: 'Hacker Ético',
+      provider: 'Cisco Networking Academy',
       description: 'Pruebas de penetración, seguridad en la nube, análisis de malware, ingeniería social y defensas de red.',
       status: 'Valid',
       credlyUrl: 'https://www.credly.com/users/jose-gonzalez',
       pdfUrl: null, // Puedes colocar la ruta de tu PDF, ej: '/certs/ethical_hacker.pdf'
-      date: 'Jun 2026',
+      date: 'Mar 2026 - Jun 2026',
     },
     {
       title: 'Introduction to Cybersecurity',
@@ -107,7 +107,7 @@ export const EducationTemplate = () => {
           <div className="flex items-center gap-2 mb-5">
             <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block" />
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.16em' }} className="uppercase">
-              System Record / Education Data
+              Registro del Sistema / Datos Educativos
             </span>
           </div>
 
@@ -120,8 +120,8 @@ export const EducationTemplate = () => {
               style={{ lineHeight: 1.1 }}
               className="text-4xl md:text-5xl font-bold mb-4"
             >
-              <span style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)' }}>Knowledge </span>
-              <span style={{ fontFamily: 'var(--font-display)', color: 'var(--text-muted)', fontStyle: 'italic', fontWeight: 300 }}>Architecture</span>
+              <span style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)' }}>Arquitectura </span>
+              <span style={{ fontFamily: 'var(--font-display)', color: 'var(--text-muted)', fontStyle: 'italic', fontWeight: 300 }}>del Conocimiento</span>
             </h1>
             <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', maxWidth: '560px', lineHeight: 1.7 }}>
               Registro cronológico de educación formal y certificaciones técnicas especializadas.
@@ -207,7 +207,7 @@ export const EducationTemplate = () => {
               <div className="flex items-center gap-2">
                 <Icon icon="mdi:shield-check" width={15} style={{ color: '#D49A4B' }} />
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', color: '#D49A4B', letterSpacing: '0.16em' }} className="uppercase font-semibold">
-                  Active Certifications
+                  Certificaciones Activas
                 </span>
               </div>
               <a
@@ -217,7 +217,7 @@ export const EducationTemplate = () => {
                 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A8A8A', letterSpacing: '0.1em' }}
                 className="hover:text-[var(--accent)] transition-colors uppercase"
               >
-                [Credly Profile ↗]
+                [Perfil Credly ↗]
               </a>
             </div>
 
@@ -261,7 +261,7 @@ export const EducationTemplate = () => {
                           whiteSpace: 'nowrap',
                         }}
                       >
-                        {cert.status}
+                        {cert.status === 'Valid' ? 'Válido' : cert.status}
                       </span>
                     </div>
 
@@ -297,11 +297,11 @@ export const EducationTemplate = () => {
                             style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--accent)', letterSpacing: '0.1em', textDecoration: 'none', textTransform: 'uppercase' }}
                             className="hover:underline flex items-center gap-1"
                           >
-                            [VERIFY ON CREDLY ↗]
+                            [VERIFICAR EN CREDLY ↗]
                           </a>
                         ) : (
                           <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#A38444', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                            [VERIFIED BY NETACAD]
+                            [VERIFICADO POR NETACAD]
                           </span>
                         )}
 
@@ -313,7 +313,7 @@ export const EducationTemplate = () => {
                             style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#E8ACA3', letterSpacing: '0.1em', textDecoration: 'none', textTransform: 'uppercase' }}
                             className="hover:underline flex items-center gap-1"
                           >
-                            [VIEW PDF 📄↗]
+                            [VER PDF 📄↗]
                           </a>
                         )}
                       </div>
@@ -335,7 +335,7 @@ export const EducationTemplate = () => {
         <div className="mt-16 pt-6" style={{ borderTop: '1px solid var(--border)' }}>
           <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-dim)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
             © {new Date().getFullYear()} Cyber_Portfolio.&nbsp;
-            <span style={{ color: 'var(--accent-dim)' }}>Secure Access Granted.</span>
+            <span style={{ color: 'var(--accent-dim)' }}>Acceso Seguro Concedido.</span>
           </p>
         </div>
 

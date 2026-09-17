@@ -29,7 +29,7 @@ const SkillsOrbit = ({ category = 'frontend', title = 'Mis Habilidades' }) => {
                 { icon: 'logos:python', name: 'Python', color: '#3776AB', bg: '#1e40af', level: 55, experience: '1 año' },
                 { icon: 'logos:java', name: 'Java', color: '#ED8B00', bg: '#ca8a04', level: 80, experience: '2 años' },
                 { icon: 'logos:spring-icon', name: 'Spring Boot', color: '#6DB33F', bg: '#166534', level: 70, experience: '1 año' },
-                { icon: 'logos:postgresql', name: 'PostgreSQL', color: '#336791', bg: '#1e40af', level: 5, experience: '6 meses' },
+                { icon: 'logos:microsoft-icon', name: 'SQL Server', color: '#CC292B', bg: '#dc2626', level: 75, experience: '1 año' },
                 { icon: 'logos:mongodb', name: 'MongoDB', color: '#47A248', bg: '#166534', level: 85, experience: '1 año' },
                 { icon: 'logos:mysql', name: 'MySQL', color: '#4479A1', bg: '#1d4ed8', level: 90, experience: '2 años' },
                 { icon: 'logos:npm-icon', name: 'Redis', color: '#DC382D', bg: '#dc2626', level: 60, experience: '8 meses' }
@@ -42,12 +42,12 @@ const SkillsOrbit = ({ category = 'frontend', title = 'Mis Habilidades' }) => {
             skills: [
                 { icon: 'logos:git-icon', name: 'Git', color: '#F05032', bg: '#ea580c', level: 90, experience: '3 años' },
                 { icon: 'fluent-mdl2:git-hub-logo', name: 'GitHub', color: '#F0F6FF', bg: '#374151', level: 88, experience: '3 años' },
-                { icon: 'logos:aws', name: 'AWS', color: '#FF9900', bg: '#ca8a04', level: 45, experience: '10 meses' },
+                { icon: 'logos:docker-icon', name: 'Docker', color: '#2496ED', bg: '#1d4ed8', level: 70, experience: '1 año' },
                 { icon: 'logos:firebase', name: 'Firebase', color: '#FFCA28', bg: '#ca8a04', level: 75, experience: '1.5 años' },
                 { icon: 'logos:vercel', name: 'Vercel', color: '#FFFFFF', bg: '#374151', level: 65, experience: '2 meses' },
                 { icon: 'logos:visual-studio-code', name: 'VS Code', color: '#007ACC', bg: '#1d4ed8', level: 100, experience: '5 años' },
-                { icon: 'logos:figma', name: 'Figma', color: '#F24E1E', bg: '#ea580c', level: 40, experience: '3 meses' },
-                { icon: 'logos:postman', name: 'Postman', color: '#FF6C37', bg: '#ea580c', level: 90, experience: '2 años' }
+                { icon: 'logos:postman', name: 'Postman', color: '#FF6C37', bg: '#ea580c', level: 90, experience: '2 años' },
+                { icon: 'logos:linux-tux', name: 'Linux OS', color: '#FCC624', bg: '#ca8a04', level: 80, experience: '2 años' }
             ],
             centerIcon: 'mdi:tools',
             centerColor: 'from-purple-400 via-purple-500 to-purple-600',

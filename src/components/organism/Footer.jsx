@@ -4,9 +4,9 @@ export const Footer = () => {
   const year = new Date().getFullYear()
 
   const externalLinks = [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jgonzalez-dev' },
     { label: 'GitHub',   href: 'https://github.com/JoseGonzalez-dev' },
-    { label: 'Contact',  href: 'mailto:jgonzalez.242720@gmail.com' },
+    { label: 'Contacto', href: 'mailto:jgonzalez.242720@gmail.com' },
   ]
 
   const linkStyle = {
@@ -35,7 +35,7 @@ export const Footer = () => {
         {/* Copyright */}
         <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-dim)', fontSize: '0.58rem', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center' }}>
           © {year} Cyber_Portfolio.{' '}
-          <span style={{ color: 'var(--accent-dim)' }}>Secure Access Granted.</span>
+          <span style={{ color: 'var(--accent-dim)' }}>Acceso Seguro Concedido.</span>
         </p>
 
         {/* Links */}

@@ -9,51 +9,38 @@ export const AboutMeTemplate = () => {
 
   const socialContacts = [
     { name: 'GitHub',   icon: 'mdi:github',  url: 'https://github.com/JoseGonzalez-dev',    color: '#ffffff' },
-    { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', color: '#0077b5' },
+    { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/jgonzalez-dev', color: '#0077b5' },
     { name: 'Email',    icon: 'mdi:email',    url: 'mailto:jgonzalez.242720@gmail.com',      color: '#ea4335' },
   ]
 
-  const experience = [
-    {
-      role: 'Desarrollador Full Stack',
-      company: 'KINAL — Centro Educativo Técnico Laboral',
-      period: '2023 – Presente',
-      bullets: [
-        'Desarrollo de sistemas web con React, Node.js y MongoDB para proyectos académicos y comunitarios.',
-        'Implementación de arquitecturas REST escalables y mantenimiento de base de datos MySQL.',
-      ]
-    },
-    {
-      role: 'Desarrollador de Proyectos Comunitarios',
-      company: 'Proyectos Open Source / Colaborativos',
-      period: '2024 – 2025',
-      bullets: [
-        'Co-desarrollé AguaComun-sys, plataforma de gestión comunitaria del agua en Guatemala.',
-        'Integración de Socket.io para comunicación en tiempo real en plataforma anti-bullying Limae.',
-      ]
-    },
-  ]
-
   const skills = [
-    { name: 'React / React Native', pct: 85 },
-    { name: 'Node.js / Express',    pct: 80 },
-    { name: 'Java / Spring Boot',   pct: 75 },
-    { name: 'Redes & Seguridad',    pct: 65 },
+    { name: 'Frontend (React, JavaScript, HTML5, CSS3)',  pct: 88 },
+    { name: 'Backend (Node.js, Express, REST APIs)',       pct: 82 },
+    { name: 'Bases de Datos (MongoDB, MySQL, SQL Server)', pct: 80 },
+    { name: 'Lenguajes (Java, Python, C#, C++)',           pct: 75 },
+    { name: 'DevOps & Herramientas (Git, Docker, Linux)',   pct: 78 },
+    { name: 'Ciberseguridad & Redes (Cisco NetAcad)',      pct: 75 },
   ]
 
   const arsenal = [
-    { icon: 'logos:react',        label: 'React' },
-    { icon: 'logos:nodejs-icon',  label: 'Node.js' },
-    { icon: 'logos:java',         label: 'Java' },
-    { icon: 'logos:mysql-icon',   label: 'MySQL' },
-    { icon: 'logos:mongodb-icon', label: 'MongoDB' },
-    { icon: 'cib:cisco',          label: 'CISCO' },
+    { icon: 'logos:react',          label: 'React' },
+    { icon: 'logos:nodejs-icon',    label: 'Node.js' },
+    { icon: 'logos:javascript',     label: 'JavaScript' },
+    { icon: 'logos:python',         label: 'Python' },
+    { icon: 'logos:java',           label: 'Java' },
+    { icon: 'logos:c-sharp',        label: 'C# (.NET)' },
+    { icon: 'logos:mongodb-icon',   label: 'MongoDB' },
+    { icon: 'logos:mysql-icon',     label: 'MySQL' },
+    { icon: 'logos:docker-icon',    label: 'Docker' },
+    { icon: 'logos:git-icon',       label: 'Git' },
+    { icon: 'cib:cisco',            label: 'Cisco' },
+    { icon: 'logos:linux-tux',      label: 'Sistemas Operativos' },
   ]
 
   const stats = [
-    { value: '2+',   label: 'Years Active' },
-    { value: '10+',  label: 'Projects Built' },
-    { value: '15+',  label: 'Technologies' },
+    { value: '2+',   label: 'Años Activo' },
+    { value: '10+',  label: 'Proyectos' },
+    { value: '15+',  label: 'Tecnologías' },
   ]
 
   const cardStyle = {
@@ -71,7 +58,7 @@ export const AboutMeTemplate = () => {
           <div className="flex items-center gap-2 mb-6">
             <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block" />
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.16em' }} className="uppercase">
-              Identity.Verified
+              Identidad.Verificada
             </span>
           </div>
 
@@ -86,14 +73,14 @@ export const AboutMeTemplate = () => {
                 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', lineHeight: 1.1 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                Architecting{' '}
-                <span style={{ color: 'var(--accent)' }}>Secure</span>
-                {' '}Digital Systems.
+                Desarrollo Full Stack{' '}
+                <span style={{ color: 'var(--accent)' }}>Confiable</span>
+                {' '}& Consciente del Riesgo.
               </h1>
-              <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '480px' }}
+              <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '520px' }}
                 className="text-base mb-8"
               >
-                Hola, soy <span style={{ color: 'var(--text-main)' }}>José Francisco González Ordoñez</span> — desarrollador Full Stack junior con pasión por la seguridad informática y redes. Construyo sistemas que son funcionales, seguros y escalables.
+                Hola, soy <span style={{ color: 'var(--text-main)' }}>José Francisco González Ordoñez</span> — Desarrollador Full Stack Jr. y estudiante de Ingeniería en Sistemas. Enfocado en la construcción de interfaces responsivas y servicios backend optimizados, con experiencia en metodologías ágiles (Scrum) y despliegues confiables (CI/CD). Mi perfil técnico se potencia con una sólida base en sistemas operativos y certificaciones activas en ciberseguridad, con total disponibilidad para integrarme a equipos de alto rendimiento a tiempo completo.
               </p>
 
               {/* Stats row */}
@@ -158,59 +145,12 @@ export const AboutMeTemplate = () => {
           </div>
         </section>
 
-        {/* ── OPERATIONAL HISTORY ── */}
-        <section className="mb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <Icon icon="mdi:history" width={18} style={{ color: 'var(--accent)' }} />
-            <h2 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.3rem', fontWeight: 600 }}>
-              Operational History
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            {experience.map((exp, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                style={{ ...cardStyle, paddingLeft: '20px', borderLeft: '2px solid var(--accent)' }}
-                className="p-5"
-              >
-                <div className="flex items-start justify-between mb-1">
-                  <div>
-                    <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1rem', fontWeight: 600 }}>
-                      {exp.role}
-                    </h3>
-                    <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '2px' }}>
-                      {exp.company}
-                    </p>
-                  </div>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.08em', whiteSpace: 'nowrap', marginLeft: '12px' }}>
-                    {exp.period}
-                  </span>
-                </div>
-
-                <ul className="mt-3 space-y-2">
-                  {exp.bullets.map((b, j) => (
-                    <li key={j} className="flex gap-2" style={{ fontFamily: 'var(--font-body)', fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                      <Icon icon="mdi:checkbox-blank-outline" width={14} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '2px' }} />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
         {/* ── TECHNICAL CAPABILITIES ── */}
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-8">
             <Icon icon="mdi:cpu-64-bit" width={18} style={{ color: 'var(--accent)' }} />
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.3rem', fontWeight: 600 }}>
-              Technical Capabilities
+              Capacidades Técnicas
             </h2>
           </div>
 
@@ -218,7 +158,7 @@ export const AboutMeTemplate = () => {
             {/* Proficiency Matrix */}
             <div style={cardStyle} className="p-6">
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--accent)', letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: '16px' }}>
-                ● Proficiency Matrix
+                ● Matriz de Competencias
               </p>
               <div className="space-y-5">
                 {skills.map(({ name, pct }, i) => (
@@ -251,7 +191,7 @@ export const AboutMeTemplate = () => {
             {/* Arsenal / Tooling */}
             <div style={cardStyle} className="p-6">
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--accent)', letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: '16px' }}>
-                ● Arsenal / Tooling
+                ● Arsenal / Herramientas
               </p>
               <div className="grid grid-cols-2 gap-3">
                 {arsenal.map(({ icon, label }, i) => (
@@ -309,7 +249,7 @@ export const AboutMeTemplate = () => {
               onMouseEnter={e => e.currentTarget.style.background = 'var(--danger-hover)'}
               onMouseLeave={e => e.currentTarget.style.background = 'var(--danger)'}
             >
-              ● Secure Contact
+              ● Contacto Seguro
             </button>
           </motion.div>
         </section>

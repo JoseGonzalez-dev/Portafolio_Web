@@ -13,13 +13,29 @@ export const ProyectsTemplate = () => {
 
   const socialContacts = [
     { name: 'GitHub',   icon: 'mdi:github',  url: 'https://github.com/JoseGonzalez-dev',    color: '#ffffff' },
-    { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/jgonz%C3%A1lez-02407k?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', color: '#0077b5' },
+    { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/jgonzalez-dev', color: '#0077b5' },
     { name: 'Email',    icon: 'mdi:email',    url: 'mailto:jgonzalez.242720@gmail.com',      color: '#ea4335' },
   ]
 
   const projects = [
     {
-      id: 1, title: 'Tienda Online', category: 'desktop', live: true,
+      id: 1, title: 'Gestión de Archivos (mi-archivo)', category: 'fullstack', live: false,
+      desc: 'Aplicación web orientada a la privacidad, construida con autenticación segura de usuarios mediante JSON Web Tokens (JWT) para la gestión controlada de documentos.',
+      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990512/Captura_de_pantalla_2025-07-19_234821_voahkp.png',
+      tags: ['React', 'Node.js', 'JWT', 'MongoDB', 'Express'],
+      github: 'https://github.com/JoseGonzalez-dev',
+      demo: null,
+    },
+    {
+      id: 2, title: 'GeoDash — Plataforma Educativa', category: 'web', live: true,
+      desc: 'Aplicación web interactiva de geografía desarrollada en 6 semanas. Frontend en React y Tailwind CSS, e integración de sistema de progreso con Node.js.',
+      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990469/fbnlgfe0klobdro85po6.png',
+      tags: ['React', 'Tailwind CSS', 'Node.js', 'Vite'],
+      github: 'https://github.com/JoseGonzalez-dev',
+      demo: null,
+    },
+    {
+      id: 3, title: 'Tienda Online', category: 'desktop', live: true,
       desc: 'E-commerce completo con carrito de compras, gestión de productos y panel administrativo. Conectado a base de datos MySQL.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752988296/Captura_de_pantalla_2025-07-19_230717_ood9cz.png',
       tags: ['Java', 'JavaFX', 'MySQL', 'CSS'],
@@ -85,11 +101,11 @@ export const ProyectsTemplate = () => {
   ]
 
   const categories = [
-    { id: 'all',      label: 'All' },
+    { id: 'all',      label: 'Todos' },
     { id: 'web',      label: 'Web' },
     { id: 'fullstack',label: 'Full Stack' },
     { id: 'backend',  label: 'Backend' },
-    { id: 'mobile',   label: 'Mobile' },
+    { id: 'mobile',   label: 'Móvil' },
     { id: 'desktop',  label: 'Desktop' },
   ]
 
@@ -106,7 +122,7 @@ export const ProyectsTemplate = () => {
           <div className="flex items-center gap-2 mb-5">
             <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block" />
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.16em' }} className="uppercase">
-              Classified Archive // Operations
+              Archivo Clasificado // Operaciones
             </span>
           </div>
 
@@ -119,10 +135,10 @@ export const ProyectsTemplate = () => {
               style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 700, lineHeight: 1.05 }}
               className="mb-4"
             >
-              Active Operations.
+              Proyectos Destacados.
             </h1>
             <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', maxWidth: '540px', lineHeight: 1.7, fontSize: '0.95rem' }}>
-              Registro de operaciones técnicas ejecutadas con éxito. Selecciona un archivo de proyecto para revisar las especificaciones completas.
+              Registro de proyectos técnicos, aplicaciones web interactivas y servicios fullstack desarrollados con estándares de código limpio y seguridad.
             </p>
           </motion.div>
         </section>
@@ -189,7 +205,7 @@ export const ProyectsTemplate = () => {
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         style={{ border: '1px solid rgba(201,168,76,0.6)', padding: '6px 12px', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--accent)', letterSpacing: '0.12em', background: 'rgba(13,13,13,0.8)' }}
                       >
-                        [VIEW FILE]
+                        [VER ARCHIVO]
                       </div>
                     </div>
 
@@ -199,7 +215,7 @@ export const ProyectsTemplate = () => {
                         style={{ background: 'rgba(13,13,13,0.85)', border: '1px solid var(--border-light)', padding: '2px 8px', display: 'flex', alignItems: 'center', gap: '5px' }}
                       >
                         <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-[var(--green-text)] inline-block" />
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: 'var(--green-text)', letterSpacing: '0.12em' }}>LIVE</span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: 'var(--green-text)', letterSpacing: '0.12em' }}>EN VIVO</span>
                       </div>
                     )}
                   </div>
@@ -240,7 +256,7 @@ export const ProyectsTemplate = () => {
                           onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)' }}
                           onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-muted)' }}
                         >
-                          <Icon icon="mdi:github" width={12} /> Code
+                          <Icon icon="mdi:github" width={12} /> Código
                         </a>
                       )}
                       {project.demo && (
@@ -268,7 +284,7 @@ export const ProyectsTemplate = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-dim)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
               © {new Date().getFullYear()} Cyber_Portfolio.&nbsp;
-              <span style={{ color: 'var(--accent-dim)' }}>Secure Archive Accredited.</span>
+              <span style={{ color: 'var(--accent-dim)' }}>Archivo Seguro Acreditado.</span>
             </p>
             <button
               onClick={contactModal.openContactModal}
@@ -287,7 +303,7 @@ export const ProyectsTemplate = () => {
               onMouseEnter={e => e.currentTarget.style.background = 'var(--danger-hover)'}
               onMouseLeave={e => e.currentTarget.style.background = 'var(--danger)'}
             >
-              ● Secure Contact
+              ● Contacto Seguro
             </button>
           </div>
         </div>

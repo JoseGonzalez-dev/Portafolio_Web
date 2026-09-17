@@ -331,20 +331,20 @@ const Calculadora = () => {
       >
         <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 text-center">
           <Icon icon="mdi:code-braces" className="text-blue-400 text-xl mx-auto mb-1" />
-          <div className="text-white font-semibold text-sm">Clean Code</div>
-          <div className="text-gray-400 text-xs">Código limpio</div>
+          <div className="text-white font-semibold text-sm">Código Limpio</div>
+          <div className="text-gray-400 text-xs">Estructurado</div>
         </div>
         
         <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 text-center">
           <Icon icon="mdi:rocket-launch" className="text-green-400 text-xl mx-auto mb-1" />
           <div className="text-white font-semibold text-sm">Optimizado</div>
-          <div className="text-gray-400 text-xs">Performance</div>
+          <div className="text-gray-400 text-xs">Alto Rendimiento</div>
         </div>
         
         <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 text-center">
           <Icon icon="mdi:shield-check" className="text-purple-400 text-xl mx-auto mb-1" />
           <div className="text-white font-semibold text-sm">Seguro</div>
-          <div className="text-gray-400 text-xs">Best practices</div>
+          <div className="text-gray-400 text-xs">Buenas prácticas</div>
         </div>
       </motion.div>
 
