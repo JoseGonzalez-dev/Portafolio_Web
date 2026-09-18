@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import ethicalHackerPdf from '../../assets/certs/ethical_hacker_cisco.pdf'
+import iso27001Pdf from '../../assets/certs/iso_27001_hacker_mentor.pdf'
 
 export const EducationTemplate = () => {
   useEffect(() => {
@@ -48,45 +50,54 @@ export const EducationTemplate = () => {
       provider: 'Cisco Networking Academy',
       description: 'Pruebas de penetración, seguridad en la nube, análisis de malware, ingeniería social y defensas de red.',
       status: 'Valid',
-      credlyUrl: 'https://www.credly.com/users/jose-gonzalez',
-      pdfUrl: null, // Puedes colocar la ruta de tu PDF, ej: '/certs/ethical_hacker.pdf'
+      credlyUrl: 'https://www.credly.com/badges/c37a0f9c-73a8-4891-ac75-91b953c710b1/public_url',
+      pdfUrl: ethicalHackerPdf,
       date: 'Mar 2026 - Jun 2026',
     },
     {
       title: 'Introduction to Cybersecurity',
-      provider: 'CISCO Networking Academy',
+      provider: 'Cisco Networking Academy',
       description: 'Fundamentos de ciberseguridad, análisis de amenazas, defensa de redes y salvaguardias de sistemas.',
       status: 'Valid',
-      credlyUrl: 'https://www.credly.com/users/jose-gonzalez',
+      credlyUrl: 'https://www.credly.com/badges/00b66528-8c2c-4ed6-a4cf-8b18e81a233e/public_url',
       pdfUrl: null,
       date: 'Sept 2025',
     },
     {
+      title: 'Curso ISO 27001: El mapa exacto para Certificarte',
+      provider: 'Academia de Ciberseguridad Hacker Mentor',
+      description: 'Capacitación de 6 horas académicas sobre Sistemas de Gestión de Seguridad de la Información (SGSI), políticas de seguridad y gestión del riesgo según la norma ISO 27001.',
+      status: 'Valid',
+      credlyUrl: null,
+      pdfUrl: iso27001Pdf,
+      date: 'Ago 2026',
+    },
+    {
       title: 'Operating Systems Basics',
-      provider: 'CISCO Networking Academy',
+      provider: 'Cisco Networking Academy',
       description: 'Administración y conceptos esenciales de sistemas operativos Windows, Linux y dispositivos móviles.',
       status: 'Valid',
       credlyUrl: null,
-      pdfUrl: null,
+      pdfUrl: null, // Puedes colocar la ruta ej: '/certs/os_basics.pdf'
       date: 'Nov 2024',
     },
     {
       title: 'CCNA: Introduction to Networks',
-      provider: 'CISCO Networking Academy',
+      provider: 'Cisco Networking Academy',
       description: 'Arquitecturas de red, modelos OSI/TCP-IP, direccionamiento IPv4/IPv6 y configuración de switches/routers.',
       status: 'Valid',
       credlyUrl: null,
-      pdfUrl: null,
+      pdfUrl: null, // Puedes colocar la ruta ej: '/certs/ccna_networks.pdf'
       date: 'Ene 2023',
     },
     {
-      title: 'Networking Academy Learn-A-Thon',
-      provider: 'CISCO (Ediciones 2024, 2025, 2026)',
-      description: 'Insignias de participación activa y excelencia en maratones de tecnología y aprendizaje Cisco.',
+      title: 'Cisco Learn-A-Thon 2026',
+      provider: 'Cisco Networking Academy',
+      description: 'Insignia de participación activa y excelencia en maratones de tecnología y aprendizaje continuo de Cisco.',
       status: 'Valid',
-      credlyUrl: 'https://www.credly.com/users/jose-gonzalez',
-      pdfUrl: null,
-      date: '2024 - 2026',
+      credlyUrl: 'https://www.credly.com/badges/511a8d4b-4fd6-42de-963d-507367c895ef/public_url',
+      pdfUrl: null, // Puedes colocar la ruta ej: '/certs/learnathon_2026.pdf'
+      date: '2026',
     },
   ]
 
