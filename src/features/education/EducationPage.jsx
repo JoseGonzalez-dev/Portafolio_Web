@@ -1,5 +1,5 @@
 import React from 'react'
-import { EducationTemplate } from '../components/templates/EducationTemplate'
+import { EducationTemplate } from './EducationTemplate'
 
 export const EducationPage = () => {
   return (

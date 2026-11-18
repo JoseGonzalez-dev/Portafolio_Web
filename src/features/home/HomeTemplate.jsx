@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import ContactModal from '../molecules/ContactModal'
-import { useContactModal } from '../../hooks/useContactModal'
-import CV from '../../assets/CV.pdf'
+import ContactModal from '../../shared/components/molecules/ContactModal'
+import { useContactModal } from '../../shared/hooks/useContactModal'
+import CV from './CV.pdf'
 
 /* ─────────────────────────────────────────
    Terminal Loader

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import ethicalHackerPdf from '../../assets/certs/ethical_hacker_cisco.pdf'
-import iso27001Pdf from '../../assets/certs/iso_27001_hacker_mentor.pdf'
+import ethicalHackerPdf from './certs/ethical_hacker_cisco.pdf'
+import iso27001Pdf from './certs/iso_27001_hacker_mentor.pdf'
 
 export const EducationTemplate = () => {
   useEffect(() => {

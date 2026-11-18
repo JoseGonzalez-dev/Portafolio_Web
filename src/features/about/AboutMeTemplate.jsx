@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import ContactModal from '../molecules/ContactModal'
-import { useContactModal } from '../../hooks/useContactModal'
+import ContactModal from '../../shared/components/molecules/ContactModal'
+import { useContactModal } from '../../shared/hooks/useContactModal'
 
 export const AboutMeTemplate = () => {
   const contactModal = useContactModal()
@@ -41,6 +41,27 @@ export const AboutMeTemplate = () => {
     { value: '2+',   label: 'Años Activo' },
     { value: '10+',  label: 'Proyectos' },
     { value: '15+',  label: 'Tecnologías' },
+  ]
+
+  const operationalHistory = [
+    {
+      title: 'Desarrollo Full Stack',
+      period: 'Actualidad',
+      organization: 'Proyectos personales y académicos',
+      points: [
+        'Construcción de interfaces responsivas con React y servicios backend con Node.js.',
+        'Integración de APIs, autenticación JWT y persistencia de datos en MongoDB y MySQL.',
+      ],
+    },
+    {
+      title: 'Formación en Sistemas',
+      period: '2023 - Presente',
+      organization: 'Ingeniería y Perito en Computación',
+      points: [
+        'Bases sólidas en programación, redes, sistemas operativos y administración de datos.',
+        'Aplicación de Scrum, control de versiones y flujos de entrega continua en proyectos.',
+      ],
+    },
   ]
 
   const cardStyle = {
@@ -142,6 +163,45 @@ export const AboutMeTemplate = () => {
                 <div style={{ position: 'absolute', top: 0, right: 0, width: '28px', height: '28px', borderTop: '2px solid var(--accent)', borderRight: '2px solid var(--accent)' }} />
               </div>
             </motion.div>
+          </div>
+        </section>
+
+        {/* ── OPERATIONAL HISTORY ── */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <Icon icon="mdi:briefcase-outline" width={18} style={{ color: 'var(--accent)' }} />
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1.3rem', fontWeight: 600 }}>
+              Historial Operativo
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            {operationalHistory.map(({ title, period, organization, points }, index) => (
+              <motion.article
+                key={title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                style={cardStyle}
+                className="p-6"
+              >
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div>
+                    <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1rem', fontWeight: 600 }}>{title}</h3>
+                    <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent)', fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '5px' }}>{organization}</p>
+                  </div>
+                  <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', fontSize: '0.58rem', whiteSpace: 'nowrap' }}>{period}</span>
+                </div>
+                <ul className="space-y-3">
+                  {points.map(point => (
+                    <li key={point} className="flex gap-2" style={{ color: 'var(--text-muted)', fontSize: '0.82rem', lineHeight: 1.6 }}>
+                      <Icon icon="mdi:chevron-right" width={15} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '3px' }} />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
+            ))}
           </div>
         </section>
 

@@ -1,14 +1,14 @@
-import { createBrowserRouter, RouterProvider, Route, Routes } from "react-router"
-import { Layout } from "../components/Layout"
-import { HomePage } from "../pages/HomePage"
-import { AboutPage } from "../pages/AboutPage"
-import { EducationPage } from "../pages/EducationPage"
-import { ProyectsPage } from "../pages/ProyectsPage"
+import { createBrowserRouter, RouterProvider } from "react-router"
+import { PortfolioLayout } from "../layouts/PortfolioLayout"
+import { HomePage } from "../features/home/HomePage"
+import { AboutPage } from "../features/about/AboutPage"
+import { EducationPage } from "../features/education/EducationPage"
+import { ProjectsPage } from "../features/projects/ProjectsPage"
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout />,
+        element: <PortfolioLayout />,
         children: [
             {
                 index: true,
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/proyects',
-                element: <ProyectsPage />
+                element: <ProjectsPage />
             
             },
             {

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
-import ContactModal from '../molecules/ContactModal'
-import ImageModal from '../molecules/ImageModal'
-import { useContactModal } from '../../hooks/useContactModal'
-import { useImageModal } from '../../hooks/useImageModal'
+import ContactModal from '../../shared/components/molecules/ContactModal'
+import ImageModal from '../../shared/components/molecules/ImageModal'
+import { useContactModal } from '../../shared/hooks/useContactModal'
+import { useImageModal } from '../../shared/hooks/useImageModal'
 
-export const ProyectsTemplate = () => {
+export const ProjectsTemplate = () => {
   const [activeFilter, setActiveFilter] = useState('all')
   const contactModal = useContactModal()
   const imageModal = useImageModal()
@@ -43,7 +43,7 @@ export const ProyectsTemplate = () => {
       demo: null,
     },
     {
-      id: 2, title: 'Hotel-Havenis-sys', category: 'fullstack', live: false,
+      id: 4, title: 'Hotel-Havenis-sys', category: 'fullstack', live: false,
       desc: 'Sistema para la gestión de hoteles, eventos y servicios con arquitectura fullstack.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990178/Captura_de_pantalla_2025-07-19_234245_y65e2q.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Express'],
@@ -51,7 +51,7 @@ export const ProyectsTemplate = () => {
       demo: null,
     },
     {
-      id: 3, title: 'Calculadora React Native', category: 'mobile', live: false,
+      id: 5, title: 'Calculadora React Native', category: 'mobile', live: false,
       desc: 'Aplicación móvil nativa con operaciones matemáticas avanzadas y diseño responsive para Android e iOS.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752989592/Imagen_de_WhatsApp_2025-07-19_a_las_23.32.31_55db8a94_rqphag.jpg',
       tags: ['React Native', 'JavaScript', 'Expo'],
@@ -59,7 +59,7 @@ export const ProyectsTemplate = () => {
       demo: null,
     },
     {
-      id: 4, title: 'Blog de Aprendizaje', category: 'fullstack', live: false,
+      id: 6, title: 'Blog de Aprendizaje', category: 'fullstack', live: false,
       desc: 'Sistema blog con apariencia de red social, interacción dinámica en tiempo real.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990512/Captura_de_pantalla_2025-07-19_234821_voahkp.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Express'],
@@ -67,7 +67,7 @@ export const ProyectsTemplate = () => {
       demo: null,
     },
     {
-      id: 5, title: 'Portafolio Web', category: 'web', live: false,
+      id: 7, title: 'Portafolio Web', category: 'web', live: false,
       desc: 'Sitio web personal responsive con animaciones fluidas, diseño moderno y optimización SEO.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990469/fbnlgfe0klobdro85po6.png',
       tags: ['React', 'Vite', 'Tailwind'],
@@ -75,7 +75,7 @@ export const ProyectsTemplate = () => {
       demo: null,
     },
     {
-      id: 6, title: 'AguaComun-sys', category: 'web', live: true,
+      id: 8, title: 'AguaComun-sys', category: 'web', live: true,
       desc: 'Proyecto comunitario para gestión, optimización y cuidado del agua en comunidades de Guatemala.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990984/Captura_de_pantalla_2025-07-19_235610_odhgqb.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
@@ -83,7 +83,7 @@ export const ProyectsTemplate = () => {
       demo: 'https://aguacomunfrontend-production.up.railway.app/',
     },
     {
-      id: 7, title: 'Limae-sys', category: 'web', live: true,
+      id: 9, title: 'Limae-sys', category: 'web', live: true,
       desc: 'Plataforma de prevención contra el bullying escolar con chat integrado 24/7.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752991625/Captura_de_pantalla_2025-07-20_000648_hoapaa.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
@@ -91,7 +91,7 @@ export const ProyectsTemplate = () => {
       demo: 'https://limae.org',
     },
     {
-      id: 8, title: 'Tienda Online API', category: 'backend', live: false,
+      id: 10, title: 'Tienda Online API', category: 'backend', live: false,
       desc: 'API RESTful para gestión de productos y proceso de compras eCommerce.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752991983/Captura_de_pantalla_2025-07-20_001250_cocqkr.png',
       tags: ['Node.js', 'MongoDB', 'Express'],

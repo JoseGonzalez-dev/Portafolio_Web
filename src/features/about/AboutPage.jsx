@@ -1,5 +1,5 @@
 import React from 'react'
-import { AboutMeTemplate } from '../components/templates/AboutMeTemplate'
+import { AboutMeTemplate } from './AboutMeTemplate'
 
 export const AboutPage = () => {
   return (
