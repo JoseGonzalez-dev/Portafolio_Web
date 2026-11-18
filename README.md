@@ -1,5 +1,15 @@
 # React + Vite
 
+## Formulario de contacto
+
+El formulario usa Web3Forms. Crea un Access Key en Web3Forms y configura las variables locales:
+
+```env
+VITE_WEB3FORMS_ACCESS_KEY=tu_access_key
+```
+
+En entornos de despliegue, configura las mismas variables en el proveedor de hosting.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

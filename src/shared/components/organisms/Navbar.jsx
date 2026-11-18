@@ -158,6 +158,7 @@ export const Navbar = () => {
         isSubmitting={contactModal.isSubmitting}
         onInputChange={contactModal.handleInputChange}
         onSubmit={contactModal.handleSubmit}
+        submitStatus={contactModal.submitStatus}
         socialContacts={socialContacts}
       />
     </>

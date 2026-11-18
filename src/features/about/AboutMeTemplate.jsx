@@ -322,6 +322,7 @@ export const AboutMeTemplate = () => {
         isSubmitting={contactModal.isSubmitting}
         onInputChange={contactModal.handleInputChange}
         onSubmit={contactModal.handleSubmit}
+        submitStatus={contactModal.submitStatus}
         socialContacts={socialContacts}
       />
     </div>

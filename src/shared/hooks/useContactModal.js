@@ -6,9 +6,11 @@ export const useContactModal = () => {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    botcheck: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
 
   // Función para abrir modal de contacto
   const openContactModal = () => {
@@ -20,7 +22,8 @@ export const useContactModal = () => {
   const closeContactModal = () => {
     setIsContactModalOpen(false)
     document.body.style.overflow = 'unset'
-    setFormData({ name: '', email: '', subject: '', message: '' })
+    setFormData({ name: '', email: '', subject: '', message: '', botcheck: '' })
+    setSubmitStatus(null)
   }
 
   // Manejar cambios en el formulario
@@ -35,22 +38,58 @@ export const useContactModal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus(null)
 
-    // Simular envío (aquí integrarías con tu backend)
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    try {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+      if (!accessKey) {
+        throw new Error('Falta configurar VITE_WEB3FORMS_ACCESS_KEY.')
+      }
 
-    console.log('Formulario enviado:', formData)
-    setIsSubmitting(false)
-    closeContactModal()
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          from_name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          botcheck: formData.botcheck
+        })
+      })
 
-    // Mostrar notificación de éxito (opcional)
-    alert('¡Mensaje enviado correctamente! Te responderé pronto.')
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'No se pudo transmitir el mensaje.')
+      }
+
+      setSubmitStatus({
+        type: 'success',
+        message: 'Mensaje transmitido correctamente. Te responderé pronto.'
+      })
+      setFormData({ name: '', email: '', subject: '', message: '', botcheck: '' })
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof Error
+          ? error.message
+          : 'Ocurrió un error al transmitir el mensaje.'
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return {
     isContactModalOpen,
     formData,
     isSubmitting,
+    submitStatus,
     openContactModal,
     closeContactModal,
     handleInputChange,

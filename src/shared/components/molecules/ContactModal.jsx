@@ -9,7 +9,8 @@ const ContactModal = ({
   isSubmitting,
   onInputChange,
   onSubmit,
-  socialContacts = []
+  socialContacts = [],
+  submitStatus
 }) => {
   const inputStyle = {
     width: '100%',
@@ -113,6 +114,16 @@ const ContactModal = ({
 
               {/* Form */}
               <form id="contact-modal-form" onSubmit={onSubmit} className="space-y-5">
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  value={formData.botcheck}
+                  onChange={onInputChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ display: 'none' }}
+                />
                 <div className="grid md:grid-cols-2 gap-5">
                   <div>
                     <label style={labelStyle}>Nombre *</label>
@@ -177,6 +188,25 @@ const ContactModal = ({
                     onBlur={e => e.target.style.borderColor = 'var(--border)'}
                   />
                 </div>
+
+                {submitStatus && (
+                  <div
+                    role="status"
+                    style={{
+                      border: `1px solid ${submitStatus.type === 'success' ? 'var(--green-text)' : 'var(--danger-hover)'}`,
+                      background: submitStatus.type === 'success'
+                        ? 'rgba(76,175,80,0.08)'
+                        : 'rgba(139,26,26,0.12)',
+                      color: submitStatus.type === 'success' ? 'var(--green-text)' : '#E5A3A3',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.65rem',
+                      lineHeight: 1.6,
+                      padding: '10px 12px',
+                    }}
+                  >
+                    {submitStatus.type === 'success' ? '✓ ' : '▲ '} {submitStatus.message}
+                  </div>
+                )}
 
                 {/* Buttons */}
                 <div className="flex gap-3 pt-2">
