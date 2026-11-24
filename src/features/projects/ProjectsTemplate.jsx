@@ -1,0 +1,368 @@
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Icon } from '@iconify/react'
+import ContactModal from '../../shared/components/molecules/ContactModal'
+import ImageModal from '../../shared/components/molecules/ImageModal'
+import { useContactModal } from '../../shared/hooks/useContactModal'
+import { useImageModal } from '../../shared/hooks/useImageModal'
+
+export const ProjectsTemplate = () => {
+  const [activeFilter, setActiveFilter] = useState('all')
+  const contactModal = useContactModal()
+  const imageModal = useImageModal()
+
+  const socialContacts = [
+    { name: 'GitHub',   icon: 'mdi:github',  url: 'https://github.com/JoseGonzalez-dev',    color: '#ffffff' },
+    { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/jgonzalez-dev', color: '#0077b5' },
+    { name: 'Email',    icon: 'mdi:email',    url: 'mailto:jgonzalez.242720@gmail.com',      color: '#ea4335' },
+  ]
+
+  const projects = [
+    {
+      id: 1, title: 'VozHabla AAC', category: 'mobile',
+      desc: 'Aplicación Android offline de comunicación aumentativa y alternativa para personas no verbales. Incluye pictogramas, síntesis de voz, panel de cuidadores, modo quiosco y respaldo portable.',
+      image: null,
+      tags: ['Kotlin', 'Jetpack Compose', 'Room', 'TTS'],
+      github: 'https://github.com/JoseGonzalez-dev/VozHabla',
+    },
+    {
+      id: 2, title: 'Sistema de Punto de Venta', category: 'desktop',
+      desc: 'Aplicación de escritorio desarrollada individualmente para ventas en caja, con Java, JavaFX y POO. Incluye MySQL, triggers, procedimientos almacenados y generación de reportes y facturas.',
+      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752988296/Captura_de_pantalla_2025-07-19_230717_ood9cz.png',
+      tags: ['Java', 'JavaFX', 'POO', 'MySQL'],
+      github: 'https://github.com/JoseGonzalez-dev',
+    },
+    {
+      id: 3, title: 'Gestión de Archivos (mi-archivo)', category: 'web',
+      desc: 'Aplicación web para gestión de documentos con React y Vite, Node.js/Express bajo MVC, SQL Server y Cloudinary. Usa JWT en cookies httpOnly, Argon2 y express-validator.',
+      image: null,
+      tags: ['React', 'Node.js', 'JWT', 'SQL Server', 'Argon2'],
+      github: 'https://github.com/JoseGonzalez-dev',
+    },
+    {
+      id: 4, title: 'Web Scrapping', category: 'backend',
+      desc: 'Herramienta en Python para extraer y procesar contenido desde páginas web y archivos HTML mediante BeautifulSoup y Requests.',
+      image: null,
+      tags: ['Python', 'BeautifulSoup', 'Requests', 'HTML'],
+      github: 'https://github.com/JoseGonzalez-dev/WebScrapping',
+    },
+    {
+      id: 5, title: 'GeoDash — Plataforma Educativa', category: 'web',
+      desc: 'Plataforma educativa de geografía desarrollada y desplegada durante prácticas profesionales en 6 semanas, con React, Tailwind CSS, Node.js y seguimiento de progreso de usuarios.',
+      image: null,
+      tags: ['React', 'Tailwind CSS', 'Node.js', 'Vite'],
+      github: 'https://github.com/JoseGonzalez-dev',
+    },
+    {
+      id: 6, title: 'FinCost C++', category: 'desktop',
+      desc: 'Sistema de contabilidad financiera y costos industriales con catálogo de cuentas, libro diario de partida doble, órdenes de producción y reportes automatizados.',
+      image: null,
+      tags: ['C++', 'Archivos binarios', 'CRUD', 'Contabilidad'],
+      github: 'https://github.com/JoseGonzalez-dev/FinCost',
+    },
+    {
+      id: 7, title: 'Pre-cálculo: Escalamiento en la Nube', category: 'desktop',
+      desc: 'Proyecto matemático que modela crecimiento de usuarios, latencia de servidores y utilidad financiera mediante funciones exponenciales, racionales y cuadráticas.',
+      image: null,
+      tags: ['Python', 'NumPy', 'Matplotlib', 'OpenPyXL'],
+      github: 'https://github.com/JoseGonzalez-dev/Pre-calculo',
+    },
+    {
+      id: 8, title: 'Recomendador con Álgebra Lineal', category: 'desktop',
+      desc: 'Sistema de recomendaciones que implementa manualmente transpuestas, determinantes, inversas, Gauss-Jordan, Cramer y ecuaciones normales para sistemas cuadrados y rectangulares.',
+      image: null,
+      tags: ['Python', 'NumPy', 'Matrices', 'Gauss-Jordan'],
+      github: 'https://github.com/JoseGonzalez-dev/ProyectoFinalAlgebraLineal',
+    },
+    {
+      id: 9, title: 'Hotel-Havenis-sys', category: 'web',
+      desc: 'Sistema para la gestión de hoteles, eventos y servicios con arquitectura web.',
+      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990178/Captura_de_pantalla_2025-07-19_234245_y65e2q.png',
+      tags: ['React', 'Node.js', 'MongoDB', 'Express'],
+      github: 'https://github.com/ndelacruz-2023048/Sistema-gestion-hotelera.git',
+    },
+    {
+      id: 10, title: 'Blog de Aprendizaje', category: 'web',
+      desc: 'Sistema blog con apariencia de red social, interacción dinámica en tiempo real.',
+      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990512/Captura_de_pantalla_2025-07-19_234821_voahkp.png',
+      tags: ['React', 'Node.js', 'MongoDB', 'Express'],
+      github: 'https://github.com/JoseGonzalez-dev/Blog_Aprendizaje_FyB.git',
+    },
+    {
+      id: 11, title: 'AguaComun-sys', category: 'web',
+      desc: 'Proyecto comunitario para gestión, optimización y cuidado del agua en comunidades de Guatemala.',
+      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990984/Captura_de_pantalla_2025-07-19_235610_odhgqb.png',
+      tags: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
+      github: 'https://github.com/ndelacruz-2023048/AguaComun_Frontend.git',
+    },
+    {
+      id: 12, title: 'Limae-sys', category: 'web',
+      desc: 'Plataforma de prevención contra el bullying escolar con chat integrado 24/7.',
+      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752991625/Captura_de_pantalla_2025-07-20_000648_hoapaa.png',
+      tags: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
+      github: 'https://github.com/ndelacruz-2023048/Limae_Frontend.git',
+    },
+    {
+      id: 13, title: 'Tienda Online API', category: 'backend',
+      desc: 'API RESTful para gestión de productos y proceso de compras eCommerce.',
+      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752991983/Captura_de_pantalla_2025-07-20_001250_cocqkr.png',
+      tags: ['Node.js', 'MongoDB', 'Express'],
+      github: 'https://github.com/jgonzalez-2023195/Online_Store.git',
+    },
+    {
+      id: 14, title: 'Portafolio Web', category: 'web', live: true,
+      desc: 'Sitio web personal responsive con arquitectura por features, animaciones, presentación de proyectos, contacto mediante Web3Forms y descarga del CV.',
+      image: null,
+      tags: ['React', 'Vite', 'Tailwind CSS'],
+      github: 'https://github.com/JoseGonzalez-dev/Portafolio_Web',
+      demo: 'https://portafolio-jfgo.vercel.app/',
+    },
+  ]
+
+  const categories = [
+    { id: 'all',      label: 'Todos' },
+    { id: 'web',      label: 'Web' },
+    { id: 'backend',  label: 'Backend' },
+    { id: 'mobile',   label: 'Móvil' },
+    { id: 'desktop',  label: 'Desktop' },
+  ]
+
+  const filtered = activeFilter === 'all' ? projects : projects.filter(p => p.category === activeFilter)
+
+  const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)' }
+
+  return (
+    <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '80px', paddingBottom: '80px' }}>
+      <div className="max-w-7xl mx-auto px-6 xl:px-10">
+
+        {/* ── PAGE HEADER ── */}
+        <section className="mb-14">
+          <div className="flex items-center gap-2 mb-5">
+            <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block" />
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.16em' }} className="uppercase">
+              Archivo Clasificado // Operaciones
+            </span>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1
+              style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 700, lineHeight: 1.05 }}
+              className="mb-4"
+            >
+              Proyectos Destacados.
+            </h1>
+            <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', maxWidth: '540px', lineHeight: 1.7, fontSize: '0.95rem' }}>
+              Registro de proyectos técnicos, aplicaciones web interactivas y servicios desarrollados con estándares de código limpio y seguridad.
+            </p>
+          </motion.div>
+        </section>
+
+        {/* ── FILTERS ── */}
+        <section className="mb-8">
+          <div className="flex flex-wrap gap-2">
+            {categories.map(cat => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveFilter(cat.id)}
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.6rem',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  padding: '5px 14px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  background: activeFilter === cat.id ? 'var(--accent)' : 'transparent',
+                  border: activeFilter === cat.id ? '1px solid var(--accent)' : '1px solid var(--border)',
+                  color: activeFilter === cat.id ? '#0D0D0D' : 'var(--text-muted)',
+                  fontWeight: activeFilter === cat.id ? 600 : 400,
+                }}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* ── PROJECT GRID ── */}
+        <section className="mb-14">
+          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <AnimatePresence mode="popLayout">
+              {filtered.map((project, i) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3, delay: i * 0.04 }}
+                  style={{ ...cardStyle, overflow: 'hidden' }}
+                  className="group hover:border-[var(--border-light)] transition-all duration-200 flex flex-col"
+                >
+                  {/* Image */}
+                  <div
+                    className="relative overflow-hidden cursor-pointer"
+                    style={{ height: '180px', background: '#111' }}
+                    onClick={() => {
+                      if (project.image) {
+                        imageModal.openModal(project.image, project.title, project.title)
+                      }
+                    }}
+                  >
+                    {project.image && (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
+                        onError={e => { e.target.style.display = 'none' }}
+                      />
+                    )}
+                    {!project.image && (
+                      <div
+                        className="absolute inset-0 flex flex-col items-center justify-center gap-2"
+                        style={{
+                          border: '1px dashed var(--border-light)',
+                          backgroundImage: 'linear-gradient(rgba(201,168,76,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.025) 1px, transparent 1px)',
+                          backgroundSize: '24px 24px',
+                        }}
+                      >
+                        <Icon icon="mdi:image-outline" width={28} style={{ color: 'var(--accent-dim)' }} />
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-muted)', letterSpacing: '0.14em' }}>
+                          FOTO REFERENCIA
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        style={{ border: '1px solid rgba(201,168,76,0.6)', padding: '6px 12px', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--accent)', letterSpacing: '0.12em', background: 'rgba(13,13,13,0.8)' }}
+                      >
+                        [VER ARCHIVO]
+                      </div>
+                    </div>
+
+                    {/* Live badge */}
+                    {project.live && (
+                      <div className="absolute top-3 right-3"
+                        style={{ background: 'rgba(13,13,13,0.85)', border: '1px solid var(--border-light)', padding: '2px 8px', display: 'flex', alignItems: 'center', gap: '5px' }}
+                      >
+                        <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-[var(--green-text)] inline-block" />
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: 'var(--green-text)', letterSpacing: '0.12em' }}>EN VIVO</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="flex items-start gap-2 mb-2">
+                      <Icon icon="mdi:shield-outline" width={14} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '3px' }} />
+                      <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--text-main)', fontSize: '1rem', fontWeight: 600, lineHeight: 1.3 }}>
+                        {project.title}
+                      </h3>
+                    </div>
+
+                    <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', fontSize: '0.8rem', lineHeight: 1.6, marginBottom: '12px', flex: 1 }}>
+                      {project.desc}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.tags.map(tag => (
+                        <span
+                          key={tag}
+                          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-muted)', border: '1px solid var(--border)', padding: '2px 7px', letterSpacing: '0.06em' }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Links */}
+                    <div className="flex gap-2">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', color: 'var(--text-muted)', border: '1px solid var(--border)', padding: '4px 10px', textDecoration: 'none', textTransform: 'uppercase', transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                          onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)' }}
+                          onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-muted)' }}
+                        >
+                          <Icon icon="mdi:github" width={12} /> Código
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', color: '#0D0D0D', background: 'var(--accent)', border: '1px solid var(--accent)', padding: '4px 10px', textDecoration: 'none', textTransform: 'uppercase', transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: '4px', fontWeight: 600 }}
+                          onMouseEnter={e => { e.currentTarget.style.background = 'var(--accent-dim)' }}
+                          onMouseLeave={e => { e.currentTarget.style.background = 'var(--accent)' }}
+                        >
+                          <Icon icon="mdi:open-in-new" width={12} /> Demo
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </section>
+
+        {/* ── FOOTER ── */}
+        <div style={{ borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-dim)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+              © {new Date().getFullYear()} JGonzalez.&nbsp;
+              <span style={{ color: 'var(--accent-dim)' }}>Archivo Seguro Acreditado.</span>
+            </p>
+            <button
+              onClick={contactModal.openContactModal}
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.6rem',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                padding: '8px 18px',
+                background: 'var(--danger)',
+                border: '1px solid var(--danger)',
+                color: 'var(--text-main)',
+                cursor: 'pointer',
+                transition: 'background 0.2s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'var(--danger-hover)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'var(--danger)'}
+            >
+              ● Contacto Seguro
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <ContactModal
+        isOpen={contactModal.isContactModalOpen}
+        onClose={contactModal.closeContactModal}
+        formData={contactModal.formData}
+        isSubmitting={contactModal.isSubmitting}
+        onInputChange={contactModal.handleInputChange}
+        onSubmit={contactModal.handleSubmit}
+        submitStatus={contactModal.submitStatus}
+        socialContacts={socialContacts}
+      />
+      <ImageModal
+        isOpen={imageModal.isOpen}
+        onClose={imageModal.closeModal}
+        imageSrc={imageModal.currentImage.src}
+        imageAlt={imageModal.currentImage.alt}
+        title={imageModal.currentImage.title}
+      />
+    </div>
+  )
+}
