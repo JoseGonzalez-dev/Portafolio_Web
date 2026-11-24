@@ -52,7 +52,7 @@ export const Navbar = () => {
               style={{ fontFamily: 'var(--font-mono)', letterSpacing: '0.05em' }}
               className="text-sm font-semibold text-[var(--text-main)] uppercase"
             >
-              Cyber<span style={{ color: 'var(--accent)' }}>_</span>Portfolio
+              JGonzalez
             </span>
           </NavLink>
 

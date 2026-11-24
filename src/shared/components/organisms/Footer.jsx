@@ -28,13 +28,13 @@ export const Footer = () => {
         <div className="flex items-center gap-2">
           <span className="pulse-dot w-2 h-2 rounded-full bg-[var(--accent)] inline-block" />
           <span style={{ fontFamily: 'var(--font-mono)', letterSpacing: '0.05em', color: 'var(--text-muted)', fontSize: '0.7rem', textTransform: 'uppercase' }}>
-            Cyber<span style={{ color: 'var(--accent)' }}>_</span>Portfolio
+            JGonzalez
           </span>
         </div>
 
         {/* Copyright */}
         <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-dim)', fontSize: '0.58rem', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center' }}>
-          © {year} Cyber_Portfolio.{' '}
+          © {year} JGonzalez.{' '}
           <span style={{ color: 'var(--accent-dim)' }}>Acceso Seguro Concedido.</span>
         </p>
 

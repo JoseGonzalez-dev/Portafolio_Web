@@ -108,7 +108,7 @@ const ContactModal = ({
                   Envía un Mensaje
                 </h2>
                 <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '4px' }}>
-                  Cuéntame sobre tu proyecto. Respondo en menos de 24h.
+                  Cuéntame sobre tu proyecto.
                 </p>
               </div>
 
