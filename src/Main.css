@@ -123,6 +123,43 @@ body {
   animation: flicker 8s infinite;
 }
 
+.not-found-protocols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 80px;
+}
+
+.not-found-protocols > div {
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .not-found-protocols {
+    grid-template-columns: 1fr;
+    margin-top: 48px;
+  }
+}
+
+@media (min-width: 768px) and (max-height: 800px) {
+  .not-found-page {
+    align-items: flex-start;
+  }
+
+  .not-found-page > div {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .not-found-protocols {
+    margin-top: 48px;
+  }
+
+  .not-found-404 {
+    font-size: 7.5rem !important;
+  }
+}
+
 /* Cyber card */
 .cyber-card {
   background: var(--bg-card);

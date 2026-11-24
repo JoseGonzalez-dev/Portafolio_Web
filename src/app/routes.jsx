@@ -4,6 +4,7 @@ import { HomePage } from "../features/home/HomePage"
 import { AboutPage } from "../features/about/AboutPage"
 import { EducationPage } from "../features/education/EducationPage"
 import { ProjectsPage } from "../features/projects/ProjectsPage"
+import { NotFoundPage } from "../features/not-found/NotFoundPage"
 
 const router = createBrowserRouter([
     {
@@ -30,14 +31,14 @@ const router = createBrowserRouter([
             {
                 path: '/contact',
                 element: <div>Contact</div>
+            },
+            {
+                path: '*',
+                element: <NotFoundPage />
             }
             
         ],
-        errorElement: <div>Err</div>
-    },
-    {
-        path: '*',
-        element: <div>404</div>
+        errorElement: <NotFoundPage />
     }
 ])
 
