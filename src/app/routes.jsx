@@ -20,13 +20,12 @@ const router = createBrowserRouter([
                 element: <AboutPage />
             },
             {
-                path: '/education' ,
+                path: '/education',
                 element: <EducationPage />
             },
             {
                 path: '/proyects',
                 element: <ProjectsPage />
-            
             },
             {
                 path: '/contact',
@@ -36,7 +35,6 @@ const router = createBrowserRouter([
                 path: '*',
                 element: <NotFoundPage />
             }
-            
         ],
         errorElement: <NotFoundPage />
     }
