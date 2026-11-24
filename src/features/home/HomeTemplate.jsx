@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { NavLink } from 'react-router'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
@@ -10,7 +10,7 @@ import CV from './CV.pdf'
    Terminal Loader
 ───────────────────────────────────────── */
 const LINES = [
-  { text: '> Inicializando cyber_portfolio v2.4.1...', color: '#6B6B6B', delay: 0 },
+  { text: '> Inicializando jgonzalez v2.4.1...', color: '#6B6B6B', delay: 0 },
   { text: '> Estableciendo conexión segura...', color: '#6B6B6B', delay: 320 },
   { text: '  ✓ Protocolo TLS_1.3 completado', color: '#4CAF50', delay: 640 },
   { text: '> Instalando dependencias:', color: '#6B6B6B', delay: 960 },
@@ -28,15 +28,20 @@ const TerminalLoader = ({ onDone }) => {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
+    const timers = []
     LINES.forEach((line, i) => {
-      setTimeout(() => {
+      timers.push(setTimeout(() => {
         setVisible(p => [...p, line])
         setProgress(Math.round(((i + 1) / LINES.length) * 100))
-      }, line.delay)
+      }, line.delay))
     })
     const total = LINES[LINES.length - 1].delay + 700
-    setTimeout(() => setTimeout(onDone, 400), total)
-  }, [])
+    timers.push(setTimeout(() => {
+      timers.push(setTimeout(onDone, 400))
+    }, total))
+
+    return () => timers.forEach(clearTimeout)
+  }, [onDone])
 
   return (
     <motion.div
@@ -54,7 +59,7 @@ const TerminalLoader = ({ onDone }) => {
             <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFBD2E', display: 'inline-block' }} />
             <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#28C840', display: 'inline-block' }} />
           </div>
-          <span style={{ fontSize: '0.58rem', color: '#404040', letterSpacing: '0.12em' }}>CYBER_PORTFOLIO — terminal-seguro</span>
+          <span style={{ fontSize: '0.58rem', color: '#404040', letterSpacing: '0.12em' }}>JGONZALEZ — terminal-seguro</span>
         </div>
         {/* body */}
         <div className="p-5 space-y-1.5" style={{ minHeight: '220px' }}>
@@ -88,11 +93,11 @@ export const HomeTemplate = () => {
   const [heroVisible, setHeroVisible] = useState(() => !!sessionStorage.getItem('cyber_loaded'))
   const contactModal = useContactModal()
 
-  const handleLoaderDone = () => {
+  const handleLoaderDone = useCallback(() => {
     sessionStorage.setItem('cyber_loaded', '1')
     setShowLoader(false)
     setHeroVisible(true)
-  }
+  }, [])
 
   const handleDownloadCV = () => {
     const link = document.createElement('a')
@@ -228,7 +233,7 @@ export const HomeTemplate = () => {
                   }}
                 >
                   <span className="pulse-dot" style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#D9A553', display: 'inline-block' }} />
-                  Full Stack Developer Jr. // Est. Ingeniería en Sistemas
+                    Full Stack Developer Jr. // Disponible Full-Time
                 </motion.p>
 
                 {/* Headline */}
@@ -273,7 +278,7 @@ export const HomeTemplate = () => {
                       lineHeight: 1.7,
                     }}
                   >
-                    Desarrollador Full Stack Jr. enfocado en la construcción de interfaces responsivas y servicios backend optimizados. Con experiencia en administración de datos, flujos de trabajo ágiles (Scrum) y despliegues confiables (CI/CD), con una sólida base en sistemas operativos y ciberseguridad.
+                    Desarrollador Full Stack Jr. con experiencia práctica en React, Node.js y bases de datos SQL y NoSQL. Construyo aplicaciones web y de escritorio seguras, con Git, Docker, Scrum y CI/CD, además de una base sólida en Linux y ciberseguridad.
                   </p>
                 </motion.div>
 

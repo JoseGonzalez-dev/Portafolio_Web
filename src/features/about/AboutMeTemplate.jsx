@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import ContactModal from '../../shared/components/molecules/ContactModal'
@@ -14,12 +14,12 @@ export const AboutMeTemplate = () => {
   ]
 
   const skills = [
-    { name: 'Frontend (React, JavaScript, HTML5, CSS3)',  pct: 88 },
-    { name: 'Backend (Node.js, Express, REST APIs)',       pct: 82 },
-    { name: 'Bases de Datos (MongoDB, MySQL, SQL Server)', pct: 80 },
-    { name: 'Lenguajes (Java, Python, C#, C++)',           pct: 75 },
-    { name: 'DevOps & Herramientas (Git, Docker, Linux)',   pct: 78 },
-    { name: 'Ciberseguridad & Redes (Cisco NetAcad)',      pct: 75 },
+    { name: 'Frontend (React, Vite, JavaScript, HTML5, Tailwind)', pct: 88 },
+    { name: 'Backend (Node.js, Express, JWT, REST APIs)',          pct: 82 },
+    { name: 'Bases de Datos (SQL Server, MySQL, MongoDB)',         pct: 80 },
+    { name: 'Lenguajes (Java, Python, C#, C++)',                   pct: 78 },
+    { name: 'DevOps & Herramientas (Git, Docker, CI/CD)',          pct: 82 },
+    { name: 'Ciberseguridad & Redes (Cisco Networking Academy)',   pct: 76 },
   ]
 
   const arsenal = [
@@ -31,6 +31,9 @@ export const AboutMeTemplate = () => {
     { icon: 'logos:c-sharp',        label: 'C# (.NET)' },
     { icon: 'logos:mongodb-icon',   label: 'MongoDB' },
     { icon: 'logos:mysql-icon',     label: 'MySQL' },
+    { icon: 'mdi:database-outline', label: 'SQL Server' },
+    { icon: 'logos:tailwindcss-icon', label: 'Tailwind CSS' },
+    { icon: 'mdi:language-java',    label: 'JavaFX' },
     { icon: 'logos:docker-icon',    label: 'Docker' },
     { icon: 'logos:git-icon',       label: 'Git' },
     { icon: 'cib:cisco',            label: 'Cisco' },
@@ -38,19 +41,20 @@ export const AboutMeTemplate = () => {
   ]
 
   const stats = [
-    { value: '2+',   label: 'Años Activo' },
-    { value: '10+',  label: 'Proyectos' },
+    { value: '1+',   label: 'Experiencia Profesional' },
+    { value: '10+',  label: 'Proyectos Técnicos' },
     { value: '15+',  label: 'Tecnologías' },
   ]
 
   const operationalHistory = [
     {
-      title: 'Desarrollo Full Stack',
-      period: 'Actualidad',
-      organization: 'Proyectos personales y académicos',
+      title: 'Desarrollador Web Full Stack',
+      period: 'Ago 2025 - Oct 2025',
+      organization: 'Plus Technologies & Innovations S.A. · Prácticas profesionales',
       points: [
-        'Construcción de interfaces responsivas con React y servicios backend con Node.js.',
-        'Integración de APIs, autenticación JWT y persistencia de datos en MongoDB y MySQL.',
+        'Desarrollo y despliegue de GeoDash, plataforma educativa construida con React, Tailwind CSS y Node.js.',
+        'Implementación de seguimiento de progreso y scripts de Web Scraping para automatizar la recolección de datos.',
+        'Apoyo en la estructura de datos y la lógica de negocio de una aplicación de contabilidad básica.',
       ],
     },
     {
@@ -101,7 +105,10 @@ export const AboutMeTemplate = () => {
               <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '520px' }}
                 className="text-base mb-8"
               >
-                Hola, soy <span style={{ color: 'var(--text-main)' }}>José Francisco González Ordoñez</span> — Desarrollador Full Stack Jr. y estudiante de Ingeniería en Sistemas. Enfocado en la construcción de interfaces responsivas y servicios backend optimizados, con experiencia en metodologías ágiles (Scrum) y despliegues confiables (CI/CD). Mi perfil técnico se potencia con una sólida base en sistemas operativos y certificaciones activas en ciberseguridad, con total disponibilidad para integrarme a equipos de alto rendimiento a tiempo completo.
+                Hola, soy <span style={{ color: 'var(--text-main)' }}>José Francisco González Ordoñez</span>, Desarrollador Full Stack Jr. y estudiante de Ingeniería en Sistemas de Información y Ciencias de la Computación en modalidad fin de semana. Tengo experiencia práctica en desarrollo web y aplicaciones de escritorio, despliegues, autenticación segura, bases de datos SQL y NoSQL, Scrum y CI/CD. También cuento con una base sólida en Linux y ciberseguridad, y disponibilidad a tiempo completo.
+              </p>
+              <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent)', fontSize: '0.62rem', letterSpacing: '0.08em', marginTop: '-18px', marginBottom: '28px' }}>
+                Santa Catarina Pinula, Guatemala · +502 4137-9293
               </p>
 
               {/* Stats row */}

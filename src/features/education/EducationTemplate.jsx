@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import ethicalHackerPdf from './certs/ethical_hacker_cisco.pdf'
-import iso27001Pdf from './certs/iso_27001_hacker_mentor.pdf'
 
 export const EducationTemplate = () => {
   useEffect(() => {
@@ -24,7 +23,7 @@ export const EducationTemplate = () => {
       institution: 'Universidad Mariano Gálvez de Guatemala',
       location: 'Guatemala',
       tags: ['Ingeniería', 'Sistemas', 'Informática', 'Ciencias de la Computación'],
-      description: 'Formación integral en desarrollo de software, arquitectura de sistemas, gestión de datos y ciencias computacionales avanzadas.',
+      description: 'Plan fin de semana enfocado en desarrollo de software, arquitectura de sistemas, gestión de datos y ciencias computacionales avanzadas.',
     },
     {
       period: 'Ene 2023 – Nov 2025',
@@ -35,9 +34,9 @@ export const EducationTemplate = () => {
       description: 'Diversificado con especialización en tecnología. Formación sólida en administración de sistemas, redes y desarrollo de software.',
     },
     {
-      period: '2016 – 2023',
+      period: '2021 – 2022',
       title: 'Educación Básica',
-      institution: 'Centro de Estudios Guatemala',
+      institution: 'Colegio La Sagrada Familia',
       location: 'Guatemala',
       tags: ['Matemáticas', 'Ciencias', 'Tecnología'],
       description: 'Bases en matemáticas, ciencias e introducción a la tecnología informática.',
@@ -64,13 +63,22 @@ export const EducationTemplate = () => {
       date: 'Sept 2025',
     },
     {
-      title: 'Curso ISO 27001: El mapa exacto para Certificarte',
-      provider: 'Academia de Ciberseguridad Hacker Mentor',
-      description: 'Capacitación de 6 horas académicas sobre Sistemas de Gestión de Seguridad de la Información (SGSI), políticas de seguridad y gestión del riesgo según la norma ISO 27001.',
+      title: 'Curso Profesional de Docker',
+      provider: 'Código Facilito',
+      description: 'Contenedores, imágenes, redes, volúmenes, Docker Compose y preparación de entornos para despliegues reproducibles.',
       status: 'Valid',
       credlyUrl: null,
-      pdfUrl: iso27001Pdf,
-      date: 'Ago 2026',
+      pdfUrl: null,
+      date: '2026',
+    },
+    {
+      title: 'Networking Basics',
+      provider: 'Cisco Networking Academy',
+      description: 'Conceptos básicos de redes, comunicación entre dispositivos, direccionamiento y fundamentos de conectividad.',
+      status: 'Valid',
+      credlyUrl: null,
+      pdfUrl: null,
+      date: 'Sep 2026',
     },
     {
       title: 'Operating Systems Basics',
@@ -90,24 +98,9 @@ export const EducationTemplate = () => {
       pdfUrl: null, // Puedes colocar la ruta ej: '/certs/ccna_networks.pdf'
       date: 'Ene 2023',
     },
-    {
-      title: 'Cisco Learn-A-Thon 2026',
-      provider: 'Cisco Networking Academy',
-      description: 'Insignia de participación activa y excelencia en maratones de tecnología y aprendizaje continuo de Cisco.',
-      status: 'Valid',
-      credlyUrl: 'https://www.credly.com/badges/511a8d4b-4fd6-42de-963d-507367c895ef/public_url',
-      pdfUrl: null, // Puedes colocar la ruta ej: '/certs/learnathon_2026.pdf'
-      date: '2026',
-    },
   ]
 
   const cardStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)' }
-
-  const statusStyle = (status) => {
-    if (status === 'Valid') return { background: 'var(--green-valid)', color: 'var(--green-text)', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', padding: '2px 8px', textTransform: 'uppercase' }
-    if (status === 'En Proceso') return { background: 'rgba(180,130,20,0.15)', color: '#C9A84C', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', padding: '2px 8px', textTransform: 'uppercase' }
-    return { background: 'rgba(60,60,60,0.4)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', padding: '2px 8px', textTransform: 'uppercase' }
-  }
 
   return (
     <div style={{ background: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '80px', paddingBottom: '80px' }}>
@@ -312,7 +305,7 @@ export const EducationTemplate = () => {
                           </a>
                         ) : (
                           <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#A38444', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                            [VERIFICADO POR NETACAD]
+                            [CERTIFICADO ACTIVO]
                           </span>
                         )}
 
@@ -345,7 +338,7 @@ export const EducationTemplate = () => {
         {/* ── Footer label ── */}
         <div className="mt-16 pt-6" style={{ borderTop: '1px solid var(--border)' }}>
           <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-dim)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-            © {new Date().getFullYear()} Cyber_Portfolio.&nbsp;
+            © {new Date().getFullYear()} JGonzalez.&nbsp;
             <span style={{ color: 'var(--accent-dim)' }}>Acceso Seguro Concedido.</span>
           </p>
         </div>

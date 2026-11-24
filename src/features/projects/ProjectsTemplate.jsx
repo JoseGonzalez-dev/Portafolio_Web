@@ -19,91 +19,109 @@ export const ProjectsTemplate = () => {
 
   const projects = [
     {
-      id: 1, title: 'Gestión de Archivos (mi-archivo)', category: 'fullstack', live: false,
-      desc: 'Aplicación web orientada a la privacidad, construida con autenticación segura de usuarios mediante JSON Web Tokens (JWT) para la gestión controlada de documentos.',
-      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990512/Captura_de_pantalla_2025-07-19_234821_voahkp.png',
-      tags: ['React', 'Node.js', 'JWT', 'MongoDB', 'Express'],
-      github: 'https://github.com/JoseGonzalez-dev',
-      demo: null,
+      id: 1, title: 'VozHabla AAC', category: 'mobile',
+      desc: 'Aplicación Android offline de comunicación aumentativa y alternativa para personas no verbales. Incluye pictogramas, síntesis de voz, panel de cuidadores, modo quiosco y respaldo portable.',
+      image: null,
+      tags: ['Kotlin', 'Jetpack Compose', 'Room', 'TTS'],
+      github: 'https://github.com/JoseGonzalez-dev/VozHabla',
     },
     {
-      id: 2, title: 'GeoDash — Plataforma Educativa', category: 'web', live: true,
-      desc: 'Aplicación web interactiva de geografía desarrollada en 6 semanas. Frontend en React y Tailwind CSS, e integración de sistema de progreso con Node.js.',
-      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990469/fbnlgfe0klobdro85po6.png',
+      id: 2, title: 'Sistema de Punto de Venta', category: 'desktop',
+      desc: 'Aplicación de escritorio desarrollada individualmente para ventas en caja, con Java, JavaFX y POO. Incluye MySQL, triggers, procedimientos almacenados y generación de reportes y facturas.',
+      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752988296/Captura_de_pantalla_2025-07-19_230717_ood9cz.png',
+      tags: ['Java', 'JavaFX', 'POO', 'MySQL'],
+      github: 'https://github.com/JoseGonzalez-dev',
+    },
+    {
+      id: 3, title: 'Gestión de Archivos (mi-archivo)', category: 'web',
+      desc: 'Aplicación web para gestión de documentos con React y Vite, Node.js/Express bajo MVC, SQL Server y Cloudinary. Usa JWT en cookies httpOnly, Argon2 y express-validator.',
+      image: null,
+      tags: ['React', 'Node.js', 'JWT', 'SQL Server', 'Argon2'],
+      github: 'https://github.com/JoseGonzalez-dev',
+    },
+    {
+      id: 4, title: 'Web Scrapping', category: 'backend',
+      desc: 'Herramienta en Python para extraer y procesar contenido desde páginas web y archivos HTML mediante BeautifulSoup y Requests.',
+      image: null,
+      tags: ['Python', 'BeautifulSoup', 'Requests', 'HTML'],
+      github: 'https://github.com/JoseGonzalez-dev/WebScrapping',
+    },
+    {
+      id: 5, title: 'GeoDash — Plataforma Educativa', category: 'web',
+      desc: 'Plataforma educativa de geografía desarrollada y desplegada durante prácticas profesionales en 6 semanas, con React, Tailwind CSS, Node.js y seguimiento de progreso de usuarios.',
+      image: null,
       tags: ['React', 'Tailwind CSS', 'Node.js', 'Vite'],
       github: 'https://github.com/JoseGonzalez-dev',
-      demo: null,
     },
     {
-      id: 3, title: 'Tienda Online', category: 'desktop', live: true,
-      desc: 'E-commerce completo con carrito de compras, gestión de productos y panel administrativo. Conectado a base de datos MySQL.',
-      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752988296/Captura_de_pantalla_2025-07-19_230717_ood9cz.png',
-      tags: ['Java', 'JavaFX', 'MySQL', 'CSS'],
-      github: 'https://github.com/JoseGonzalez-dev/Kinal_Store.git',
-      demo: null,
+      id: 6, title: 'FinCost C++', category: 'desktop',
+      desc: 'Sistema de contabilidad financiera y costos industriales con catálogo de cuentas, libro diario de partida doble, órdenes de producción y reportes automatizados.',
+      image: null,
+      tags: ['C++', 'Archivos binarios', 'CRUD', 'Contabilidad'],
+      github: 'https://github.com/JoseGonzalez-dev/FinCost',
     },
     {
-      id: 4, title: 'Hotel-Havenis-sys', category: 'fullstack', live: false,
-      desc: 'Sistema para la gestión de hoteles, eventos y servicios con arquitectura fullstack.',
+      id: 7, title: 'Pre-cálculo: Escalamiento en la Nube', category: 'desktop',
+      desc: 'Proyecto matemático que modela crecimiento de usuarios, latencia de servidores y utilidad financiera mediante funciones exponenciales, racionales y cuadráticas.',
+      image: null,
+      tags: ['Python', 'NumPy', 'Matplotlib', 'OpenPyXL'],
+      github: 'https://github.com/JoseGonzalez-dev/Pre-calculo',
+    },
+    {
+      id: 8, title: 'Recomendador con Álgebra Lineal', category: 'desktop',
+      desc: 'Sistema de recomendaciones que implementa manualmente transpuestas, determinantes, inversas, Gauss-Jordan, Cramer y ecuaciones normales para sistemas cuadrados y rectangulares.',
+      image: null,
+      tags: ['Python', 'NumPy', 'Matrices', 'Gauss-Jordan'],
+      github: 'https://github.com/JoseGonzalez-dev/ProyectoFinalAlgebraLineal',
+    },
+    {
+      id: 9, title: 'Hotel-Havenis-sys', category: 'web',
+      desc: 'Sistema para la gestión de hoteles, eventos y servicios con arquitectura web.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990178/Captura_de_pantalla_2025-07-19_234245_y65e2q.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Express'],
       github: 'https://github.com/ndelacruz-2023048/Sistema-gestion-hotelera.git',
-      demo: null,
     },
     {
-      id: 5, title: 'Calculadora React Native', category: 'mobile', live: false,
-      desc: 'Aplicación móvil nativa con operaciones matemáticas avanzadas y diseño responsive para Android e iOS.',
-      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752989592/Imagen_de_WhatsApp_2025-07-19_a_las_23.32.31_55db8a94_rqphag.jpg',
-      tags: ['React Native', 'JavaScript', 'Expo'],
-      github: 'https://github.com/JoseGonzalez-dev/Proyectos.git',
-      demo: null,
-    },
-    {
-      id: 6, title: 'Blog de Aprendizaje', category: 'fullstack', live: false,
+      id: 10, title: 'Blog de Aprendizaje', category: 'web',
       desc: 'Sistema blog con apariencia de red social, interacción dinámica en tiempo real.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990512/Captura_de_pantalla_2025-07-19_234821_voahkp.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Express'],
       github: 'https://github.com/JoseGonzalez-dev/Blog_Aprendizaje_FyB.git',
-      demo: null,
     },
     {
-      id: 7, title: 'Portafolio Web', category: 'web', live: false,
-      desc: 'Sitio web personal responsive con animaciones fluidas, diseño moderno y optimización SEO.',
-      image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990469/fbnlgfe0klobdro85po6.png',
-      tags: ['React', 'Vite', 'Tailwind'],
-      github: 'https://github.com/JoseGonzalez-dev/Portafolio_Web.gita',
-      demo: null,
-    },
-    {
-      id: 8, title: 'AguaComun-sys', category: 'web', live: true,
+      id: 11, title: 'AguaComun-sys', category: 'web',
       desc: 'Proyecto comunitario para gestión, optimización y cuidado del agua en comunidades de Guatemala.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752990984/Captura_de_pantalla_2025-07-19_235610_odhgqb.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
       github: 'https://github.com/ndelacruz-2023048/AguaComun_Frontend.git',
-      demo: 'https://aguacomunfrontend-production.up.railway.app/',
     },
     {
-      id: 9, title: 'Limae-sys', category: 'web', live: true,
+      id: 12, title: 'Limae-sys', category: 'web',
       desc: 'Plataforma de prevención contra el bullying escolar con chat integrado 24/7.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752991625/Captura_de_pantalla_2025-07-20_000648_hoapaa.png',
       tags: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
       github: 'https://github.com/ndelacruz-2023048/Limae_Frontend.git',
-      demo: 'https://limae.org',
     },
     {
-      id: 10, title: 'Tienda Online API', category: 'backend', live: false,
+      id: 13, title: 'Tienda Online API', category: 'backend',
       desc: 'API RESTful para gestión de productos y proceso de compras eCommerce.',
       image: 'https://res.cloudinary.com/dzydnoljd/image/upload/v1752991983/Captura_de_pantalla_2025-07-20_001250_cocqkr.png',
       tags: ['Node.js', 'MongoDB', 'Express'],
       github: 'https://github.com/jgonzalez-2023195/Online_Store.git',
-      demo: null,
+    },
+    {
+      id: 14, title: 'Portafolio Web', category: 'web', live: true,
+      desc: 'Sitio web personal responsive con arquitectura por features, animaciones, presentación de proyectos, contacto mediante Web3Forms y descarga del CV.',
+      image: null,
+      tags: ['React', 'Vite', 'Tailwind CSS'],
+      github: 'https://github.com/JoseGonzalez-dev/Portafolio_Web',
+      demo: 'https://portafolio-jfgo.vercel.app/',
     },
   ]
 
   const categories = [
     { id: 'all',      label: 'Todos' },
     { id: 'web',      label: 'Web' },
-    { id: 'fullstack',label: 'Full Stack' },
     { id: 'backend',  label: 'Backend' },
     { id: 'mobile',   label: 'Móvil' },
     { id: 'desktop',  label: 'Desktop' },
@@ -138,7 +156,7 @@ export const ProjectsTemplate = () => {
               Proyectos Destacados.
             </h1>
             <p style={{ fontFamily: 'var(--font-body)', color: 'var(--text-muted)', maxWidth: '540px', lineHeight: 1.7, fontSize: '0.95rem' }}>
-              Registro de proyectos técnicos, aplicaciones web interactivas y servicios fullstack desarrollados con estándares de código limpio y seguridad.
+              Registro de proyectos técnicos, aplicaciones web interactivas y servicios desarrollados con estándares de código limpio y seguridad.
             </p>
           </motion.div>
         </section>
@@ -189,7 +207,11 @@ export const ProjectsTemplate = () => {
                   <div
                     className="relative overflow-hidden cursor-pointer"
                     style={{ height: '180px', background: '#111' }}
-                    onClick={() => imageModal.openModal(project.image, project.title, project.title)}
+                    onClick={() => {
+                      if (project.image) {
+                        imageModal.openModal(project.image, project.title, project.title)
+                      }
+                    }}
                   >
                     {project.image && (
                       <img
@@ -198,6 +220,21 @@ export const ProjectsTemplate = () => {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
                         onError={e => { e.target.style.display = 'none' }}
                       />
+                    )}
+                    {!project.image && (
+                      <div
+                        className="absolute inset-0 flex flex-col items-center justify-center gap-2"
+                        style={{
+                          border: '1px dashed var(--border-light)',
+                          backgroundImage: 'linear-gradient(rgba(201,168,76,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.025) 1px, transparent 1px)',
+                          backgroundSize: '24px 24px',
+                        }}
+                      >
+                        <Icon icon="mdi:image-outline" width={28} style={{ color: 'var(--accent-dim)' }} />
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-muted)', letterSpacing: '0.14em' }}>
+                          FOTO REFERENCIA
+                        </span>
+                      </div>
                     )}
 
                     {/* Hover overlay */}
@@ -283,7 +320,7 @@ export const ProjectsTemplate = () => {
         <div style={{ borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: 'var(--text-dim)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-              © {new Date().getFullYear()} Cyber_Portfolio.&nbsp;
+              © {new Date().getFullYear()} JGonzalez.&nbsp;
               <span style={{ color: 'var(--accent-dim)' }}>Archivo Seguro Acreditado.</span>
             </p>
             <button
